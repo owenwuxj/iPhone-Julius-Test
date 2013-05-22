@@ -37,7 +37,6 @@
 		[recorder stop];
 		[recordButton setTitle:@"Record" forState:UIControlStateNormal];
 	}
-	
 	self.processing = !processing;
 }
 

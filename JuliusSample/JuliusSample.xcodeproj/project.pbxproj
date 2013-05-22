@@ -8,78 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		130F837512E33E9000488D19 /* fast.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 130F837412E33E9000488D19 /* fast.jconf */; };
+		133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 133E19E1174CBD0E00506BCB /* Default-568h@2x.png */; };
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
 		13684FD912E0AC2C00FBF870 /* libjulius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FD712E0AC2300FBF870 /* libjulius.a */; };
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
-		13A7355D174CB63800A57375 /* hmmdefs in Resources */ = {isa = PBXBuildFile; fileRef = 13A73512174CB63800A57375 /* hmmdefs */; };
-		13A7355E174CB63800A57375 /* macros in Resources */ = {isa = PBXBuildFile; fileRef = 13A73513174CB63800A57375 /* macros */; };
-		13A7355F174CB63800A57375 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 13A73514174CB63800A57375 /* tiedlist */; };
-		13A73560174CB63800A57375 /* accept_check.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73516174CB63800A57375 /* accept_check.exe */; };
-		13A73561174CB63800A57375 /* adinrec.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73517174CB63800A57375 /* adinrec.exe */; };
-		13A73562174CB63800A57375 /* adintool.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73518174CB63800A57375 /* adintool.exe */; };
-		13A73563174CB63800A57375 /* dfa_determinize.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73519174CB63800A57375 /* dfa_determinize.exe */; };
-		13A73564174CB63800A57375 /* dfa_minimize.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A7351A174CB63800A57375 /* dfa_minimize.exe */; };
-		13A73565174CB63800A57375 /* generate-ngram.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A7351B174CB63800A57375 /* generate-ngram.exe */; };
-		13A73566174CB63800A57375 /* generate.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A7351C174CB63800A57375 /* generate.exe */; };
-		13A73567174CB63800A57375 /* gram2sapixml.pl in Resources */ = {isa = PBXBuildFile; fileRef = 13A7351D174CB63800A57375 /* gram2sapixml.pl */; };
-		13A73568174CB63800A57375 /* jclient.pl in Resources */ = {isa = PBXBuildFile; fileRef = 13A7351E174CB63800A57375 /* jclient.pl */; };
-		13A73569174CB63800A57375 /* jcontrol.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A7351F174CB63800A57375 /* jcontrol.exe */; };
-		13A7356A174CB63800A57375 /* julius-4.2-decoder-vad.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73520174CB63800A57375 /* julius-4.2-decoder-vad.exe */; };
-		13A7356B174CB63800A57375 /* julius-4.2-gmm-vad.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73521174CB63800A57375 /* julius-4.2-gmm-vad.exe */; };
-		13A7356C174CB63800A57375 /* julius-4.2-std.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73522174CB63800A57375 /* julius-4.2-std.exe */; };
-		13A7356D174CB63800A57375 /* julius-4.2.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73523174CB63800A57375 /* julius-4.2.exe */; };
-		13A7356E174CB63800A57375 /* julius.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73524174CB63800A57375 /* julius.exe */; };
-		13A7356F174CB63800A57375 /* libjulius-config in Resources */ = {isa = PBXBuildFile; fileRef = 13A73525174CB63800A57375 /* libjulius-config */; };
-		13A73570174CB63800A57375 /* libsent-config in Resources */ = {isa = PBXBuildFile; fileRef = 13A73526174CB63800A57375 /* libsent-config */; };
-		13A73571174CB63800A57375 /* mkbingram.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73527174CB63800A57375 /* mkbingram.exe */; };
-		13A73572174CB63800A57375 /* mkbinhmm.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73528174CB63800A57375 /* mkbinhmm.exe */; };
-		13A73573174CB63800A57375 /* mkbinhmmlist.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73529174CB63800A57375 /* mkbinhmmlist.exe */; };
-		13A73574174CB63800A57375 /* mkdfa.pl in Resources */ = {isa = PBXBuildFile; fileRef = 13A7352A174CB63800A57375 /* mkdfa.pl */; };
-		13A73575174CB63800A57375 /* mkfa.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A7352B174CB63800A57375 /* mkfa.exe */; };
-		13A73576174CB63800A57375 /* mkgshmm in Resources */ = {isa = PBXBuildFile; fileRef = 13A7352C174CB63800A57375 /* mkgshmm */; };
-		13A73577174CB63800A57375 /* mkss.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A7352D174CB63800A57375 /* mkss.exe */; };
-		13A73578174CB63800A57375 /* neighbors.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13A7352E174CB63800A57375 /* neighbors.grammar */; };
-		13A73579174CB63800A57375 /* neighbors.term in Resources */ = {isa = PBXBuildFile; fileRef = 13A7352F174CB63800A57375 /* neighbors.term */; };
-		13A7357A174CB63800A57375 /* neighbors.voca in Resources */ = {isa = PBXBuildFile; fileRef = 13A73530174CB63800A57375 /* neighbors.voca */; };
-		13A7357B174CB63800A57375 /* nextword.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73531174CB63800A57375 /* nextword.exe */; };
-		13A7357C174CB63800A57375 /* yomi2voca.pl in Resources */ = {isa = PBXBuildFile; fileRef = 13A73532174CB63800A57375 /* yomi2voca.pl */; };
-		13A7357D174CB63800A57375 /* Juliusbook-4.1.5.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 13A73534174CB63800A57375 /* Juliusbook-4.1.5.pdf */; };
-		13A7357E174CB63800A57375 /* accept_check.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73536174CB63800A57375 /* accept_check.txt */; };
-		13A7357F174CB63800A57375 /* adinrec.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73537174CB63800A57375 /* adinrec.txt */; };
-		13A73580174CB63800A57375 /* adintool.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73538174CB63800A57375 /* adintool.txt */; };
-		13A73581174CB63800A57375 /* dfa_determinize.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73539174CB63800A57375 /* dfa_determinize.txt */; };
-		13A73582174CB63800A57375 /* dfa_minimize.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A7353A174CB63800A57375 /* dfa_minimize.txt */; };
-		13A73583174CB63800A57375 /* generate-ngram.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A7353B174CB63800A57375 /* generate-ngram.txt */; };
-		13A73584174CB63800A57375 /* generate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A7353C174CB63800A57375 /* generate.txt */; };
-		13A73585174CB63800A57375 /* gram2sapixml.pl.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A7353D174CB63800A57375 /* gram2sapixml.pl.txt */; };
-		13A73586174CB63800A57375 /* jclient.pl.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A7353E174CB63800A57375 /* jclient.pl.txt */; };
-		13A73587174CB63800A57375 /* jcontrol.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A7353F174CB63800A57375 /* jcontrol.txt */; };
-		13A73588174CB63800A57375 /* julius.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73540174CB63800A57375 /* julius.txt */; };
-		13A73589174CB63800A57375 /* mkbingram.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73541174CB63800A57375 /* mkbingram.txt */; };
-		13A7358A174CB63800A57375 /* mkbinhmm.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73542174CB63800A57375 /* mkbinhmm.txt */; };
-		13A7358B174CB63800A57375 /* mkbinhmmlist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73543174CB63800A57375 /* mkbinhmmlist.txt */; };
-		13A7358C174CB63800A57375 /* mkdfa.pl.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73544174CB63800A57375 /* mkdfa.pl.txt */; };
-		13A7358D174CB63800A57375 /* mkgshmm.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73545174CB63800A57375 /* mkgshmm.txt */; };
-		13A7358E174CB63800A57375 /* mkss.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73546174CB63800A57375 /* mkss.txt */; };
-		13A7358F174CB63800A57375 /* nextword.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73547174CB63800A57375 /* nextword.txt */; };
-		13A73590174CB63800A57375 /* GPL_License in Resources */ = {isa = PBXBuildFile; fileRef = 13A73549174CB63800A57375 /* GPL_License */; };
-		13A73591174CB63800A57375 /* sample.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A7354B174CB63800A57375 /* sample.dfa */; };
-		13A73592174CB63800A57375 /* sample.dict in Resources */ = {isa = PBXBuildFile; fileRef = 13A7354C174CB63800A57375 /* sample.dict */; };
-		13A73593174CB63800A57375 /* sample.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13A7354D174CB63800A57375 /* sample.grammar */; };
-		13A73594174CB63800A57375 /* sample.term in Resources */ = {isa = PBXBuildFile; fileRef = 13A7354E174CB63800A57375 /* sample.term */; };
-		13A73595174CB63800A57375 /* sample.voca in Resources */ = {isa = PBXBuildFile; fileRef = 13A7354F174CB63800A57375 /* sample.voca */; };
-		13A73596174CB63800A57375 /* GRAMMAR_NOTES in Resources */ = {isa = PBXBuildFile; fileRef = 13A73550174CB63800A57375 /* GRAMMAR_NOTES */; };
-		13A73597174CB63800A57375 /* julius.exe in Resources */ = {isa = PBXBuildFile; fileRef = 13A73551174CB63800A57375 /* julius.exe */; };
-		13A73598174CB63800A57375 /* 00readme-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73553174CB63800A57375 /* 00readme-ja.txt */; };
-		13A73599174CB63800A57375 /* 00readme-julius-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73554174CB63800A57375 /* 00readme-julius-ja.txt */; };
-		13A7359A174CB63800A57375 /* 00readme-julius.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73555174CB63800A57375 /* 00readme-julius.txt */; };
-		13A7359B174CB63800A57375 /* 00readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73556174CB63800A57375 /* 00readme.txt */; };
-		13A7359C174CB63800A57375 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73557174CB63800A57375 /* LICENSE.txt */; };
-		13A7359D174CB63800A57375 /* Release-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73558174CB63800A57375 /* Release-ja.txt */; };
-		13A7359E174CB63800A57375 /* Release.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A73559174CB63800A57375 /* Release.txt */; };
-		13A7359F174CB63800A57375 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 13A7355A174CB63800A57375 /* LICENSE */; };
-		13A735A0174CB63800A57375 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 13A7355B174CB63800A57375 /* README */; };
-		13A735A1174CB63800A57375 /* Sample.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13A7355C174CB63800A57375 /* Sample.jconf */; };
 		13A80BE1174C5D8D00B22FB8 /* phone_model_ios in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE0174C5D8D00B22FB8 /* phone_model_ios */; };
 		13A80BE3174C5E0300B22FB8 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE2174C5E0300B22FB8 /* tiedlist */; };
 		13A80BE6174C5ED800B22FB8 /* sample.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE4174C5ED800B22FB8 /* sample.dfa */; };
@@ -141,78 +73,10 @@
 
 /* Begin PBXFileReference section */
 		130F837412E33E9000488D19 /* fast.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fast.jconf; sourceTree = "<group>"; };
+		133E19E1174CBD0E00506BCB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		13684FCA12E0AC0D00FBF870 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13684FD212E0AC2300FBF870 /* julius.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = julius.xcodeproj; path = ../julius/julius.xcodeproj; sourceTree = SOURCE_ROOT; };
 		13684FEA12E0AC9900FBF870 /* light.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.jconf; sourceTree = "<group>"; };
-		13A73512174CB63800A57375 /* hmmdefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hmmdefs; sourceTree = "<group>"; };
-		13A73513174CB63800A57375 /* macros */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = macros; sourceTree = "<group>"; };
-		13A73514174CB63800A57375 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiedlist; sourceTree = "<group>"; };
-		13A73516174CB63800A57375 /* accept_check.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = accept_check.exe; sourceTree = "<group>"; };
-		13A73517174CB63800A57375 /* adinrec.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = adinrec.exe; sourceTree = "<group>"; };
-		13A73518174CB63800A57375 /* adintool.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = adintool.exe; sourceTree = "<group>"; };
-		13A73519174CB63800A57375 /* dfa_determinize.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = dfa_determinize.exe; sourceTree = "<group>"; };
-		13A7351A174CB63800A57375 /* dfa_minimize.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = dfa_minimize.exe; sourceTree = "<group>"; };
-		13A7351B174CB63800A57375 /* generate-ngram.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generate-ngram.exe"; sourceTree = "<group>"; };
-		13A7351C174CB63800A57375 /* generate.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = generate.exe; sourceTree = "<group>"; };
-		13A7351D174CB63800A57375 /* gram2sapixml.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = gram2sapixml.pl; sourceTree = "<group>"; };
-		13A7351E174CB63800A57375 /* jclient.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = jclient.pl; sourceTree = "<group>"; };
-		13A7351F174CB63800A57375 /* jcontrol.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = jcontrol.exe; sourceTree = "<group>"; };
-		13A73520174CB63800A57375 /* julius-4.2-decoder-vad.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = "julius-4.2-decoder-vad.exe"; sourceTree = "<group>"; };
-		13A73521174CB63800A57375 /* julius-4.2-gmm-vad.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = "julius-4.2-gmm-vad.exe"; sourceTree = "<group>"; };
-		13A73522174CB63800A57375 /* julius-4.2-std.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = "julius-4.2-std.exe"; sourceTree = "<group>"; };
-		13A73523174CB63800A57375 /* julius-4.2.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = "julius-4.2.exe"; sourceTree = "<group>"; };
-		13A73524174CB63800A57375 /* julius.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = julius.exe; sourceTree = "<group>"; };
-		13A73525174CB63800A57375 /* libjulius-config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "libjulius-config"; sourceTree = "<group>"; };
-		13A73526174CB63800A57375 /* libsent-config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "libsent-config"; sourceTree = "<group>"; };
-		13A73527174CB63800A57375 /* mkbingram.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = mkbingram.exe; sourceTree = "<group>"; };
-		13A73528174CB63800A57375 /* mkbinhmm.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = mkbinhmm.exe; sourceTree = "<group>"; };
-		13A73529174CB63800A57375 /* mkbinhmmlist.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = mkbinhmmlist.exe; sourceTree = "<group>"; };
-		13A7352A174CB63800A57375 /* mkdfa.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = mkdfa.pl; sourceTree = "<group>"; };
-		13A7352B174CB63800A57375 /* mkfa.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = mkfa.exe; sourceTree = "<group>"; };
-		13A7352C174CB63800A57375 /* mkgshmm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = mkgshmm; sourceTree = "<group>"; };
-		13A7352D174CB63800A57375 /* mkss.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = mkss.exe; sourceTree = "<group>"; };
-		13A7352E174CB63800A57375 /* neighbors.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neighbors.grammar; sourceTree = "<group>"; };
-		13A7352F174CB63800A57375 /* neighbors.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neighbors.term; sourceTree = "<group>"; };
-		13A73530174CB63800A57375 /* neighbors.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neighbors.voca; sourceTree = "<group>"; };
-		13A73531174CB63800A57375 /* nextword.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = nextword.exe; sourceTree = "<group>"; };
-		13A73532174CB63800A57375 /* yomi2voca.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = yomi2voca.pl; sourceTree = "<group>"; };
-		13A73534174CB63800A57375 /* Juliusbook-4.1.5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Juliusbook-4.1.5.pdf"; sourceTree = "<group>"; };
-		13A73536174CB63800A57375 /* accept_check.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accept_check.txt; sourceTree = "<group>"; };
-		13A73537174CB63800A57375 /* adinrec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = adinrec.txt; sourceTree = "<group>"; };
-		13A73538174CB63800A57375 /* adintool.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = adintool.txt; sourceTree = "<group>"; };
-		13A73539174CB63800A57375 /* dfa_determinize.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dfa_determinize.txt; sourceTree = "<group>"; };
-		13A7353A174CB63800A57375 /* dfa_minimize.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dfa_minimize.txt; sourceTree = "<group>"; };
-		13A7353B174CB63800A57375 /* generate-ngram.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "generate-ngram.txt"; sourceTree = "<group>"; };
-		13A7353C174CB63800A57375 /* generate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generate.txt; sourceTree = "<group>"; };
-		13A7353D174CB63800A57375 /* gram2sapixml.pl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gram2sapixml.pl.txt; sourceTree = "<group>"; };
-		13A7353E174CB63800A57375 /* jclient.pl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jclient.pl.txt; sourceTree = "<group>"; };
-		13A7353F174CB63800A57375 /* jcontrol.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jcontrol.txt; sourceTree = "<group>"; };
-		13A73540174CB63800A57375 /* julius.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = julius.txt; sourceTree = "<group>"; };
-		13A73541174CB63800A57375 /* mkbingram.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkbingram.txt; sourceTree = "<group>"; };
-		13A73542174CB63800A57375 /* mkbinhmm.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkbinhmm.txt; sourceTree = "<group>"; };
-		13A73543174CB63800A57375 /* mkbinhmmlist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkbinhmmlist.txt; sourceTree = "<group>"; };
-		13A73544174CB63800A57375 /* mkdfa.pl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkdfa.pl.txt; sourceTree = "<group>"; };
-		13A73545174CB63800A57375 /* mkgshmm.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkgshmm.txt; sourceTree = "<group>"; };
-		13A73546174CB63800A57375 /* mkss.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkss.txt; sourceTree = "<group>"; };
-		13A73547174CB63800A57375 /* nextword.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nextword.txt; sourceTree = "<group>"; };
-		13A73549174CB63800A57375 /* GPL_License */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL_License; sourceTree = "<group>"; };
-		13A7354B174CB63800A57375 /* sample.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.dfa; sourceTree = "<group>"; };
-		13A7354C174CB63800A57375 /* sample.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = sample.dict; sourceTree = "<group>"; };
-		13A7354D174CB63800A57375 /* sample.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.grammar; sourceTree = "<group>"; };
-		13A7354E174CB63800A57375 /* sample.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.term; sourceTree = "<group>"; };
-		13A7354F174CB63800A57375 /* sample.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.voca; sourceTree = "<group>"; };
-		13A73550174CB63800A57375 /* GRAMMAR_NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GRAMMAR_NOTES; sourceTree = "<group>"; };
-		13A73551174CB63800A57375 /* julius.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = julius.exe; sourceTree = "<group>"; };
-		13A73553174CB63800A57375 /* 00readme-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-ja.txt"; sourceTree = "<group>"; };
-		13A73554174CB63800A57375 /* 00readme-julius-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-julius-ja.txt"; sourceTree = "<group>"; };
-		13A73555174CB63800A57375 /* 00readme-julius.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-julius.txt"; sourceTree = "<group>"; };
-		13A73556174CB63800A57375 /* 00readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 00readme.txt; sourceTree = "<group>"; };
-		13A73557174CB63800A57375 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		13A73558174CB63800A57375 /* Release-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Release-ja.txt"; sourceTree = "<group>"; };
-		13A73559174CB63800A57375 /* Release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Release.txt; sourceTree = "<group>"; };
-		13A7355A174CB63800A57375 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		13A7355B174CB63800A57375 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		13A7355C174CB63800A57375 /* Sample.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sample.jconf; sourceTree = "<group>"; };
 		13A80BE0174C5D8D00B22FB8 /* phone_model_ios */ = {isa = PBXFileReference; lastKnownFileType = file; path = phone_model_ios; sourceTree = "<group>"; };
 		13A80BE2174C5E0300B22FB8 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiedlist; sourceTree = "<group>"; };
 		13A80BE4174C5ED800B22FB8 /* sample.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.dfa; sourceTree = "<group>"; };
@@ -368,138 +232,6 @@
 			path = phone_m;
 			sourceTree = "<group>";
 		};
-		13A73510174CB63800A57375 /* VoxForge-AcousticModel-2013-05-13 */ = {
-			isa = PBXGroup;
-			children = (
-				13A73511174CB63800A57375 /* acoustic_model_files */,
-				13A73515174CB63800A57375 /* bin */,
-				13A73533174CB63800A57375 /* doc */,
-				13A73548174CB63800A57375 /* etc */,
-				13A7354A174CB63800A57375 /* grammar */,
-				13A73550174CB63800A57375 /* GRAMMAR_NOTES */,
-				13A73551174CB63800A57375 /* julius.exe */,
-				13A73552174CB63800A57375 /* julius_docs */,
-				13A7355A174CB63800A57375 /* LICENSE */,
-				13A7355B174CB63800A57375 /* README */,
-				13A7355C174CB63800A57375 /* Sample.jconf */,
-			);
-			path = "VoxForge-AcousticModel-2013-05-13";
-			sourceTree = "<group>";
-		};
-		13A73511174CB63800A57375 /* acoustic_model_files */ = {
-			isa = PBXGroup;
-			children = (
-				13A73512174CB63800A57375 /* hmmdefs */,
-				13A73513174CB63800A57375 /* macros */,
-				13A73514174CB63800A57375 /* tiedlist */,
-			);
-			path = acoustic_model_files;
-			sourceTree = "<group>";
-		};
-		13A73515174CB63800A57375 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				13A73516174CB63800A57375 /* accept_check.exe */,
-				13A73517174CB63800A57375 /* adinrec.exe */,
-				13A73518174CB63800A57375 /* adintool.exe */,
-				13A73519174CB63800A57375 /* dfa_determinize.exe */,
-				13A7351A174CB63800A57375 /* dfa_minimize.exe */,
-				13A7351B174CB63800A57375 /* generate-ngram.exe */,
-				13A7351C174CB63800A57375 /* generate.exe */,
-				13A7351D174CB63800A57375 /* gram2sapixml.pl */,
-				13A7351E174CB63800A57375 /* jclient.pl */,
-				13A7351F174CB63800A57375 /* jcontrol.exe */,
-				13A73520174CB63800A57375 /* julius-4.2-decoder-vad.exe */,
-				13A73521174CB63800A57375 /* julius-4.2-gmm-vad.exe */,
-				13A73522174CB63800A57375 /* julius-4.2-std.exe */,
-				13A73523174CB63800A57375 /* julius-4.2.exe */,
-				13A73524174CB63800A57375 /* julius.exe */,
-				13A73525174CB63800A57375 /* libjulius-config */,
-				13A73526174CB63800A57375 /* libsent-config */,
-				13A73527174CB63800A57375 /* mkbingram.exe */,
-				13A73528174CB63800A57375 /* mkbinhmm.exe */,
-				13A73529174CB63800A57375 /* mkbinhmmlist.exe */,
-				13A7352A174CB63800A57375 /* mkdfa.pl */,
-				13A7352B174CB63800A57375 /* mkfa.exe */,
-				13A7352C174CB63800A57375 /* mkgshmm */,
-				13A7352D174CB63800A57375 /* mkss.exe */,
-				13A7352E174CB63800A57375 /* neighbors.grammar */,
-				13A7352F174CB63800A57375 /* neighbors.term */,
-				13A73530174CB63800A57375 /* neighbors.voca */,
-				13A73531174CB63800A57375 /* nextword.exe */,
-				13A73532174CB63800A57375 /* yomi2voca.pl */,
-			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		13A73533174CB63800A57375 /* doc */ = {
-			isa = PBXGroup;
-			children = (
-				13A73534174CB63800A57375 /* Juliusbook-4.1.5.pdf */,
-				13A73535174CB63800A57375 /* manuals */,
-			);
-			path = doc;
-			sourceTree = "<group>";
-		};
-		13A73535174CB63800A57375 /* manuals */ = {
-			isa = PBXGroup;
-			children = (
-				13A73536174CB63800A57375 /* accept_check.txt */,
-				13A73537174CB63800A57375 /* adinrec.txt */,
-				13A73538174CB63800A57375 /* adintool.txt */,
-				13A73539174CB63800A57375 /* dfa_determinize.txt */,
-				13A7353A174CB63800A57375 /* dfa_minimize.txt */,
-				13A7353B174CB63800A57375 /* generate-ngram.txt */,
-				13A7353C174CB63800A57375 /* generate.txt */,
-				13A7353D174CB63800A57375 /* gram2sapixml.pl.txt */,
-				13A7353E174CB63800A57375 /* jclient.pl.txt */,
-				13A7353F174CB63800A57375 /* jcontrol.txt */,
-				13A73540174CB63800A57375 /* julius.txt */,
-				13A73541174CB63800A57375 /* mkbingram.txt */,
-				13A73542174CB63800A57375 /* mkbinhmm.txt */,
-				13A73543174CB63800A57375 /* mkbinhmmlist.txt */,
-				13A73544174CB63800A57375 /* mkdfa.pl.txt */,
-				13A73545174CB63800A57375 /* mkgshmm.txt */,
-				13A73546174CB63800A57375 /* mkss.txt */,
-				13A73547174CB63800A57375 /* nextword.txt */,
-			);
-			path = manuals;
-			sourceTree = "<group>";
-		};
-		13A73548174CB63800A57375 /* etc */ = {
-			isa = PBXGroup;
-			children = (
-				13A73549174CB63800A57375 /* GPL_License */,
-			);
-			path = etc;
-			sourceTree = "<group>";
-		};
-		13A7354A174CB63800A57375 /* grammar */ = {
-			isa = PBXGroup;
-			children = (
-				13A7354B174CB63800A57375 /* sample.dfa */,
-				13A7354C174CB63800A57375 /* sample.dict */,
-				13A7354D174CB63800A57375 /* sample.grammar */,
-				13A7354E174CB63800A57375 /* sample.term */,
-				13A7354F174CB63800A57375 /* sample.voca */,
-			);
-			path = grammar;
-			sourceTree = "<group>";
-		};
-		13A73552174CB63800A57375 /* julius_docs */ = {
-			isa = PBXGroup;
-			children = (
-				13A73553174CB63800A57375 /* 00readme-ja.txt */,
-				13A73554174CB63800A57375 /* 00readme-julius-ja.txt */,
-				13A73555174CB63800A57375 /* 00readme-julius.txt */,
-				13A73556174CB63800A57375 /* 00readme.txt */,
-				13A73557174CB63800A57375 /* LICENSE.txt */,
-				13A73558174CB63800A57375 /* Release-ja.txt */,
-				13A73559174CB63800A57375 /* Release.txt */,
-			);
-			path = julius_docs;
-			sourceTree = "<group>";
-		};
 		13A80BF3174C99F200B22FB8 /* julius4-segmentation-kit-v1.0 2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,11 +276,11 @@
 				13A80C21174CAB5900B22FB8 /* hmmdefs */,
 				13A80C22174CAB5900B22FB8 /* LICENSE */,
 				13A80C23174CAB5900B22FB8 /* macros */,
+				13A80C27174CAB5900B22FB8 /* tiedlist */,
+				13A80C28174CAB5900B22FB8 /* wav_config */,
 				13A80C24174CAB5900B22FB8 /* master_prompts */,
 				13A80C25174CAB5900B22FB8 /* stats */,
 				13A80C26174CAB5900B22FB8 /* TestResults */,
-				13A80C27174CAB5900B22FB8 /* tiedlist */,
-				13A80C28174CAB5900B22FB8 /* wav_config */,
 			);
 			path = "julius-voxforge-0.1.1~daily20130206";
 			sourceTree = "<group>";
@@ -602,6 +334,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				133E19E1174CBD0E00506BCB /* Default-568h@2x.png */,
 				13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */,
 				13D3FE0F174A002600A5EF7F /* README.textile */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -629,7 +362,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				13A73510174CB63800A57375 /* VoxForge-AcousticModel-2013-05-13 */,
 				13A80C1C174CAB5900B22FB8 /* julius-voxforge-0.1.1~daily20130206 */,
 				13A80BF3174C99F200B22FB8 /* julius4-segmentation-kit-v1.0 2 */,
 				13684FAF12E0ABE800FBF870 /* xib */,
@@ -758,75 +490,7 @@
 				13A80C31174CAB5900B22FB8 /* TestResults in Resources */,
 				13A80C32174CAB5900B22FB8 /* tiedlist in Resources */,
 				13A80C33174CAB5900B22FB8 /* wav_config in Resources */,
-				13A7355D174CB63800A57375 /* hmmdefs in Resources */,
-				13A7355E174CB63800A57375 /* macros in Resources */,
-				13A7355F174CB63800A57375 /* tiedlist in Resources */,
-				13A73560174CB63800A57375 /* accept_check.exe in Resources */,
-				13A73561174CB63800A57375 /* adinrec.exe in Resources */,
-				13A73562174CB63800A57375 /* adintool.exe in Resources */,
-				13A73563174CB63800A57375 /* dfa_determinize.exe in Resources */,
-				13A73564174CB63800A57375 /* dfa_minimize.exe in Resources */,
-				13A73565174CB63800A57375 /* generate-ngram.exe in Resources */,
-				13A73566174CB63800A57375 /* generate.exe in Resources */,
-				13A73567174CB63800A57375 /* gram2sapixml.pl in Resources */,
-				13A73568174CB63800A57375 /* jclient.pl in Resources */,
-				13A73569174CB63800A57375 /* jcontrol.exe in Resources */,
-				13A7356A174CB63800A57375 /* julius-4.2-decoder-vad.exe in Resources */,
-				13A7356B174CB63800A57375 /* julius-4.2-gmm-vad.exe in Resources */,
-				13A7356C174CB63800A57375 /* julius-4.2-std.exe in Resources */,
-				13A7356D174CB63800A57375 /* julius-4.2.exe in Resources */,
-				13A7356E174CB63800A57375 /* julius.exe in Resources */,
-				13A7356F174CB63800A57375 /* libjulius-config in Resources */,
-				13A73570174CB63800A57375 /* libsent-config in Resources */,
-				13A73571174CB63800A57375 /* mkbingram.exe in Resources */,
-				13A73572174CB63800A57375 /* mkbinhmm.exe in Resources */,
-				13A73573174CB63800A57375 /* mkbinhmmlist.exe in Resources */,
-				13A73574174CB63800A57375 /* mkdfa.pl in Resources */,
-				13A73575174CB63800A57375 /* mkfa.exe in Resources */,
-				13A73576174CB63800A57375 /* mkgshmm in Resources */,
-				13A73577174CB63800A57375 /* mkss.exe in Resources */,
-				13A73578174CB63800A57375 /* neighbors.grammar in Resources */,
-				13A73579174CB63800A57375 /* neighbors.term in Resources */,
-				13A7357A174CB63800A57375 /* neighbors.voca in Resources */,
-				13A7357B174CB63800A57375 /* nextword.exe in Resources */,
-				13A7357C174CB63800A57375 /* yomi2voca.pl in Resources */,
-				13A7357D174CB63800A57375 /* Juliusbook-4.1.5.pdf in Resources */,
-				13A7357E174CB63800A57375 /* accept_check.txt in Resources */,
-				13A7357F174CB63800A57375 /* adinrec.txt in Resources */,
-				13A73580174CB63800A57375 /* adintool.txt in Resources */,
-				13A73581174CB63800A57375 /* dfa_determinize.txt in Resources */,
-				13A73582174CB63800A57375 /* dfa_minimize.txt in Resources */,
-				13A73583174CB63800A57375 /* generate-ngram.txt in Resources */,
-				13A73584174CB63800A57375 /* generate.txt in Resources */,
-				13A73585174CB63800A57375 /* gram2sapixml.pl.txt in Resources */,
-				13A73586174CB63800A57375 /* jclient.pl.txt in Resources */,
-				13A73587174CB63800A57375 /* jcontrol.txt in Resources */,
-				13A73588174CB63800A57375 /* julius.txt in Resources */,
-				13A73589174CB63800A57375 /* mkbingram.txt in Resources */,
-				13A7358A174CB63800A57375 /* mkbinhmm.txt in Resources */,
-				13A7358B174CB63800A57375 /* mkbinhmmlist.txt in Resources */,
-				13A7358C174CB63800A57375 /* mkdfa.pl.txt in Resources */,
-				13A7358D174CB63800A57375 /* mkgshmm.txt in Resources */,
-				13A7358E174CB63800A57375 /* mkss.txt in Resources */,
-				13A7358F174CB63800A57375 /* nextword.txt in Resources */,
-				13A73590174CB63800A57375 /* GPL_License in Resources */,
-				13A73591174CB63800A57375 /* sample.dfa in Resources */,
-				13A73592174CB63800A57375 /* sample.dict in Resources */,
-				13A73593174CB63800A57375 /* sample.grammar in Resources */,
-				13A73594174CB63800A57375 /* sample.term in Resources */,
-				13A73595174CB63800A57375 /* sample.voca in Resources */,
-				13A73596174CB63800A57375 /* GRAMMAR_NOTES in Resources */,
-				13A73597174CB63800A57375 /* julius.exe in Resources */,
-				13A73598174CB63800A57375 /* 00readme-ja.txt in Resources */,
-				13A73599174CB63800A57375 /* 00readme-julius-ja.txt in Resources */,
-				13A7359A174CB63800A57375 /* 00readme-julius.txt in Resources */,
-				13A7359B174CB63800A57375 /* 00readme.txt in Resources */,
-				13A7359C174CB63800A57375 /* LICENSE.txt in Resources */,
-				13A7359D174CB63800A57375 /* Release-ja.txt in Resources */,
-				13A7359E174CB63800A57375 /* Release.txt in Resources */,
-				13A7359F174CB63800A57375 /* LICENSE in Resources */,
-				13A735A0174CB63800A57375 /* README in Resources */,
-				13A735A1174CB63800A57375 /* Sample.jconf in Resources */,
+				133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
