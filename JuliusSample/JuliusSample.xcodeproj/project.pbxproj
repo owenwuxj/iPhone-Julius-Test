@@ -40,7 +40,6 @@
 		13A80C2F174CAB5900B22FB8 /* master_prompts in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C24174CAB5900B22FB8 /* master_prompts */; };
 		13A80C30174CAB5900B22FB8 /* stats in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C25174CAB5900B22FB8 /* stats */; };
 		13A80C31174CAB5900B22FB8 /* TestResults in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C26174CAB5900B22FB8 /* TestResults */; };
-		13A80C32174CAB5900B22FB8 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C27174CAB5900B22FB8 /* tiedlist */; };
 		13A80C33174CAB5900B22FB8 /* wav_config in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C28174CAB5900B22FB8 /* wav_config */; };
 		13C5372212E1F9FB0071E4ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C5372112E1F9FB0071E4ED /* AVFoundation.framework */; };
 		13C5372912E1FA070071E4ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C5372812E1FA070071E4ED /* CoreAudio.framework */; };
@@ -105,7 +104,6 @@
 		13A80C24174CAB5900B22FB8 /* master_prompts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master_prompts; sourceTree = "<group>"; };
 		13A80C25174CAB5900B22FB8 /* stats */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stats; sourceTree = "<group>"; };
 		13A80C26174CAB5900B22FB8 /* TestResults */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestResults; sourceTree = "<group>"; };
-		13A80C27174CAB5900B22FB8 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiedlist; sourceTree = "<group>"; };
 		13A80C28174CAB5900B22FB8 /* wav_config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wav_config; sourceTree = "<group>"; };
 		13C5372112E1F9FB0071E4ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		13C5372812E1FA070071E4ED /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -276,7 +274,6 @@
 				13A80C21174CAB5900B22FB8 /* hmmdefs */,
 				13A80C22174CAB5900B22FB8 /* LICENSE */,
 				13A80C23174CAB5900B22FB8 /* macros */,
-				13A80C27174CAB5900B22FB8 /* tiedlist */,
 				13A80C28174CAB5900B22FB8 /* wav_config */,
 				13A80C24174CAB5900B22FB8 /* master_prompts */,
 				13A80C25174CAB5900B22FB8 /* stats */,
@@ -335,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				133E19E1174CBD0E00506BCB /* Default-568h@2x.png */,
-				13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */,
 				13D3FE0F174A002600A5EF7F /* README.textile */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -376,6 +372,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				13C5372112E1F9FB0071E4ED /* AVFoundation.framework */,
@@ -488,7 +485,6 @@
 				13A80C2F174CAB5900B22FB8 /* master_prompts in Resources */,
 				13A80C30174CAB5900B22FB8 /* stats in Resources */,
 				13A80C31174CAB5900B22FB8 /* TestResults in Resources */,
-				13A80C32174CAB5900B22FB8 /* tiedlist in Resources */,
 				13A80C33174CAB5900B22FB8 /* wav_config in Resources */,
 				133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */,
 			);

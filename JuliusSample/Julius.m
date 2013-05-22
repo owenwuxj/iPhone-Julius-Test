@@ -78,8 +78,10 @@ static void output_result(Recog *recog_, void *data) {
 		
 		/* create a recognition instance */
 		recog = j_recog_new();
+        
 		/* assign configuration to the instance */
 		recog->jconf = jconf;
+        
 		/* load all files according to the configurations */
 		if (j_load_all(recog, jconf) == FALSE) {
 			NSLog(@"Error in loadn model");
