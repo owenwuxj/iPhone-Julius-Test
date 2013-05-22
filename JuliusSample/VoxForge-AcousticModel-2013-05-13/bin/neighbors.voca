@@ -1,0 +1,381 @@
+% SIL
+SIL        sil
+
+% IY
+IY+        iy
+IY-IH      ih
+IY-IX      ix
+
+% IH
+IH+        ih
+IH-IY      iy
+IH-AX      ax
+IH-EH      eh
+
+% EH
+EH+        eh
+EH-IH      ih
+EH-AX      ax
+EH-ER      eh
+EH-AE      ae
+
+% AE
+AE+        ae
+AE-EH      eh
+AE-ER      er
+AE-AH      ah
+
+% AH
+AH+        ah
+AH-AE      ae
+AH-ER      er
+AH-AA      aa
+
+% AA
+AA+        aa
+AA-AH      ah
+AA-ER      er
+AA-AO      ao
+
+% AO
+AO+        ao
+AO-AA      aa
+AO-ER      er
+AO-AX      ax
+AO-UH      uh
+
+% UH
+UH+        uh
+UH-AO      ao
+UH-AX      ax
+UH-UW      uw
+
+% UW
+UW+        uw
+UW-UH      uh
+UW-AX      ax
+UW-IX      ix
+
+% IX
+IX+        ix
+IX-IY      iy
+IX-IH      ih
+IX-AX      ax
+IX-UW      uw
+
+% AX
+AX+        ax
+AX-IX      ix
+AX-ER      er
+AX-UW      uw
+
+% ER
+ER+        er
+ER-EH      eh
+ER-AH      ah
+ER-AO      ao
+ER-AX      ax
+
+% EY
+EY+        ey
+EY-EH      eh
+EY-IY      iy
+EY-AY      ay
+
+% OY
+OY+        oy
+OY-AO      ao
+OY-IY      iy
+OY-AY      ay
+
+% AY
+AY+        ay
+AY-AA      aa
+AY-IY      iy
+AY-OY      oy
+AY-EY      ey
+
+% AW
+AW+        aw
+AW-AA      aa
+AW-UH      uh
+AW-OW      ow
+
+% OW
+OW+        ow
+OW-AO      ao
+OW-UH      uh
+OW-AW      aw
+
+% P
+P+         p
+P-T        t
+P-B        b
+P-HH       hh
+
+% T
+T+         t
+T-CH       ch
+T-K        k
+T-D        d
+T-P        p
+T-HH       hh
+
+% CH
+CH+        ch
+CH-SH      sh
+CH-JH      jh
+CH-T       t
+
+% K
+K+         k
+K-G        g
+K-T        t
+K-HH       hh
+
+% SH
+SH+        sh
+SH-S       s
+SH-ZH      zh
+ZH-CH      ch
+
+% S
+S+         s
+S-SH       sh
+S-Z        z
+S-TH       th
+
+% B
+B+         b
+B-P        p
+B-D        d
+
+% D
+D+         d
+D-T        t
+D-JH       jh
+D-G        g
+D-B        b
+
+% JH
+JH+        jh
+JH-CH      ch
+JH-ZH      zh
+JH-D       d
+
+% G
+G+         g
+G-K        k
+G-D        d
+
+% ZH
+ZH+        zh
+ZH-SH      sh
+ZH-Z       z
+ZH-JH      jh
+
+% Z
+Z+         z
+Z-S        s
+Z-DH       dh
+Z-ZH       zh
+
+% TH
+TH+        th
+TH-S       s
+TH-DH      dh
+TH-F       f
+TH-HH      hh
+
+% F
+F+         f
+F-HH       hh
+F-TH       th
+F-V        v
+
+% DH
+DH+        dh
+DH-TH      th
+DH-Z       z
+DH-V       v
+
+% V
+V+         v
+V-F        f
+V-DH       dh
+
+% HH
+HH+        hh
+HH-TH      th
+HH-F       f
+HH-P       p
+HH-T       t
+HH-K       k
+
+% L
+L+         l
+L-R        r
+L-W        w
+
+% R
+R+         r
+R-Y        y
+R-L        l
+
+% Y
+Y+         y
+Y-W        w
+Y-R        r
+
+% W
+W+         w
+W-L        l
+W-Y        y
+
+% M
+M+         m
+M-N        n
+M-AX       ax
+
+% N
+N+         n
+N-M        m
+N-NG       ng
+N-AX       ax
+
+% NG
+NG+        ng
+NG-N       n
+NG-AX      ax
+
+% DX
+DX+        dx
+DX-S       s
+DX-HH      hh
+DX-DH      dh
+DX-T       t
+
+% IY+
+IY+        iy
+
+% IH+
+IH+        ih
+
+% EH+
+EH+        eh
+
+% AE+
+AE+        ae
+
+% AH+
+AH+        ah
+
+% AA+
+AA+        aa
+
+% AO+
+AO+        ao
+
+% UH+
+UH+        uh
+
+% UW+
+UW+        uw
+
+% IX+
+IX+        ix
+
+% AX+
+AX+        ax
+
+% ER+
+ER+        er
+
+% EY+
+EY+        ey
+
+% OY+
+OY+        oy
+
+% AY+
+AY+        ay
+
+% AW+
+AW+        aw
+
+% OW+
+OW+        ow
+
+% P+
+P+         p
+
+% T+
+T+         t
+
+% CH+
+CH+        ch
+
+% K+
+K+         k
+
+% SH+
+SH+        sh
+
+% S+
+S+         s
+
+% B+
+B+         b
+
+% D+
+D+         d
+
+% JH+
+JH+        jh
+
+% G+
+G+         g
+
+% ZH+
+
+% Z+
+Z+         z
+
+% TH+
+TH+        th
+
+% F+
+F+         f
+
+% DH+
+DH+        dh
+
+% V+
+V+         v
+
+% HH+
+HH+        hh
+
+% L+
+L+         l
+
+% R+
+R+         r
+
+% Y+
+Y+         y
+
+% W+
+W+         w
+
+% M+
+M+         m
+
+% N+
+N+         n
+
+% NG+
+NG+        ng
+
+% DX+
+DX+        dx
