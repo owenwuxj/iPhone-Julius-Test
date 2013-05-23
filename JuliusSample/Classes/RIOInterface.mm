@@ -247,7 +247,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 //            NSLog(@"%f",outputBuffer[i]);
         }
     
-        [THIS->julius recognizeRawFileAtPath:(NSString *)dataBuffer];
+//        [THIS->julius recognizeRawFileAtPath:(NSString *)dataBuffer];
     }
 
     return noErr;

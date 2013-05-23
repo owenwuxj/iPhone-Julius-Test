@@ -8,11 +8,11 @@
 
 #import "Julius.h"
 
+#define charLength 60000
 
 @implementation Julius
 
 @synthesize delegate;
-
 
 #pragma mark -
 #pragma mark Julis Callback methods
@@ -21,19 +21,44 @@ static void output_result(Recog *recog_, void *data) {
 
 	WORD_INFO *winfo;
 	WORD_ID *seq;
+    
 	int seqnum;
-	int n,i;
+	int n,i,j;
+    
 	Sentence *s;
 	RecogProcess *r;
 
-	NSMutableArray *words = [NSMutableArray array];
+	NSMutableArray *words = [NSMutableArray array];//The output string array.
 	
+    // *********  Start  *************
+    //    jbyteArray jbarray;
+    //    int len = 0;
+    //    char *p;
+    
+    char result[charLength]; // increased from 1024 --James Salsman DOUBLE CHECK THIS
+    result[0]='\0';
+    
+//    float *confs; // added for per-word confidence scores
+    char sbuf[100], pbuf[10]; // added for sprintf buffer, and phoneme copy buffer
+    SentenceAlign *alignment; // added for endpoints; may need a separate alignment call to populate!!!
+    // ***********  End  *************
+
 	for(r = recog_->process_list; r; r = r->next) {
 		
 		if (! r->live) continue;
 		
-		if (r->result.status < 0) continue;
-		
+//		if (r->result.status < 0) continue;
+//        sprintf(sbuf, "<recogresults status='%d' frames='%d' subresults='%d'>\n",
+//                r->result.status, r->result.num_frame, r->result.sentnum);
+        NSLog(@"<recogresults status='%d' frames='%d' subresults='%d'>\n", r->result.status, r->result.num_frame, r->result.sentnum);
+        strcat(result, sbuf);
+        
+        if (r->result.status < 0) {
+            strcat(result, "</recogresults>\n");
+            continue;
+        }
+
+        
 		winfo = r->lm->winfo;
 		for(n = 0; n < r->result.sentnum; n++) {
 			s = &(r->result.sent[n]);
@@ -41,12 +66,122 @@ static void output_result(Recog *recog_, void *data) {
 			seqnum = s->word_num;
 
 			for(i = 0; i < seqnum; i++) {
-				[words addObject:[NSString stringWithCString:winfo->woutput[seq[i]] encoding:NSJapaneseEUCStringEncoding]];
+				[words addObject:[NSString stringWithCString:winfo->woutput[seq[i]] encoding:NSUTF8StringEncoding]];
 			}
-		}
-	}
+            
+//            NSLog(@"seq:%d %d",seq[0],n);
+//            NSLog(@"seqnum: %d", seqnum);
+//            NSLog(@"sentence:%@ recogProcess:%@", s,r);
+            
+            // ***********  Start  *************
+            
+//            if ( seqnum>0 &&
+//                ( strchr(winfo->woutput[seq[0]], '-')
+//                 || strchr(winfo->woutput[seq[0]], '+') ) ) {
+////                    sprintf(sbuf, "  <neighbors phonemes='%d'>\n", seqnum);
+//                    NSLog(@"  <neighbors phonemes='%d'>\n", seqnum);
+//                    strcat(result, sbuf);
+//                    
+//                    for(i=0; i<seqnum; i++) {
+//                        char *c = winfo->woutput[seq[i]];
+//                        if (strchr(c, '-')) {
+////                            sprintf(sbuf, "    <neighbor expected='%s' detected='%s' />", //\n
+////                                    strsep(&c, "-"), c); // god i hope that works
+//                            NSLog(@"    <neighbor expected='%s' detected='%s' />", strsep(&c, "-"), c);
+//                            strcat(result, sbuf);
+//                        } else {
+////                            sprintf(sbuf, "    <expected phoneme='%s' />",strsep(&c, "+"));
+//                            NSLog(@"    <expected phoneme='%s' />",strsep(&c, "+"));
+//                            strcat(result, sbuf);
+//                        }
+//                    }
+//                    strcat(result, "  </neighbors>\n");
+//                }
+//            else {
+//                    sprintf(sbuf, "  <neighbors phonemes='%d'>\n", seqnum);
+                NSLog(@"  <neighbors phonemes='%d'>\n", seqnum);
+                strcat(result, sbuf);
+            
+                for(i=0; i<seqnum; i++) {
+                    char *c = winfo->woutput[seq[i]];
+                    if (strchr(c, '-')) {
+                        for (j=0; c[j] != '-'; j++) {
+                            pbuf[j] = c[j];
+                        }
+                        pbuf[j] = '\0';
+                        NSLog(@"    <neighbor expected='%s'", pbuf);
+                        strcat(result, sbuf);
+                        NSLog(@" detected='%s />'",c+j+1);
+                        strcat(result, sbuf);
+                    } else {
+                        for (j=0; c[j] != '+'; j++) {
+                            pbuf[j] = c[j];
+                        }
+                        pbuf[j] = '\0';
+                        NSLog(@"    <expected phoneme='%s' />", pbuf);
+                        strcat(result, sbuf);
+                    }
+                }
+            
+                strcat(result, "  </neighbors>\n");
+            
+                if (s->align) {
+                    for (alignment=s->align; alignment; alignment=alignment->next) {
+                        seqnum = alignment->num;
+                        if (alignment->unittype == PER_WORD) {
+                            NSLog(@"  <alignment phonemes='%d'>\n", seqnum);
+                            strcat(result, sbuf);
+                            
+                            for(i=0; i<seqnum; i++) {
+                                NSLog(@"    <segment phoneme='%s' duration='%d' logprob='%.2f' />", //\n
+                                        strsep(&(winfo->woutput[alignment->w[i]]), "x"), // trim trailing 'x'
+                                        alignment->end_frame[i] - alignment->begin_frame[i], // duration in frames
+                                        alignment->avgscore[i]);
+                                strcat(result, sbuf);
+                            }
+                        }
+                        strcat(result, "  </alignment>\n");
+                        NSLog(@"  </alignment>\n");
+                    } // there better be only one alignment per non-neighbor list
+                }
+            }
+//        }
+        NSLog(@"</recogresults>\n");
+        strcat(result, "</recogresults>\n");
+    }
+    
+//    len = strlen(result);
+//    jbarray = (*genv)->NewByteArray(genv, len);
+//    (*genv)->SetByteArrayRegion(genv, jbarray, 0, len, (jbyte*)result);
+//    
+//    jclass jcls = (*genv)->GetObjectClass(genv, *gobj);
+//    jmethodID jmethod = (*genv)->GetMethodID(genv, jcls, "callback", "([B)V");
+//    (*genv)->CallVoidMethod(genv, *gobj, jmethod, jbarray);
+//    (*genv)->DeleteLocalRef(genv, jbarray);
+    
+//		}
+//	}
+    // ***********  End  *************
 
-	// Callback delegate.
+    // Write a *.txt file to temp folder
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yMMddHHmmss"];
+    NSString *fileName = [NSString stringWithFormat:@"%@.txt", [formatter stringFromDate:[NSDate date]]];
+	[formatter release];
+    
+	NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+    NSString *zStr = [NSString stringWithFormat:@"%s",result];
+    
+    NSError *err;
+    [zStr writeToFile:filePath atomically:YES encoding:NSASCIIStringEncoding error:&err];
+    
+    if (err) {
+        NSLog(@"Writing to txt file error: %@",err);
+    }
+    
+    NSLog(@"Txt File Path is: %@",filePath);
+
+    // Callback delegate.
 	if (data) {
 		Julius *julius = (Julius *)data;
 		if (julius.delegate) {
@@ -102,7 +237,7 @@ static void output_result(Recog *recog_, void *data) {
 		}
 		
 		/* output system information to log */
-		j_recog_info(recog);
+//		j_recog_info(recog);
 		
 		/* if no grammar specified on startup, start with pause status */
 		{

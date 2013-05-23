@@ -382,7 +382,7 @@
 #### 
 #### forced alignment
 #### 
-#-walign			# enable alignment for result at word level
+-walign			# enable alignment for result at word level
 #-palign			# enable alignment for result at phoneme level
 #-salign			# enable alignment for result at state level
 
