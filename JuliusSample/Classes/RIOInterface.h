@@ -25,6 +25,10 @@
 	float *outputBuffer;
 	size_t bufferCapacity;	// In samples
 	size_t index;	// In samples
+    
+    FFTSetup fftSetup;
+	COMPLEX_SPLIT A;
+    int log2n, n, nOver2;
 
     AUGraph processingGraph;
 	AudioUnit ioUnit;

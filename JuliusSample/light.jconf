@@ -213,6 +213,8 @@
 #-gramlist txtfile		# text file containing grammar prefixes
 -dfa sample.dfa
 -v sample.htkdic	# specify DFA and dictionary separately
+#-dfa test.dfa
+#-v test.htkdic	# specify DFA and dictionary separately
 #-nogram			# reset all grammar list already specified
 
 ####

@@ -12,15 +12,17 @@
 #import "MBProgressHUD.h"
 #import "Julius.h"
 
+@class RIOInterface, DisplayView;
+
 @interface JuliusSampleViewController : UIViewController<AVAudioRecorderDelegate, JuliusDelegate> {
 	
 	// UI
 	UIButton *recordButton;
 	UITextView *textView;
+	MBProgressHUD *HUD;
     
 	AVAudioRecorder *recorder;
 	Julius *julius;
-	MBProgressHUD *HUD;
     
 	NSString *filePath;
 	BOOL processing;
@@ -28,6 +30,9 @@
     // Real-time I/O
     BOOL isListening;
     float currentFrequency;
+    
+    RIOInterface *rioRef;
+    DisplayView *theView;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *recordButton;
@@ -38,6 +43,14 @@
 @property (nonatomic, retain) NSString *filePath;
 @property (nonatomic, assign) BOOL processing;
 
+@property(nonatomic, assign) float currentFrequency;
+@property(nonatomic, assign) float currentFrequencyACF;
+@property(nonatomic, assign) float currentFrequencyZCR;
+@property(nonatomic, assign) float currentRMS;
+
 - (IBAction)startOrStopRecording:(id)sender;
+
+- (void)frequencyChangedWithRMS:(float)newRMS withACF:(float)newACF andZCR:(float)newZCR withFreq:(float)newFreq;
+- (void)updateRMS_ZCR_ACR_Labels;
 
 @end

@@ -12,6 +12,18 @@
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
 		13684FD912E0AC2C00FBF870 /* libjulius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FD712E0AC2300FBF870 /* libjulius.a */; };
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
+		13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7B9E7174F040500E832F3 /* DisplayView.m */; };
+		13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7B9E9174F347200E832F3 /* Accelerate.framework */; };
+		13A7BA14174F460500E832F3 /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA0F174F460500E832F3 /* test.dfa */; };
+		13A7BA15174F460500E832F3 /* test.htkdic in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA10174F460500E832F3 /* test.htkdic */; };
+		13A7BA16174F460500E832F3 /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA11174F460500E832F3 /* test.grammar */; };
+		13A7BA17174F460500E832F3 /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA12174F460500E832F3 /* test.term */; };
+		13A7BA18174F460500E832F3 /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA13174F460500E832F3 /* test.voca */; };
+		13A7BA1F174F69D200E832F3 /* both.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA19174F69D100E832F3 /* both.jconf */; };
+		13A7BA21174F69D200E832F3 /* neighbors.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA1B174F69D100E832F3 /* neighbors.grammar */; };
+		13A7BA22174F69D200E832F3 /* neighbors.voca-withsil in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA1C174F69D100E832F3 /* neighbors.voca-withsil */; };
+		13A7BA23174F69D200E832F3 /* strict.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA1D174F69D100E832F3 /* strict.grammar */; };
+		13A7BA24174F69D200E832F3 /* strict.voca in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA1E174F69D200E832F3 /* strict.voca */; };
 		13A80BE1174C5D8D00B22FB8 /* phone_model_ios in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE0174C5D8D00B22FB8 /* phone_model_ios */; };
 		13A80BE3174C5E0300B22FB8 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE2174C5E0300B22FB8 /* tiedlist */; };
 		13A80BE6174C5ED800B22FB8 /* sample.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE4174C5ED800B22FB8 /* sample.dfa */; };
@@ -76,6 +88,19 @@
 		13684FCA12E0AC0D00FBF870 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13684FD212E0AC2300FBF870 /* julius.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = julius.xcodeproj; path = ../julius/julius.xcodeproj; sourceTree = SOURCE_ROOT; };
 		13684FEA12E0AC9900FBF870 /* light.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.jconf; sourceTree = "<group>"; };
+		13A7B9E6174F040500E832F3 /* DisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayView.h; sourceTree = "<group>"; };
+		13A7B9E7174F040500E832F3 /* DisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayView.m; sourceTree = "<group>"; };
+		13A7B9E9174F347200E832F3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		13A7BA0F174F460500E832F3 /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
+		13A7BA10174F460500E832F3 /* test.htkdic */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.htkdic; sourceTree = "<group>"; };
+		13A7BA11174F460500E832F3 /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
+		13A7BA12174F460500E832F3 /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
+		13A7BA13174F460500E832F3 /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
+		13A7BA19174F69D100E832F3 /* both.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = both.jconf; path = ../../../../Desktop/both.jconf; sourceTree = "<group>"; };
+		13A7BA1B174F69D100E832F3 /* neighbors.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = neighbors.grammar; path = ../../../../Desktop/neighbors.grammar; sourceTree = "<group>"; };
+		13A7BA1C174F69D100E832F3 /* neighbors.voca-withsil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "neighbors.voca-withsil"; path = "../../../../Desktop/neighbors.voca-withsil"; sourceTree = "<group>"; };
+		13A7BA1D174F69D100E832F3 /* strict.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strict.grammar; path = ../../../../Desktop/strict.grammar; sourceTree = "<group>"; };
+		13A7BA1E174F69D200E832F3 /* strict.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strict.voca; path = ../../../../Desktop/strict.voca; sourceTree = "<group>"; };
 		13A80BE0174C5D8D00B22FB8 /* phone_model_ios */ = {isa = PBXFileReference; lastKnownFileType = file; path = phone_model_ios; sourceTree = "<group>"; };
 		13A80BE2174C5E0300B22FB8 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiedlist; sourceTree = "<group>"; };
 		13A80BE4174C5ED800B22FB8 /* sample.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.dfa; sourceTree = "<group>"; };
@@ -140,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */,
 				13D3FE2B174A26A300A5EF7F /* AudioToolbox.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -179,6 +205,8 @@
 			children = (
 				28D7ACF60DDB3853001CB0EB /* JuliusSampleViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */,
+				13A7B9E6174F040500E832F3 /* DisplayView.h */,
+				13A7B9E7174F040500E832F3 /* DisplayView.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -203,6 +231,11 @@
 		13684FDB12E0AC5A00FBF870 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				13A7BA19174F69D100E832F3 /* both.jconf */,
+				13A7BA1B174F69D100E832F3 /* neighbors.grammar */,
+				13A7BA1C174F69D100E832F3 /* neighbors.voca-withsil */,
+				13A7BA1D174F69D100E832F3 /* strict.grammar */,
+				13A7BA1E174F69D200E832F3 /* strict.voca */,
 				13A80BE8174C6A6100B22FB8 /* sample.grammar */,
 				13A80BE9174C6A6100B22FB8 /* sample.term */,
 				13A80BEA174C6A6100B22FB8 /* sample.voca */,
@@ -215,6 +248,11 @@
 		13684FDC12E0AC5A00FBF870 /* lang_m */ = {
 			isa = PBXGroup;
 			children = (
+				13A7BA0F174F460500E832F3 /* test.dfa */,
+				13A7BA10174F460500E832F3 /* test.htkdic */,
+				13A7BA11174F460500E832F3 /* test.grammar */,
+				13A7BA12174F460500E832F3 /* test.term */,
+				13A7BA13174F460500E832F3 /* test.voca */,
 				13A80BE2174C5E0300B22FB8 /* tiedlist */,
 				13A80BE4174C5ED800B22FB8 /* sample.dfa */,
 				13A80BE5174C5ED800B22FB8 /* sample.htkdic */,
@@ -372,6 +410,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13A7B9E9174F347200E832F3 /* Accelerate.framework */,
 				13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -487,6 +526,16 @@
 				13A80C31174CAB5900B22FB8 /* TestResults in Resources */,
 				13A80C33174CAB5900B22FB8 /* wav_config in Resources */,
 				133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */,
+				13A7BA14174F460500E832F3 /* test.dfa in Resources */,
+				13A7BA15174F460500E832F3 /* test.htkdic in Resources */,
+				13A7BA16174F460500E832F3 /* test.grammar in Resources */,
+				13A7BA17174F460500E832F3 /* test.term in Resources */,
+				13A7BA18174F460500E832F3 /* test.voca in Resources */,
+				13A7BA1F174F69D200E832F3 /* both.jconf in Resources */,
+				13A7BA21174F69D200E832F3 /* neighbors.grammar in Resources */,
+				13A7BA22174F69D200E832F3 /* neighbors.voca-withsil in Resources */,
+				13A7BA23174F69D200E832F3 /* strict.grammar in Resources */,
+				13A7BA24174F69D200E832F3 /* strict.voca in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +553,7 @@
 				13C537A812E1FFEA0071E4ED /* MBProgressHUD.m in Sources */,
 				13D3FE1D174A106500A5EF7F /* RIOInterface.mm in Sources */,
 				13D3FE28174A221800A5EF7F /* CAXException.cpp in Sources */,
+				13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,7 @@ static void output_result(Recog *recog_, void *data) {
 	RecogProcess *r;
 
 	NSMutableArray *words = [NSMutableArray array];//The output string array.
+    NSMutableArray *bounds = [NSMutableArray array];//The boundaries/durations;
 	
     // *********  Start  *************
     //    jbyteArray jbarray;
@@ -66,7 +67,9 @@ static void output_result(Recog *recog_, void *data) {
 			seqnum = s->word_num;
 
 			for(i = 0; i < seqnum; i++) {
-				[words addObject:[NSString stringWithCString:winfo->woutput[seq[i]] encoding:NSUTF8StringEncoding]];
+                if (winfo->woutput[seq[i]]) {
+                    [words addObject:[NSString stringWithCString:winfo->woutput[seq[i]] encoding:NSUTF8StringEncoding]];
+                }
 			}
             
 //            NSLog(@"seq:%d %d",seq[0],n);
@@ -103,24 +106,24 @@ static void output_result(Recog *recog_, void *data) {
                 strcat(result, sbuf);
             
                 for(i=0; i<seqnum; i++) {
-                    char *c = winfo->woutput[seq[i]];
-                    if (strchr(c, '-')) {
-                        for (j=0; c[j] != '-'; j++) {
-                            pbuf[j] = c[j];
-                        }
-                        pbuf[j] = '\0';
-                        NSLog(@"    <neighbor expected='%s'", pbuf);
-                        strcat(result, sbuf);
-                        NSLog(@" detected='%s />'",c+j+1);
-                        strcat(result, sbuf);
-                    } else {
-                        for (j=0; c[j] != '+'; j++) {
-                            pbuf[j] = c[j];
-                        }
-                        pbuf[j] = '\0';
-                        NSLog(@"    <expected phoneme='%s' />", pbuf);
-                        strcat(result, sbuf);
-                    }
+//                    char *c = winfo->woutput[seq[i]];
+//                    if (strchr(c, '-')) {
+//                        for (j=0; c[j] != '-'; j++) {
+//                            pbuf[j] = c[j];
+//                        }
+//                        pbuf[j] = '\0';
+//                        NSLog(@"    <neighbor expected='%s'", pbuf);
+//                        strcat(result, sbuf);
+//                        NSLog(@" detected='%s />'",c+j+1);
+//                        strcat(result, sbuf);
+//                    } else {
+//                        for (j=0; c[j] != '+'; j++) {
+//                            pbuf[j] = c[j];
+//                        }
+//                        pbuf[j] = '\0';
+//                        NSLog(@"    <expected phoneme='%s' />", pbuf);
+//                        strcat(result, sbuf);
+//                    }
                 }
             
                 strcat(result, "  </neighbors>\n");
@@ -138,6 +141,8 @@ static void output_result(Recog *recog_, void *data) {
                                         alignment->end_frame[i] - alignment->begin_frame[i], // duration in frames
                                         alignment->avgscore[i]);
                                 strcat(result, sbuf);
+                                
+                                [bounds addObject:[NSNumber numberWithInt:(alignment->end_frame[i] - alignment->begin_frame[i])]];//Owen
                             }
                         }
                         strcat(result, "  </alignment>\n");
@@ -185,7 +190,7 @@ static void output_result(Recog *recog_, void *data) {
 	if (data) {
 		Julius *julius = (Julius *)data;
 		if (julius.delegate) {
-			[julius.delegate callBackResult:[NSArray arrayWithArray:words]];
+			[julius.delegate callBackResult:[NSArray arrayWithArray:words] withBounds:bounds];
 		}
 	}
 }

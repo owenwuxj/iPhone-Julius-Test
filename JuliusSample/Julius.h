@@ -28,6 +28,6 @@
 
 @protocol JuliusDelegate
 
-- (void)callBackResult:(NSArray *)results;
+- (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry;
 
 @end
