@@ -1,0 +1,299 @@
+% SIL
+SIL+       sil
+
+% IY
+IY+        iy
+IY-IH      ih
+IY-IX      ix
+IY-SIL     sil
+
+% IH
+IH+        ih
+IH-IY      iy
+IH-AX      ax
+IH-EH      eh
+IH-SIL     sil
+
+% EH
+EH+        eh
+EH-IH      ih
+EH-AX      ax
+EH-ER      eh
+EH-AE      ae
+EH-SIL     sil
+
+% AE
+AE+        ae
+AE-EH      eh
+AE-ER      er
+AE-AH      ah
+AE-SIL     sil
+
+% AH
+AH+        ah
+AH-AE      ae
+AH-ER      er
+AH-AA      aa
+AH-SIL     sil
+
+% AA
+AA+        aa
+AA-AH      ah
+AA-ER      er
+AA-AO      ao
+AA-SIL     sil
+
+% AO
+AO+        ao
+AO-AA      aa
+AO-ER      er
+AO-AX      ax
+AO-UH      uh
+AO-SIL     sil
+
+% UH
+UH+        uh
+UH-AO      ao
+UH-AX      ax
+UH-UW      uw
+UH-SIL     sil
+
+% UW
+UW+        uw
+UW-UH      uh
+UW-AX      ax
+UW-IX      ix
+UW-SIL     sil
+
+% IX
+IX+        ix
+IX-IY      iy
+IX-IH      ih
+IX-AX      ax
+IX-UW      uw
+IX-SIL     sil
+
+% AX
+AX+        ax
+AX-IX      ix
+AX-ER      er
+AX-UW      uw
+AX-SIL     sil
+
+% ER
+ER+        er
+ER-EH      eh
+ER-AH      ah
+ER-AO      ao
+ER-AX      ax
+ER-SIL     sil
+
+% EY
+EY+        ey
+EY-EH      eh
+EY-IY      iy
+EY-AY      ay
+EY-SIL     sil
+
+% OY
+OY+        oy
+OY-AO      ao
+OY-IY      iy
+OY-AY      ay
+OY-SIL     sil
+
+% AY
+AY+        ay
+AY-AA      aa
+AY-IY      iy
+AY-OY      oy
+AY-EY      ey
+AY-SIL     sil
+
+% AW
+AW+        aw
+AW-AA      aa
+AW-UH      uh
+AW-OW      ow
+AW-SIL     sil
+
+% OW
+OW+        ow
+OW-AO      ao
+OW-UH      uh
+OW-AW      aw
+OW-SIL     sil
+
+% P
+P+         p
+P-T        t
+P-B        b
+P-HH       hh
+P-SIL      sil
+
+% T
+T+         t
+T-CH       ch
+T-K        k
+T-D        d
+T-P        p
+T-HH       hh
+T-SIL     sil
+
+% CH
+CH+        ch
+CH-SH      sh
+CH-JH      jh
+CH-T       t
+CH-SIL     sil
+
+% K
+K+         k
+K-G        g
+K-T        t
+K-HH       hh
+K-SIL      sil
+
+% SH
+SH+        sh
+SH-S       s
+SH-ZH      zh
+ZH-CH      ch
+SH-SIL     sil
+
+% S
+S+         s
+S-SH       sh
+S-Z        z
+S-TH       th
+S-SIL      sil
+
+% B
+B+         b
+B-P        p
+B-D        d
+B-SIL      sil
+
+% D
+D+         d
+D-T        t
+D-JH       jh
+D-G        g
+D-B        b
+D-SIL      sil
+
+% JH
+JH+        jh
+JH-CH      ch
+JH-ZH      zh
+JH-D       d
+JH-SIL     sil
+
+% G
+G+         g
+G-K        k
+G-D        d
+G-SIL      sil
+
+% ZH
+ZH+        zh
+ZH-SH      sh
+ZH-Z       z
+ZH-JH      jh
+ZH-SIL     sil
+
+% Z
+Z+         z
+Z-S        s
+Z-DH       dh
+Z-ZH       zh
+Z-SIL      sil
+
+% TH
+TH+        th
+TH-S       s
+TH-DH      dh
+TH-F       f
+TH-HH      hh
+TH-SIL     sil
+
+% F
+F+         f
+F-HH       hh
+F-TH       th
+F-V        v
+F-SIL      sil
+
+% DH
+DH+        dh
+DH-TH      th
+DH-Z       z
+DH-V       v
+DH-SIL     sil
+
+% V
+V+         v
+V-F        f
+V-DH       dh
+V-SIL      sil
+
+% HH
+HH+        hh
+HH-TH      th
+HH-F       f
+HH-P       p
+HH-T       t
+HH-K       k
+HH-SIL     sil
+
+% L
+L+         l
+L-R        r
+L-W        w
+L-SIL      sil
+
+% R
+R+         r
+R-Y        y
+R-L        l
+R-SIL      sil
+
+% Y
+Y+         y
+Y-W        w
+Y-R        r
+Y-SIL      sil
+
+% W
+W+         w
+W-L        l
+W-Y        y
+W-SIL      sil
+
+% M
+M+         m
+M-N        n
+M-AX       ax
+M-SIL      sil
+
+% N
+N+         n
+N-M        m
+N-NG       ng
+N-AX       ax
+N-SIL      sil
+
+% NG
+NG+        ng
+NG-N       n
+NG-AX      ax
+NG-SIL     sil
+
+% DX
+DX+        dx
+DX-S       s
+DX-HH      hh
+DX-DH      dh
+DX-T       t
+DX-SIL     sil
+
