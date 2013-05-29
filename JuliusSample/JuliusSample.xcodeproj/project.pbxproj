@@ -14,15 +14,10 @@
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
 		13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7B9E7174F040500E832F3 /* DisplayView.m */; };
 		13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7B9E9174F347200E832F3 /* Accelerate.framework */; };
-		13A7BA14174F460500E832F3 /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA0F174F460500E832F3 /* test.dfa */; };
-		13A7BA15174F460500E832F3 /* test.htkdic in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA10174F460500E832F3 /* test.htkdic */; };
-		13A7BA16174F460500E832F3 /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA11174F460500E832F3 /* test.grammar */; };
-		13A7BA17174F460500E832F3 /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA12174F460500E832F3 /* test.term */; };
-		13A7BA18174F460500E832F3 /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 13A7BA13174F460500E832F3 /* test.voca */; };
 		13A80BE1174C5D8D00B22FB8 /* phone_model_ios in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE0174C5D8D00B22FB8 /* phone_model_ios */; };
 		13A80BE3174C5E0300B22FB8 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE2174C5E0300B22FB8 /* tiedlist */; };
 		13A80BE6174C5ED800B22FB8 /* sample.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE4174C5ED800B22FB8 /* sample.dfa */; };
-		13A80BE7174C5ED800B22FB8 /* sample.htkdic in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE5174C5ED800B22FB8 /* sample.htkdic */; };
+		13A80BE7174C5ED800B22FB8 /* sample.dict in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE5174C5ED800B22FB8 /* sample.dict */; };
 		13A80C02174C99F200B22FB8 /* 00readme-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF4174C99F200B22FB8 /* 00readme-ja.txt */; };
 		13A80C03174C99F200B22FB8 /* 00readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF5174C99F200B22FB8 /* 00readme.txt */; };
 		13A80C04174C99F200B22FB8 /* 00readme-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF7174C99F200B22FB8 /* 00readme-ja.txt */; };
@@ -50,7 +45,7 @@
 		13C5373F12E1FA910071E4ED /* Julius.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C5373E12E1FA910071E4ED /* Julius.m */; };
 		13C537A812E1FFEA0071E4ED /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C5378E12E1FFEA0071E4ED /* MBProgressHUD.m */; };
 		13C537A912E1FFEA0071E4ED /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 13C5378F12E1FFEA0071E4ED /* README.mdown */; };
-		13CC2C9C17545ECF00337BF9 /* neighbors.htkdic in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2C9417545ECF00337BF9 /* neighbors.htkdic */; };
+		13CC2C9C17545ECF00337BF9 /* neighbors.dict in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2C9417545ECF00337BF9 /* neighbors.dict */; };
 		13CC2C9D17545ECF00337BF9 /* neighbors.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2C9517545ECF00337BF9 /* neighbors.grammar */; };
 		13CC2C9E17545ECF00337BF9 /* neighbors.voca-withsil in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2C9617545ECF00337BF9 /* neighbors.voca-withsil */; };
 		13CC2C9F17545ECF00337BF9 /* both.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2C9717545ECF00337BF9 /* both.jconf */; };
@@ -58,7 +53,7 @@
 		13CC2CA117545ECF00337BF9 /* strict.voca in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2C9917545ECF00337BF9 /* strict.voca */; };
 		13CC2CB317545FE500337BF9 /* neighbors.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2CB217545FE500337BF9 /* neighbors.dfa */; };
 		13CC2CB617545FF100337BF9 /* strict.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2CB417545FF100337BF9 /* strict.dfa */; };
-		13CC2CB717545FF100337BF9 /* strict.htkdic in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2CB517545FF100337BF9 /* strict.htkdic */; };
+		13CC2CB717545FF100337BF9 /* strict.dict in Resources */ = {isa = PBXBuildFile; fileRef = 13CC2CB517545FF100337BF9 /* strict.dict */; };
 		13D3FE10174A002600A5EF7F /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 13D3FE0F174A002600A5EF7F /* README.textile */; };
 		13D3FE1D174A106500A5EF7F /* RIOInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13D3FE1C174A106400A5EF7F /* RIOInterface.mm */; };
 		13D3FE28174A221800A5EF7F /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13D3FE26174A221800A5EF7F /* CAXException.cpp */; };
@@ -71,6 +66,12 @@
 		2899E5220DE3E06400AC0155 /* JuliusSampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* JuliusSampleViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* JuliusSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */; };
+		4510C2A71755ECFB00C697AE /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A21755ECFB00C697AE /* test.dfa */; };
+		4510C2A81755ECFB00C697AE /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A31755ECFB00C697AE /* test.dict */; };
+		4510C2A91755ECFB00C697AE /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A41755ECFB00C697AE /* test.grammar */; };
+		4510C2AA1755ECFB00C697AE /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A51755ECFB00C697AE /* test.term */; };
+		4510C2AB1755ECFB00C697AE /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A61755ECFB00C697AE /* test.voca */; };
+		4510C2AD1755ED6900C697AE /* test.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2AC1755ED6900C697AE /* test.jconf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,15 +93,10 @@
 		13A7B9E6174F040500E832F3 /* DisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayView.h; sourceTree = "<group>"; };
 		13A7B9E7174F040500E832F3 /* DisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayView.m; sourceTree = "<group>"; };
 		13A7B9E9174F347200E832F3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		13A7BA0F174F460500E832F3 /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
-		13A7BA10174F460500E832F3 /* test.htkdic */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.htkdic; sourceTree = "<group>"; };
-		13A7BA11174F460500E832F3 /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
-		13A7BA12174F460500E832F3 /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
-		13A7BA13174F460500E832F3 /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
 		13A80BE0174C5D8D00B22FB8 /* phone_model_ios */ = {isa = PBXFileReference; lastKnownFileType = file; path = phone_model_ios; sourceTree = "<group>"; };
 		13A80BE2174C5E0300B22FB8 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiedlist; sourceTree = "<group>"; };
 		13A80BE4174C5ED800B22FB8 /* sample.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.dfa; sourceTree = "<group>"; };
-		13A80BE5174C5ED800B22FB8 /* sample.htkdic */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample.htkdic; sourceTree = "<group>"; };
+		13A80BE5174C5ED800B22FB8 /* sample.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = sample.dict; sourceTree = "<group>"; };
 		13A80BF4174C99F200B22FB8 /* 00readme-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-ja.txt"; sourceTree = "<group>"; };
 		13A80BF5174C99F200B22FB8 /* 00readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 00readme.txt; sourceTree = "<group>"; };
 		13A80BF7174C99F200B22FB8 /* 00readme-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-ja.txt"; sourceTree = "<group>"; };
@@ -130,7 +126,7 @@
 		13C5378D12E1FFEA0071E4ED /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		13C5378E12E1FFEA0071E4ED /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		13C5378F12E1FFEA0071E4ED /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
-		13CC2C9417545ECF00337BF9 /* neighbors.htkdic */ = {isa = PBXFileReference; lastKnownFileType = text; path = neighbors.htkdic; sourceTree = "<group>"; };
+		13CC2C9417545ECF00337BF9 /* neighbors.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = neighbors.dict; sourceTree = "<group>"; };
 		13CC2C9517545ECF00337BF9 /* neighbors.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neighbors.grammar; sourceTree = "<group>"; };
 		13CC2C9617545ECF00337BF9 /* neighbors.voca-withsil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "neighbors.voca-withsil"; sourceTree = "<group>"; };
 		13CC2C9717545ECF00337BF9 /* both.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = both.jconf; sourceTree = "<group>"; };
@@ -138,7 +134,7 @@
 		13CC2C9917545ECF00337BF9 /* strict.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = strict.voca; sourceTree = "<group>"; };
 		13CC2CB217545FE500337BF9 /* neighbors.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = neighbors.dfa; sourceTree = "<group>"; };
 		13CC2CB417545FF100337BF9 /* strict.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = strict.dfa; sourceTree = "<group>"; };
-		13CC2CB517545FF100337BF9 /* strict.htkdic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = strict.htkdic; sourceTree = "<group>"; };
+		13CC2CB517545FF100337BF9 /* strict.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; fileEncoding = 4; path = strict.dict; sourceTree = "<group>"; };
 		13D3FE0F174A002600A5EF7F /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.textile; path = ../README.textile; sourceTree = "<group>"; };
 		13D3FE19174A103200A5EF7F /* RIOInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIOInterface.h; sourceTree = "<group>"; };
 		13D3FE1C174A106400A5EF7F /* RIOInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RIOInterface.mm; sourceTree = "<group>"; };
@@ -159,6 +155,12 @@
 		28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuliusSampleViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSample_Prefix.pch; sourceTree = "<group>"; };
+		4510C2A21755ECFB00C697AE /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
+		4510C2A31755ECFB00C697AE /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
+		4510C2A41755ECFB00C697AE /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
+		4510C2A51755ECFB00C697AE /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
+		4510C2A61755ECFB00C697AE /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
+		4510C2AC1755ED6900C697AE /* test.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.jconf; path = model/test.jconf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JuliusSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JuliusSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,12 +236,12 @@
 			isa = PBXGroup;
 			children = (
 				13CC2CB217545FE500337BF9 /* neighbors.dfa */,
-				13CC2C9417545ECF00337BF9 /* neighbors.htkdic */,
+				13CC2C9417545ECF00337BF9 /* neighbors.dict */,
 				13CC2C9517545ECF00337BF9 /* neighbors.grammar */,
 				13CC2C9617545ECF00337BF9 /* neighbors.voca-withsil */,
 				13CC2C9717545ECF00337BF9 /* both.jconf */,
 				13CC2CB417545FF100337BF9 /* strict.dfa */,
-				13CC2CB517545FF100337BF9 /* strict.htkdic */,
+				13CC2CB517545FF100337BF9 /* strict.dict */,
 				13CC2C9817545ECF00337BF9 /* strict.grammar */,
 				13CC2C9917545ECF00337BF9 /* strict.voca */,
 				13684FDC12E0AC5A00FBF870 /* lang_m */,
@@ -251,14 +253,14 @@
 		13684FDC12E0AC5A00FBF870 /* lang_m */ = {
 			isa = PBXGroup;
 			children = (
-				13A7BA0F174F460500E832F3 /* test.dfa */,
-				13A7BA10174F460500E832F3 /* test.htkdic */,
-				13A7BA11174F460500E832F3 /* test.grammar */,
-				13A7BA12174F460500E832F3 /* test.term */,
-				13A7BA13174F460500E832F3 /* test.voca */,
+				4510C2A21755ECFB00C697AE /* test.dfa */,
+				4510C2A31755ECFB00C697AE /* test.dict */,
+				4510C2A41755ECFB00C697AE /* test.grammar */,
+				4510C2A51755ECFB00C697AE /* test.term */,
+				4510C2A61755ECFB00C697AE /* test.voca */,
 				13A80BE2174C5E0300B22FB8 /* tiedlist */,
 				13A80BE4174C5ED800B22FB8 /* sample.dfa */,
-				13A80BE5174C5ED800B22FB8 /* sample.htkdic */,
+				13A80BE5174C5ED800B22FB8 /* sample.dict */,
 			);
 			path = lang_m;
 			sourceTree = "<group>";
@@ -404,6 +406,7 @@
 				13684FAF12E0ABE800FBF870 /* xib */,
 				13684FDB12E0AC5A00FBF870 /* model */,
 				8D1107310486CEB800E47090 /* JuliusSample-Info.plist */,
+				4510C2AC1755ED6900C697AE /* test.jconf */,
 				13684FEA12E0AC9900FBF870 /* light.jconf */,
 				130F837412E33E9000488D19 /* fast.jconf */,
 			);
@@ -502,7 +505,7 @@
 				13A80BE1174C5D8D00B22FB8 /* phone_model_ios in Resources */,
 				13A80BE3174C5E0300B22FB8 /* tiedlist in Resources */,
 				13A80BE6174C5ED800B22FB8 /* sample.dfa in Resources */,
-				13A80BE7174C5ED800B22FB8 /* sample.htkdic in Resources */,
+				13A80BE7174C5ED800B22FB8 /* sample.dict in Resources */,
 				13A80C02174C99F200B22FB8 /* 00readme-ja.txt in Resources */,
 				13A80C03174C99F200B22FB8 /* 00readme.txt in Resources */,
 				13A80C04174C99F200B22FB8 /* 00readme-ja.txt in Resources */,
@@ -526,12 +529,7 @@
 				13A80C31174CAB5900B22FB8 /* TestResults in Resources */,
 				13A80C33174CAB5900B22FB8 /* wav_config in Resources */,
 				133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */,
-				13A7BA14174F460500E832F3 /* test.dfa in Resources */,
-				13A7BA15174F460500E832F3 /* test.htkdic in Resources */,
-				13A7BA16174F460500E832F3 /* test.grammar in Resources */,
-				13A7BA17174F460500E832F3 /* test.term in Resources */,
-				13A7BA18174F460500E832F3 /* test.voca in Resources */,
-				13CC2C9C17545ECF00337BF9 /* neighbors.htkdic in Resources */,
+				13CC2C9C17545ECF00337BF9 /* neighbors.dict in Resources */,
 				13CC2C9D17545ECF00337BF9 /* neighbors.grammar in Resources */,
 				13CC2C9E17545ECF00337BF9 /* neighbors.voca-withsil in Resources */,
 				13CC2C9F17545ECF00337BF9 /* both.jconf in Resources */,
@@ -539,7 +537,13 @@
 				13CC2CA117545ECF00337BF9 /* strict.voca in Resources */,
 				13CC2CB317545FE500337BF9 /* neighbors.dfa in Resources */,
 				13CC2CB617545FF100337BF9 /* strict.dfa in Resources */,
-				13CC2CB717545FF100337BF9 /* strict.htkdic in Resources */,
+				13CC2CB717545FF100337BF9 /* strict.dict in Resources */,
+				4510C2A71755ECFB00C697AE /* test.dfa in Resources */,
+				4510C2A81755ECFB00C697AE /* test.dict in Resources */,
+				4510C2A91755ECFB00C697AE /* test.grammar in Resources */,
+				4510C2AA1755ECFB00C697AE /* test.term in Resources */,
+				4510C2AB1755ECFB00C697AE /* test.voca in Resources */,
+				4510C2AD1755ED6900C697AE /* test.jconf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

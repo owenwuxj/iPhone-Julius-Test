@@ -1,9 +1,12 @@
-% SIL
-SIL        sil
+% NS_B
+<s>        sil
 
-% HELLO
-HELLO     HH EH L OW
+% NS_E
+</s>       sil
 
-% WORLD
-WORLD     W ER L D
+% STEVE
+STEVE     s t iy v
+
+% FIVE
+FIVE     f ay v
 

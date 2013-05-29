@@ -204,7 +204,7 @@ static void output_result(Recog *recog_, void *data) {
 		Jconf *jconf;
 		
 		/* create a configuration variables container */
-		NSString *path = [[NSBundle mainBundle] pathForResource:@"light" ofType:@"jconf"];
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"jconf"];
 		jconf = j_jconf_new();
 		if (j_config_load_file(jconf, (char *)[path UTF8String]) == -1) {
 			NSLog(@"Error in loading file");
