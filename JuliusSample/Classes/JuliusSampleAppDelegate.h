@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SSZipArchive.h"
+
 @class JuliusSampleViewController;
 
-@interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate> {
+static NSString *kPrivateAppDir = @"PrivateDocuments";
+
+@interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate, SSZipArchiveDelegate> {
     UIWindow *window;
     JuliusSampleViewController *viewController;
 }
@@ -18,5 +22,6 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet JuliusSampleViewController *viewController;
 
+-(NSString *)applicationLibraryPrivateDocument;
 @end
 

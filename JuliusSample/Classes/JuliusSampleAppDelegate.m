@@ -15,6 +15,19 @@
 @synthesize window;
 @synthesize viewController;
 
+// Get the /Library/PrivateDocuments folder, create one if no.
+-(NSString *)applicationLibraryPrivateDocument{
+    NSString *libDir = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *priAppDir = [libDir stringByAppendingPathComponent:kPrivateAppDir];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:priAppDir]) {
+        NSError *error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:priAppDir withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"FAILED TO CREATE %@",priAppDir);
+        }
+    }
+    return priAppDir;
+}
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -27,7 +40,16 @@
 //    [rioRef initializeAudioSession];
 //    [rioRef setSampleRate:16000];
 //    [rioRef startListening:viewController];
-
+    
+    NSString *thePath = [self applicationLibraryPrivateDocument];
+    BOOL unzipSuccess = [SSZipArchive unzipFileAtPath:[thePath stringByAppendingString:@"/langmodel.zip"]
+                                        toDestination:thePath
+                                             delegate:self];
+    
+    if (unzipSuccess) {
+        NSLog(@"UNZIP SUCCEED.");
+    }
+    
     // Add the view controller's view to the window and display.
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];

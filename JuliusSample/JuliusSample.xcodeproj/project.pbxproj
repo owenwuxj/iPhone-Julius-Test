@@ -13,6 +13,14 @@
 		131BA4E41761ADAE0033530B /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4DF1761ADAE0033530B /* test.dict */; };
 		131BA4E51761ADAE0033530B /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4E01761ADAE0033530B /* test.grammar */; };
 		131BA4E71761ADAE0033530B /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4E21761ADAE0033530B /* test.voca */; };
+		131BA53D1761D4BC0033530B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 131BA5011761D4BC0033530B /* LICENSE */; };
+		131BA53E1761D4BC0033530B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 131BA5041761D4BC0033530B /* ioapi.c */; };
+		131BA53F1761D4BC0033530B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 131BA5061761D4BC0033530B /* mztools.c */; };
+		131BA5401761D4BC0033530B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 131BA5081761D4BC0033530B /* unzip.c */; };
+		131BA5411761D4BC0033530B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 131BA50A1761D4BC0033530B /* zip.c */; };
+		131BA5421761D4BC0033530B /* Readme.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 131BA50C1761D4BC0033530B /* Readme.markdown */; };
+		131BA5431761D4BC0033530B /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 131BA50E1761D4BC0033530B /* SSZipArchive.m */; };
+		131BA5921761E4D60033530B /* langmodel.zip in Resources */ = {isa = PBXBuildFile; fileRef = 131BA5911761E4D60033530B /* langmodel.zip */; };
 		133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 133E19E1174CBD0E00506BCB /* Default-568h@2x.png */; };
 		134018CB1760A14B0047EC60 /* hmmdefs in Resources */ = {isa = PBXBuildFile; fileRef = 134018C91760A14B0047EC60 /* hmmdefs */; };
 		134018CC1760A14B0047EC60 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 134018CA1760A14B0047EC60 /* tiedlist */; };
@@ -52,10 +60,24 @@
 
 /* Begin PBXFileReference section */
 		130F837412E33E9000488D19 /* fast.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fast.jconf; sourceTree = "<group>"; };
-		131BA4DE1761ADAE0033530B /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
-		131BA4DF1761ADAE0033530B /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
-		131BA4E01761ADAE0033530B /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
-		131BA4E21761ADAE0033530B /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
+		131BA4DE1761ADAE0033530B /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.dfa; path = ../test.dfa; sourceTree = "<group>"; };
+		131BA4DF1761ADAE0033530B /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; name = test.dict; path = ../test.dict; sourceTree = "<group>"; };
+		131BA4E01761ADAE0033530B /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.grammar; path = ../test.grammar; sourceTree = "<group>"; };
+		131BA4E21761ADAE0033530B /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.voca; path = ../test.voca; sourceTree = "<group>"; };
+		131BA5011761D4BC0033530B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		131BA5031761D4BC0033530B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		131BA5041761D4BC0033530B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		131BA5051761D4BC0033530B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		131BA5061761D4BC0033530B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		131BA5071761D4BC0033530B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		131BA5081761D4BC0033530B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		131BA5091761D4BC0033530B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		131BA50A1761D4BC0033530B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		131BA50B1761D4BC0033530B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		131BA50C1761D4BC0033530B /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.markdown; sourceTree = "<group>"; };
+		131BA50D1761D4BC0033530B /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		131BA50E1761D4BC0033530B /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		131BA5911761E4D60033530B /* langmodel.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = langmodel.zip; sourceTree = "<group>"; };
 		133E19E1174CBD0E00506BCB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		134018C91760A14B0047EC60 /* hmmdefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hmmdefs; path = model/hmmdefs; sourceTree = SOURCE_ROOT; };
 		134018CA1760A14B0047EC60 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tiedlist; path = model/tiedlist; sourceTree = SOURCE_ROOT; };
@@ -119,12 +141,49 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				131BA4FD1761D4A90033530B /* 3rdParty */,
 				13684FAE12E0ABDB00FBF870 /* Controller */,
 				13684FAD12E0ABD500FBF870 /* AppDelegate */,
 				13D3FE19174A103200A5EF7F /* RIOInterface.h */,
 				13D3FE1C174A106400A5EF7F /* RIOInterface.mm */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		131BA4FD1761D4A90033530B /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				131BA4FE1761D4BC0033530B /* ssziparchive */,
+			);
+			name = 3rdParty;
+			sourceTree = "<group>";
+		};
+		131BA4FE1761D4BC0033530B /* ssziparchive */ = {
+			isa = PBXGroup;
+			children = (
+				131BA5011761D4BC0033530B /* LICENSE */,
+				131BA5021761D4BC0033530B /* minizip */,
+				131BA50C1761D4BC0033530B /* Readme.markdown */,
+				131BA50D1761D4BC0033530B /* SSZipArchive.h */,
+				131BA50E1761D4BC0033530B /* SSZipArchive.m */,
+			);
+			path = ssziparchive;
+			sourceTree = "<group>";
+		};
+		131BA5021761D4BC0033530B /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				131BA5031761D4BC0033530B /* crypt.h */,
+				131BA5041761D4BC0033530B /* ioapi.c */,
+				131BA5051761D4BC0033530B /* ioapi.h */,
+				131BA5061761D4BC0033530B /* mztools.c */,
+				131BA5071761D4BC0033530B /* mztools.h */,
+				131BA5081761D4BC0033530B /* unzip.c */,
+				131BA5091761D4BC0033530B /* unzip.h */,
+				131BA50A1761D4BC0033530B /* zip.c */,
+				131BA50B1761D4BC0033530B /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 		134018E51760A2190047EC60 /* Products */ = {
@@ -167,10 +226,6 @@
 		13684FDB12E0AC5A00FBF870 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				131BA4DE1761ADAE0033530B /* test.dfa */,
-				131BA4DF1761ADAE0033530B /* test.dict */,
-				131BA4E01761ADAE0033530B /* test.grammar */,
-				131BA4E21761ADAE0033530B /* test.voca */,
 				13684FDC12E0AC5A00FBF870 /* lang_m */,
 				13684FE012E0AC5B00FBF870 /* phone_m */,
 			);
@@ -180,6 +235,11 @@
 		13684FDC12E0AC5A00FBF870 /* lang_m */ = {
 			isa = PBXGroup;
 			children = (
+				131BA5911761E4D60033530B /* langmodel.zip */,
+				131BA4DE1761ADAE0033530B /* test.dfa */,
+				131BA4DF1761ADAE0033530B /* test.dict */,
+				131BA4E01761ADAE0033530B /* test.grammar */,
+				131BA4E21761ADAE0033530B /* test.voca */,
 			);
 			path = lang_m;
 			sourceTree = "<group>";
@@ -368,6 +428,9 @@
 				131BA4E41761ADAE0033530B /* test.dict in Resources */,
 				131BA4E51761ADAE0033530B /* test.grammar in Resources */,
 				131BA4E71761ADAE0033530B /* test.voca in Resources */,
+				131BA53D1761D4BC0033530B /* LICENSE in Resources */,
+				131BA5421761D4BC0033530B /* Readme.markdown in Resources */,
+				131BA5921761E4D60033530B /* langmodel.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +449,11 @@
 				13D3FE1D174A106500A5EF7F /* RIOInterface.mm in Sources */,
 				13D3FE28174A221800A5EF7F /* CAXException.cpp in Sources */,
 				13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */,
+				131BA53E1761D4BC0033530B /* ioapi.c in Sources */,
+				131BA53F1761D4BC0033530B /* mztools.c in Sources */,
+				131BA5401761D4BC0033530B /* unzip.c in Sources */,
+				131BA5411761D4BC0033530B /* zip.c in Sources */,
+				131BA5431761D4BC0033530B /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

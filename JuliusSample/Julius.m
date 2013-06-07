@@ -7,6 +7,7 @@
 //
 
 #import "Julius.h"
+#import "JuliusSampleAppDelegate.h"
 
 #define charLength 60000
 
@@ -203,6 +204,8 @@ static void output_result(Recog *recog_, void *data) {
 		
 		Jconf *jconf;
 		
+//        NSString *temp = [JuliusSampleAppDelegate ]
+        
 		/* create a configuration variables container */
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"jconf"];
 		jconf = j_jconf_new();
