@@ -13,6 +13,8 @@
 @interface JuliusSampleViewController ()
 - (void)recording;
 - (void)recognition;
+- (void)showStartStopBtns;
+- (void)hideStartStopBtns;
 @end
 
 #define DisplayHeight 320  //in pixel
@@ -40,14 +42,16 @@
         
         [theView cleanUpContext];
         [rioRef startListening:self];
-
+        
+        [self hideStartStopBtns];
 	} else {
 		[recorder stop];
 		[recordButton setTitle:@"Record" forState:UIControlStateNormal];
         
         [rioRef stopListening];
-        
-	}
+        [self showStartStopBtns];
+    }
+    
 	self.processing = !processing;
 }
 
@@ -92,9 +96,39 @@
 		self.julius = [Julius new];
 		julius.delegate = self;
 	}
+    else {// Owen 20130607: Init Julius every time starting recognition
+        [julius release];
+        self.julius = nil;
+        
+        self.julius = [Julius new];
+        julius.delegate = self;
+    }
+    
+    NSLog(@"filePath is %@",filePath);
+
 	
 	[julius recognizeRawFileAtPath:filePath];
 }
+
+- (void)showStartStopBtns{
+    for (UIButton *aBtn in self.view.subviews) {
+        if ([aBtn isHidden] && [aBtn isKindOfClass:[UIButton class]]) {
+            aBtn.hidden = NO;
+        }
+    }
+}
+
+- (void)hideStartStopBtns{
+    for (UIButton *aBtn in self.view.subviews) {
+        if ([aBtn isKindOfClass:[UIButton class]] && ([aBtn.titleLabel.text isEqualToString:@"START"] || [aBtn.titleLabel.text isEqualToString:@"STOP"])) {
+            aBtn.hidden = YES;
+        }
+    }
+}
+
+
+#pragma mark -
+#pragma mark Public methods
 
 - (void)frequencyChangedWithRMS:(float)newRMS withACF:(float)newACF andZCR:(float)newZCR withFreq:(float)newFreq{
 //	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
@@ -193,8 +227,11 @@
 - (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
 	[HUD hide:YES];
 
+//    [self performSelector:@selector(recognition) withObject:nil afterDelay:0.1];
+
 	// Show results.
 	textView.text = [results componentsJoinedByString:@""];
+    NSLog(@"Show Results: %@",[results componentsJoinedByString:@""]);
     
     theView.boundsArray = [NSMutableArray arrayWithArray:boundsAry];
     [theView setNeedsDisplay];

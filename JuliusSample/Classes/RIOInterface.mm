@@ -16,8 +16,8 @@
 
 #define kBufferSize 1024*2
 
-const float MIN_FREQ = 50.0f;
-const float MAX_FREQ = 2500.0f;
+const float MIN_FREQ = 50.0f;// Human actually sounds around 80Hz, male does
+const float MAX_FREQ = 2000.0f;// Soprano could actually make 1500Hz
 
 @implementation RIOInterface
 
