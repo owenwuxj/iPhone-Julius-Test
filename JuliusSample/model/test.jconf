@@ -1,7 +1,7 @@
 -input rawfile
 -smpFreq 16000
 
--h phone_model_ios
+-h hmmdefs
 -hlist tiedlist
 
 -gram test

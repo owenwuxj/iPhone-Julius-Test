@@ -8,38 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		130F837512E33E9000488D19 /* fast.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 130F837412E33E9000488D19 /* fast.jconf */; };
+		133B2FE91758788300E3AAB1 /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 133B2FE71758788300E3AAB1 /* test.dfa */; };
+		133B2FEA1758788300E3AAB1 /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 133B2FE81758788300E3AAB1 /* test.dict */; };
 		133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 133E19E1174CBD0E00506BCB /* Default-568h@2x.png */; };
+		134018CB1760A14B0047EC60 /* hmmdefs in Resources */ = {isa = PBXBuildFile; fileRef = 134018C91760A14B0047EC60 /* hmmdefs */; };
+		134018CC1760A14B0047EC60 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 134018CA1760A14B0047EC60 /* tiedlist */; };
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
-		13684FD912E0AC2C00FBF870 /* libjulius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FD712E0AC2300FBF870 /* libjulius.a */; };
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
 		13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7B9E7174F040500E832F3 /* DisplayView.m */; };
 		13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7B9E9174F347200E832F3 /* Accelerate.framework */; };
-		13A80BE1174C5D8D00B22FB8 /* phone_model_ios in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE0174C5D8D00B22FB8 /* phone_model_ios */; };
-		13A80BE3174C5E0300B22FB8 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE2174C5E0300B22FB8 /* tiedlist */; };
-		13A80BE6174C5ED800B22FB8 /* sample.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE4174C5ED800B22FB8 /* sample.dfa */; };
-		13A80BE7174C5ED800B22FB8 /* sample.dict in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BE5174C5ED800B22FB8 /* sample.dict */; };
-		13A80C02174C99F200B22FB8 /* 00readme-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF4174C99F200B22FB8 /* 00readme-ja.txt */; };
-		13A80C03174C99F200B22FB8 /* 00readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF5174C99F200B22FB8 /* 00readme.txt */; };
-		13A80C04174C99F200B22FB8 /* 00readme-ja.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF7174C99F200B22FB8 /* 00readme-ja.txt */; };
-		13A80C05174C99F200B22FB8 /* 00readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BF8174C99F200B22FB8 /* 00readme.txt */; };
-		13A80C06174C99F200B22FB8 /* sample.trans.align in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BFA174C99F200B22FB8 /* sample.trans.align */; };
-		13A80C07174C99F200B22FB8 /* sample.trans.log in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BFB174C99F200B22FB8 /* sample.trans.log */; };
-		13A80C08174C99F200B22FB8 /* sample.trans_line.align in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BFC174C99F200B22FB8 /* sample.trans_line.align */; };
-		13A80C09174C99F200B22FB8 /* sample.trans_line.log in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BFD174C99F200B22FB8 /* sample.trans_line.log */; };
-		13A80C0A174C99F200B22FB8 /* sample.trans in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BFE174C99F200B22FB8 /* sample.trans */; };
-		13A80C0B174C99F200B22FB8 /* sample.trans_line in Resources */ = {isa = PBXBuildFile; fileRef = 13A80BFF174C99F200B22FB8 /* sample.trans_line */; };
-		13A80C0C174C99F200B22FB8 /* sample.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C00174C99F200B22FB8 /* sample.wav */; };
-		13A80C0D174C99F200B22FB8 /* segment_julius4.pl in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C01174C99F200B22FB8 /* segment_julius4.pl */; };
-		13A80C29174CAB5900B22FB8 /* config in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C1D174CAB5900B22FB8 /* config */; };
-		13A80C2A174CAB5900B22FB8 /* dict in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C1E174CAB5900B22FB8 /* dict */; };
-		13A80C2B174CAB5900B22FB8 /* GPL_license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C20174CAB5900B22FB8 /* GPL_license.txt */; };
-		13A80C2C174CAB5900B22FB8 /* hmmdefs in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C21174CAB5900B22FB8 /* hmmdefs */; };
-		13A80C2D174CAB5900B22FB8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C22174CAB5900B22FB8 /* LICENSE */; };
-		13A80C2E174CAB5900B22FB8 /* macros in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C23174CAB5900B22FB8 /* macros */; };
-		13A80C2F174CAB5900B22FB8 /* master_prompts in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C24174CAB5900B22FB8 /* master_prompts */; };
-		13A80C30174CAB5900B22FB8 /* stats in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C25174CAB5900B22FB8 /* stats */; };
-		13A80C31174CAB5900B22FB8 /* TestResults in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C26174CAB5900B22FB8 /* TestResults */; };
-		13A80C33174CAB5900B22FB8 /* wav_config in Resources */ = {isa = PBXBuildFile; fileRef = 13A80C28174CAB5900B22FB8 /* wav_config */; };
 		13C5372212E1F9FB0071E4ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C5372112E1F9FB0071E4ED /* AVFoundation.framework */; };
 		13C5372912E1FA070071E4ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C5372812E1FA070071E4ED /* CoreAudio.framework */; };
 		13C5373F12E1FA910071E4ED /* Julius.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C5373E12E1FA910071E4ED /* Julius.m */; };
@@ -66,18 +43,13 @@
 		2899E5220DE3E06400AC0155 /* JuliusSampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* JuliusSampleViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* JuliusSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */; };
-		4510C2A71755ECFB00C697AE /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A21755ECFB00C697AE /* test.dfa */; };
-		4510C2A81755ECFB00C697AE /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A31755ECFB00C697AE /* test.dict */; };
-		4510C2A91755ECFB00C697AE /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A41755ECFB00C697AE /* test.grammar */; };
-		4510C2AA1755ECFB00C697AE /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A51755ECFB00C697AE /* test.term */; };
-		4510C2AB1755ECFB00C697AE /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2A61755ECFB00C697AE /* test.voca */; };
 		4510C2AD1755ED6900C697AE /* test.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2AC1755ED6900C697AE /* test.jconf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		13684FD612E0AC2300FBF870 /* PBXContainerItemProxy */ = {
+		134018EF1760A21A0047EC60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 13684FD212E0AC2300FBF870 /* julius.xcodeproj */;
+			containerPortal = 134018E41760A2190047EC60 /* julius.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = julius;
@@ -86,39 +58,17 @@
 
 /* Begin PBXFileReference section */
 		130F837412E33E9000488D19 /* fast.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fast.jconf; sourceTree = "<group>"; };
+		133B2FE71758788300E3AAB1 /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.dfa; path = ../test.dfa; sourceTree = "<group>"; };
+		133B2FE81758788300E3AAB1 /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; name = test.dict; path = ../test.dict; sourceTree = "<group>"; };
 		133E19E1174CBD0E00506BCB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		134018C91760A14B0047EC60 /* hmmdefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hmmdefs; path = model/hmmdefs; sourceTree = SOURCE_ROOT; };
+		134018CA1760A14B0047EC60 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tiedlist; path = model/tiedlist; sourceTree = SOURCE_ROOT; };
+		134018E41760A2190047EC60 /* julius.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = julius.xcodeproj; path = ../julius/julius.xcodeproj; sourceTree = "<group>"; };
 		13684FCA12E0AC0D00FBF870 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		13684FD212E0AC2300FBF870 /* julius.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = julius.xcodeproj; path = ../julius/julius.xcodeproj; sourceTree = SOURCE_ROOT; };
 		13684FEA12E0AC9900FBF870 /* light.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.jconf; sourceTree = "<group>"; };
 		13A7B9E6174F040500E832F3 /* DisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayView.h; sourceTree = "<group>"; };
 		13A7B9E7174F040500E832F3 /* DisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayView.m; sourceTree = "<group>"; };
 		13A7B9E9174F347200E832F3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		13A80BE0174C5D8D00B22FB8 /* phone_model_ios */ = {isa = PBXFileReference; lastKnownFileType = file; path = phone_model_ios; sourceTree = "<group>"; };
-		13A80BE2174C5E0300B22FB8 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiedlist; sourceTree = "<group>"; };
-		13A80BE4174C5ED800B22FB8 /* sample.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.dfa; sourceTree = "<group>"; };
-		13A80BE5174C5ED800B22FB8 /* sample.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = sample.dict; sourceTree = "<group>"; };
-		13A80BF4174C99F200B22FB8 /* 00readme-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-ja.txt"; sourceTree = "<group>"; };
-		13A80BF5174C99F200B22FB8 /* 00readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 00readme.txt; sourceTree = "<group>"; };
-		13A80BF7174C99F200B22FB8 /* 00readme-ja.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00readme-ja.txt"; sourceTree = "<group>"; };
-		13A80BF8174C99F200B22FB8 /* 00readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 00readme.txt; sourceTree = "<group>"; };
-		13A80BFA174C99F200B22FB8 /* sample.trans.align */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.trans.align; sourceTree = "<group>"; };
-		13A80BFB174C99F200B22FB8 /* sample.trans.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.trans.log; sourceTree = "<group>"; };
-		13A80BFC174C99F200B22FB8 /* sample.trans_line.align */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.trans_line.align; sourceTree = "<group>"; };
-		13A80BFD174C99F200B22FB8 /* sample.trans_line.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.trans_line.log; sourceTree = "<group>"; };
-		13A80BFE174C99F200B22FB8 /* sample.trans */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.trans; sourceTree = "<group>"; };
-		13A80BFF174C99F200B22FB8 /* sample.trans_line */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.trans_line; sourceTree = "<group>"; };
-		13A80C00174C99F200B22FB8 /* sample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample.wav; sourceTree = "<group>"; };
-		13A80C01174C99F200B22FB8 /* segment_julius4.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = segment_julius4.pl; sourceTree = "<group>"; };
-		13A80C1D174CAB5900B22FB8 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
-		13A80C1E174CAB5900B22FB8 /* dict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dict; sourceTree = "<group>"; };
-		13A80C20174CAB5900B22FB8 /* GPL_license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL_license.txt; sourceTree = "<group>"; };
-		13A80C21174CAB5900B22FB8 /* hmmdefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hmmdefs; sourceTree = "<group>"; };
-		13A80C22174CAB5900B22FB8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		13A80C23174CAB5900B22FB8 /* macros */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = macros; sourceTree = "<group>"; };
-		13A80C24174CAB5900B22FB8 /* master_prompts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master_prompts; sourceTree = "<group>"; };
-		13A80C25174CAB5900B22FB8 /* stats */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stats; sourceTree = "<group>"; };
-		13A80C26174CAB5900B22FB8 /* TestResults */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestResults; sourceTree = "<group>"; };
-		13A80C28174CAB5900B22FB8 /* wav_config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wav_config; sourceTree = "<group>"; };
 		13C5372112E1F9FB0071E4ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		13C5372812E1FA070071E4ED /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		13C5373D12E1FA910071E4ED /* Julius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Julius.h; sourceTree = "<group>"; };
@@ -155,11 +105,6 @@
 		28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuliusSampleViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSample_Prefix.pch; sourceTree = "<group>"; };
-		4510C2A21755ECFB00C697AE /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
-		4510C2A31755ECFB00C697AE /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
-		4510C2A41755ECFB00C697AE /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
-		4510C2A51755ECFB00C697AE /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
-		4510C2A61755ECFB00C697AE /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
 		4510C2AC1755ED6900C697AE /* test.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.jconf; path = model/test.jconf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JuliusSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JuliusSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,7 +120,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */,
-				13684FD912E0AC2C00FBF870 /* libjulius.a in Frameworks */,
 				13C5372212E1F9FB0071E4ED /* AVFoundation.framework in Frameworks */,
 				13C5372912E1FA070071E4ED /* CoreAudio.framework in Frameworks */,
 			);
@@ -193,6 +137,14 @@
 				13D3FE1C174A106400A5EF7F /* RIOInterface.mm */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		134018E51760A2190047EC60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				134018F01760A21A0047EC60 /* libjulius.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		13684FAD12E0ABD500FBF870 /* AppDelegate */ = {
@@ -224,14 +176,6 @@
 			name = xib;
 			sourceTree = "<group>";
 		};
-		13684FD312E0AC2300FBF870 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				13684FD712E0AC2300FBF870 /* libjulius.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		13684FDB12E0AC5A00FBF870 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,14 +197,8 @@
 		13684FDC12E0AC5A00FBF870 /* lang_m */ = {
 			isa = PBXGroup;
 			children = (
-				4510C2A21755ECFB00C697AE /* test.dfa */,
-				4510C2A31755ECFB00C697AE /* test.dict */,
-				4510C2A41755ECFB00C697AE /* test.grammar */,
-				4510C2A51755ECFB00C697AE /* test.term */,
-				4510C2A61755ECFB00C697AE /* test.voca */,
-				13A80BE2174C5E0300B22FB8 /* tiedlist */,
-				13A80BE4174C5ED800B22FB8 /* sample.dfa */,
-				13A80BE5174C5ED800B22FB8 /* sample.dict */,
+				133B2FE71758788300E3AAB1 /* test.dfa */,
+				133B2FE81758788300E3AAB1 /* test.dict */,
 			);
 			path = lang_m;
 			sourceTree = "<group>";
@@ -268,69 +206,10 @@
 		13684FE012E0AC5B00FBF870 /* phone_m */ = {
 			isa = PBXGroup;
 			children = (
-				13A80BE0174C5D8D00B22FB8 /* phone_model_ios */,
+				134018C91760A14B0047EC60 /* hmmdefs */,
+				134018CA1760A14B0047EC60 /* tiedlist */,
 			);
 			path = phone_m;
-			sourceTree = "<group>";
-		};
-		13A80BF3174C99F200B22FB8 /* julius4-segmentation-kit-v1.0 2 */ = {
-			isa = PBXGroup;
-			children = (
-				13A80BF4174C99F200B22FB8 /* 00readme-ja.txt */,
-				13A80BF5174C99F200B22FB8 /* 00readme.txt */,
-				13A80BF6174C99F200B22FB8 /* sample */,
-				13A80C01174C99F200B22FB8 /* segment_julius4.pl */,
-			);
-			path = "julius4-segmentation-kit-v1.0 2";
-			sourceTree = "<group>";
-		};
-		13A80BF6174C99F200B22FB8 /* sample */ = {
-			isa = PBXGroup;
-			children = (
-				13A80BF7174C99F200B22FB8 /* 00readme-ja.txt */,
-				13A80BF8174C99F200B22FB8 /* 00readme.txt */,
-				13A80BF9174C99F200B22FB8 /* result */,
-				13A80BFE174C99F200B22FB8 /* sample.trans */,
-				13A80BFF174C99F200B22FB8 /* sample.trans_line */,
-				13A80C00174C99F200B22FB8 /* sample.wav */,
-			);
-			path = sample;
-			sourceTree = "<group>";
-		};
-		13A80BF9174C99F200B22FB8 /* result */ = {
-			isa = PBXGroup;
-			children = (
-				13A80BFA174C99F200B22FB8 /* sample.trans.align */,
-				13A80BFB174C99F200B22FB8 /* sample.trans.log */,
-				13A80BFC174C99F200B22FB8 /* sample.trans_line.align */,
-				13A80BFD174C99F200B22FB8 /* sample.trans_line.log */,
-			);
-			path = result;
-			sourceTree = "<group>";
-		};
-		13A80C1C174CAB5900B22FB8 /* julius-voxforge-0.1.1~daily20130206 */ = {
-			isa = PBXGroup;
-			children = (
-				13A80C1D174CAB5900B22FB8 /* config */,
-				13A80C1E174CAB5900B22FB8 /* dict */,
-				13A80C1F174CAB5900B22FB8 /* etc */,
-				13A80C21174CAB5900B22FB8 /* hmmdefs */,
-				13A80C22174CAB5900B22FB8 /* LICENSE */,
-				13A80C23174CAB5900B22FB8 /* macros */,
-				13A80C28174CAB5900B22FB8 /* wav_config */,
-				13A80C24174CAB5900B22FB8 /* master_prompts */,
-				13A80C25174CAB5900B22FB8 /* stats */,
-				13A80C26174CAB5900B22FB8 /* TestResults */,
-			);
-			path = "julius-voxforge-0.1.1~daily20130206";
-			sourceTree = "<group>";
-		};
-		13A80C1F174CAB5900B22FB8 /* etc */ = {
-			isa = PBXGroup;
-			children = (
-				13A80C20174CAB5900B22FB8 /* GPL_license.txt */,
-			);
-			path = etc;
 			sourceTree = "<group>";
 		};
 		13C5374012E1FA940071E4ED /* Julius */ = {
@@ -388,9 +267,9 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				134018E41760A2190047EC60 /* julius.xcodeproj */,
 				13D3FE23174A21FD00A5EF7F /* CAUtility */,
 				13C5376612E1FFE90071E4ED /* MBProgressHUD */,
-				13684FD212E0AC2300FBF870 /* julius.xcodeproj */,
 				13C5374012E1FA940071E4ED /* Julius */,
 				32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -401,8 +280,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				13A80C1C174CAB5900B22FB8 /* julius-voxforge-0.1.1~daily20130206 */,
-				13A80BF3174C99F200B22FB8 /* julius4-segmentation-kit-v1.0 2 */,
 				13684FAF12E0ABE800FBF870 /* xib */,
 				13684FDB12E0AC5A00FBF870 /* model */,
 				8D1107310486CEB800E47090 /* JuliusSample-Info.plist */,
@@ -470,8 +347,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 13684FD312E0AC2300FBF870 /* Products */;
-					ProjectRef = 13684FD212E0AC2300FBF870 /* julius.xcodeproj */;
+					ProductGroup = 134018E51760A2190047EC60 /* Products */;
+					ProjectRef = 134018E41760A2190047EC60 /* julius.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -482,11 +359,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		13684FD712E0AC2300FBF870 /* libjulius.a */ = {
+		134018F01760A21A0047EC60 /* libjulius.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libjulius.a;
-			remoteRef = 13684FD612E0AC2300FBF870 /* PBXContainerItemProxy */;
+			remoteRef = 134018EF1760A21A0047EC60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -502,32 +379,6 @@
 				13C537A912E1FFEA0071E4ED /* README.mdown in Resources */,
 				130F837512E33E9000488D19 /* fast.jconf in Resources */,
 				13D3FE10174A002600A5EF7F /* README.textile in Resources */,
-				13A80BE1174C5D8D00B22FB8 /* phone_model_ios in Resources */,
-				13A80BE3174C5E0300B22FB8 /* tiedlist in Resources */,
-				13A80BE6174C5ED800B22FB8 /* sample.dfa in Resources */,
-				13A80BE7174C5ED800B22FB8 /* sample.dict in Resources */,
-				13A80C02174C99F200B22FB8 /* 00readme-ja.txt in Resources */,
-				13A80C03174C99F200B22FB8 /* 00readme.txt in Resources */,
-				13A80C04174C99F200B22FB8 /* 00readme-ja.txt in Resources */,
-				13A80C05174C99F200B22FB8 /* 00readme.txt in Resources */,
-				13A80C06174C99F200B22FB8 /* sample.trans.align in Resources */,
-				13A80C07174C99F200B22FB8 /* sample.trans.log in Resources */,
-				13A80C08174C99F200B22FB8 /* sample.trans_line.align in Resources */,
-				13A80C09174C99F200B22FB8 /* sample.trans_line.log in Resources */,
-				13A80C0A174C99F200B22FB8 /* sample.trans in Resources */,
-				13A80C0B174C99F200B22FB8 /* sample.trans_line in Resources */,
-				13A80C0C174C99F200B22FB8 /* sample.wav in Resources */,
-				13A80C0D174C99F200B22FB8 /* segment_julius4.pl in Resources */,
-				13A80C29174CAB5900B22FB8 /* config in Resources */,
-				13A80C2A174CAB5900B22FB8 /* dict in Resources */,
-				13A80C2B174CAB5900B22FB8 /* GPL_license.txt in Resources */,
-				13A80C2C174CAB5900B22FB8 /* hmmdefs in Resources */,
-				13A80C2D174CAB5900B22FB8 /* LICENSE in Resources */,
-				13A80C2E174CAB5900B22FB8 /* macros in Resources */,
-				13A80C2F174CAB5900B22FB8 /* master_prompts in Resources */,
-				13A80C30174CAB5900B22FB8 /* stats in Resources */,
-				13A80C31174CAB5900B22FB8 /* TestResults in Resources */,
-				13A80C33174CAB5900B22FB8 /* wav_config in Resources */,
 				133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */,
 				13CC2C9C17545ECF00337BF9 /* neighbors.dict in Resources */,
 				13CC2C9D17545ECF00337BF9 /* neighbors.grammar in Resources */,
@@ -538,12 +389,11 @@
 				13CC2CB317545FE500337BF9 /* neighbors.dfa in Resources */,
 				13CC2CB617545FF100337BF9 /* strict.dfa in Resources */,
 				13CC2CB717545FF100337BF9 /* strict.dict in Resources */,
-				4510C2A71755ECFB00C697AE /* test.dfa in Resources */,
-				4510C2A81755ECFB00C697AE /* test.dict in Resources */,
-				4510C2A91755ECFB00C697AE /* test.grammar in Resources */,
-				4510C2AA1755ECFB00C697AE /* test.term in Resources */,
-				4510C2AB1755ECFB00C697AE /* test.voca in Resources */,
 				4510C2AD1755ED6900C697AE /* test.jconf in Resources */,
+				133B2FE91758788300E3AAB1 /* test.dfa in Resources */,
+				133B2FEA1758788300E3AAB1 /* test.dict in Resources */,
+				134018CB1760A14B0047EC60 /* hmmdefs in Resources */,
+				134018CC1760A14B0047EC60 /* tiedlist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,6 @@
 @property(nonatomic, retain) NSMutableArray *pitchLineArray;
 @property(nonatomic, retain) NSMutableArray *boundsArray;
 
--(void)cleanUpContext:(CGContextRef)context;
+-(void)cleanUpContext;
 
 @end

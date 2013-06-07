@@ -12,6 +12,7 @@
 
     float stepX;
     
+    CGContextRef context;
 }
 
 @synthesize lineArray, pitchLineArray, boundsArray;
@@ -24,6 +25,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
+        
         lineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
         pitchLineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
         boundsArray = [[NSMutableArray alloc] initWithCapacity:kLines];
@@ -46,12 +48,12 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing starts
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 1.0);
     
     // Clean up the screen and init the line array if line goes outside the screen
     if ([lineArray count] >= kLines) {
-        [self cleanUpContext:context];
+        [self cleanUpContext];
     }
     
     // ---------------------------------
@@ -135,12 +137,13 @@
     [super dealloc];
 }
 
--(void)cleanUpContext:(CGContextRef)context
+-(void)cleanUpContext
 {
     if (!context) {
         context = UIGraphicsGetCurrentContext();
     }
     
+//    NSLog(@"%@:%f/%f",context,self.frame.size.width, self.frame.size.height);
     CGContextClearRect(context,self.frame);
     [lineArray removeAllObjects];
     [pitchLineArray removeAllObjects];

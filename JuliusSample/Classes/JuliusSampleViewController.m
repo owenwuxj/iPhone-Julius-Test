@@ -38,7 +38,7 @@
 		[self recording];
 		[recordButton setTitle:@"Stop" forState:UIControlStateNormal];
         
-        [theView cleanUpContext:nil];
+        [theView cleanUpContext];
         [rioRef startListening:self];
 
 	} else {
@@ -88,7 +88,7 @@
 }
 
 - (void)recognition {
-	if (!julius) {
+	if (!self.julius) {
 		self.julius = [Julius new];
 		julius.delegate = self;
 	}
@@ -145,7 +145,6 @@
     
     theView = [[DisplayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2, self.view.frame.size.width, self.view.frame.size.height/2)];
     [self.view addSubview:theView];
-    [theView release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -181,6 +180,11 @@
 		
 		[self performSelector:@selector(recognition) withObject:nil afterDelay:0.1];
 	}
+    else {
+        UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"Recording" message:@"File Not Saved" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+        [alertView show];
+        [alertView release];
+    }
 }
 
 #pragma mark -
@@ -207,7 +211,12 @@
 	self.recordButton = nil;
 	self.textView = nil;
 	self.HUD = nil;
-    
+
+    if (theView) {
+        [theView release];
+        theView = nil;
+    }
+
     [super dealloc];
 }
 

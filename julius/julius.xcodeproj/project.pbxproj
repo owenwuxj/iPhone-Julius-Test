@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13684E8212E0A8F100FBF870 /* libsent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684E8112E0A8EF00FBF870 /* libsent.a */; };
+		134018C817609EF40047EC60 /* libsent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1340154617607E760047EC60 /* libsent.a */; };
 		13684EAE12E0A91F00FBF870 /* adin-cut.c in Sources */ = {isa = PBXBuildFile; fileRef = 13684E8712E0A91F00FBF870 /* adin-cut.c */; };
 		13684EAF12E0A91F00FBF870 /* backtrellis.c in Sources */ = {isa = PBXBuildFile; fileRef = 13684E8812E0A91F00FBF870 /* backtrellis.c */; };
 		13684EB012E0A91F00FBF870 /* beam.c in Sources */ = {isa = PBXBuildFile; fileRef = 13684E8912E0A91F00FBF870 /* beam.c */; };
@@ -71,9 +71,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		13684E8012E0A8EF00FBF870 /* PBXContainerItemProxy */ = {
+		1340154517607E760047EC60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 13684E7C12E0A8EF00FBF870 /* sent.xcodeproj */;
+			containerPortal = 1340153E17607E760047EC60 /* sent.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = sent;
@@ -81,7 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13684E7C12E0A8EF00FBF870 /* sent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sent.xcodeproj; path = ../sent/sent.xcodeproj; sourceTree = SOURCE_ROOT; };
+		1340153E17607E760047EC60 /* sent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sent.xcodeproj; path = ../sent/sent.xcodeproj; sourceTree = "<group>"; };
 		13684E8712E0A91F00FBF870 /* adin-cut.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "adin-cut.c"; sourceTree = "<group>"; };
 		13684E8812E0A91F00FBF870 /* backtrellis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = backtrellis.c; sourceTree = "<group>"; };
 		13684E8912E0A91F00FBF870 /* beam.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = beam.c; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134018C817609EF40047EC60 /* libsent.a in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
-				13684E8212E0A8F100FBF870 /* libsent.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,10 +233,10 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		13684E7D12E0A8EF00FBF870 /* Products */ = {
+		1340153F17607E760047EC60 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13684E8112E0A8EF00FBF870 /* libsent.a */,
+				1340154617607E760047EC60 /* libsent.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				13684E7C12E0A8EF00FBF870 /* sent.xcodeproj */,
+				1340153E17607E760047EC60 /* sent.xcodeproj */,
 				AA747D9E0F9514B9006C5449 /* julius_Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -351,8 +351,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 13684E7D12E0A8EF00FBF870 /* Products */;
-					ProjectRef = 13684E7C12E0A8EF00FBF870 /* sent.xcodeproj */;
+					ProductGroup = 1340153F17607E760047EC60 /* Products */;
+					ProjectRef = 1340153E17607E760047EC60 /* sent.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -363,11 +363,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		13684E8112E0A8EF00FBF870 /* libsent.a */ = {
+		1340154617607E760047EC60 /* libsent.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libsent.a;
-			remoteRef = 13684E8012E0A8EF00FBF870 /* PBXContainerItemProxy */;
+			remoteRef = 1340154517607E760047EC60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

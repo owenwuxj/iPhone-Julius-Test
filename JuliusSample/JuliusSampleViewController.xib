@@ -81,7 +81,7 @@
 					<object class="IBUITextView" id="892346574">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 160}, {300, 50}}</string>
+						<string key="NSFrame">{{10, 146}, {300, 64}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -91,6 +91,7 @@
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText"/>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -143,7 +144,7 @@
 					<object class="IBUILabel" id="263240894">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 117}, {305, 21}}</string>
+						<string key="NSFrame">{{10, 117}, {312, 21}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="892346574"/>
@@ -152,7 +153,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">2."Stop" the recording, then start the analysis.</string>
+						<string key="IBUIText">2."Stop" the recording, the analysis will start.</string>
 						<reference key="IBUITextColor" ref="964147410"/>
 						<reference key="IBUIHighlightedColor" ref="544391144"/>
 						<int key="IBUIBaselineAdjustment">1</int>
