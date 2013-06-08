@@ -13,6 +13,7 @@
 @property(nonatomic, retain) NSMutableArray *lineArray;
 @property(nonatomic, retain) NSMutableArray *pitchLineArray;
 @property(nonatomic, retain) NSMutableArray *boundsArray;
+@property(nonatomic, retain) NSMutableArray *textArray;
 
 -(void)cleanUpContext;
 

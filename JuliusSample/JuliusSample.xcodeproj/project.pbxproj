@@ -21,6 +21,7 @@
 		131BA5421761D4BC0033530B /* Readme.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 131BA50C1761D4BC0033530B /* Readme.markdown */; };
 		131BA5431761D4BC0033530B /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 131BA50E1761D4BC0033530B /* SSZipArchive.m */; };
 		131BA5921761E4D60033530B /* langmodel.zip in Resources */ = {isa = PBXBuildFile; fileRef = 131BA5911761E4D60033530B /* langmodel.zip */; };
+		131BA5AA1762DB720033530B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131BA5A91762DB720033530B /* QuartzCore.framework */; };
 		133E19E2174CBD0E00506BCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 133E19E1174CBD0E00506BCB /* Default-568h@2x.png */; };
 		134018CB1760A14B0047EC60 /* hmmdefs in Resources */ = {isa = PBXBuildFile; fileRef = 134018C91760A14B0047EC60 /* hmmdefs */; };
 		134018CC1760A14B0047EC60 /* tiedlist in Resources */ = {isa = PBXBuildFile; fileRef = 134018CA1760A14B0047EC60 /* tiedlist */; };
@@ -78,6 +79,7 @@
 		131BA50D1761D4BC0033530B /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		131BA50E1761D4BC0033530B /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		131BA5911761E4D60033530B /* langmodel.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = langmodel.zip; sourceTree = "<group>"; };
+		131BA5A91762DB720033530B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		133E19E1174CBD0E00506BCB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		134018C91760A14B0047EC60 /* hmmdefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hmmdefs; path = model/hmmdefs; sourceTree = SOURCE_ROOT; };
 		134018CA1760A14B0047EC60 /* tiedlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tiedlist; path = model/tiedlist; sourceTree = SOURCE_ROOT; };
@@ -123,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				131BA5AA1762DB720033530B /* QuartzCore.framework in Frameworks */,
 				131BA4A9176184EF0033530B /* libjulius.a in Frameworks */,
 				13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */,
 				13D3FE2B174A26A300A5EF7F /* AudioToolbox.framework in Frameworks */,
@@ -334,6 +337,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				131BA5A91762DB720033530B /* QuartzCore.framework */,
 				13A7B9E9174F347200E832F3 /* Accelerate.framework */,
 				13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,

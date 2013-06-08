@@ -233,6 +233,7 @@
 	textView.text = [results componentsJoinedByString:@""];
     NSLog(@"Show Results: %@",[results componentsJoinedByString:@""]);
     
+    theView.textArray = [NSMutableArray arrayWithArray:results];
     theView.boundsArray = [NSMutableArray arrayWithArray:boundsAry];
     [theView setNeedsDisplay];
 }
