@@ -11,15 +11,19 @@
 
 @implementation DisplayView {
 
-    float stepX;
-    CGContextRef context;
-    NSMutableArray *bndsLocation;
-    NSMutableArray *rmsAverageAry;
+    float stepX;//
+    int dynLinNum;// Dynamic Line Number
+
+    CGContextRef context;// Drawing Context
+    
+    NSMutableArray *bndsLocation; // Word Boundary Locations in Float
+    NSMutableArray *rmsAverageAry;// RMS Average for each word
+    NSMutableArray *pitchAvgAry;  // Pitch Average for each word
 }
 
 @synthesize lineArray, pitchLineArray, boundsArray, textArray;
 
-#define kLines 50
+#define kLines 50 // initial line number
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,7 +36,9 @@
         pitchLineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
         boundsArray = [[NSMutableArray alloc] initWithCapacity:kLines];
         
+        dynLinNum = kLines;
         stepX = self.frame.size.width / kLines;
+        
         bndsLocation = [[NSMutableArray alloc] initWithCapacity:kLines];
         rmsAverageAry = [[NSMutableArray alloc] initWithCapacity:kLines];
         
@@ -43,18 +49,22 @@
     return self;
 }
 
+-(float)calculateAverageOfAry:(NSArray*)temp fromIdx:(NSInteger)strPt toIdx:(NSInteger)endPt
+{
+    float avgFloat = 0;
+    
+    for (int i=strPt; i<endPt; i++) {
+        avgFloat += [[temp objectAtIndex:i] floatValue];
+    }
+    NSLog(@"222 %f",avgFloat);
+
+    avgFloat = avgFloat/(endPt-strPt);
+    return avgFloat;
+}
+
 -(void) initTextLayers
 {
     self.clipsToBounds = YES;
-//    self.userInteractionEnabled = YES;
-//    self.layer.cornerRadius = center.x;
-//    self.layer.borderWidth = 1.0;
-//    self.layer.borderColor = [[UIColor grayColor] CGColor];
-//    
-//    self.layer.shadowColor = UIColor.blackColor.CGColor;
-//    self.layer.shadowRadius = 2;
-//    self.layer.shadowOpacity = 0.6;
-//    self.layer.shadowOffset = CGSizeMake(0, 1);
     
     CGRect viewBounds = self.bounds;
     CGContextTranslateCTM(context, 0, viewBounds.size.height);
@@ -70,8 +80,9 @@
     for (int i = 0; i < [textArray count]; i++) {
         NSString *oneWord = [textArray objectAtIndex:i];
         CGFloat xValue = [[bndsLocation objectAtIndex:i] floatValue];
-        NSLog(@"222 %f",xValue);
         
+        // DO NOT DISPLAY SILENCE
+        // DISPLAY ONLY WORDS
         if ([oneWord isEqualToString:@"<s>"] || [oneWord isEqualToString:@"</s>"]) continue;
         else CGContextShowTextAtPoint(context, xValue, 125.0, [oneWord cStringUsingEncoding:NSUTF8StringEncoding], [oneWord length]);
     }
@@ -86,9 +97,10 @@
     CGContextSetLineWidth(context, 1.0);
     
     // Clean up the screen and init the line array if line goes outside the screen
-    if ([lineArray count] >= kLines) {
-//            [self cleanUpContext];
-        NSLog(@"Goes outside of %d points!!!", kLines);
+    if ([lineArray count] > dynLinNum) {
+        NSLog(@"Goes outside of %d points! Will Double!!", dynLinNum);
+        dynLinNum = dynLinNum * 2;
+        stepX = self.frame.size.width / dynLinNum;
     }
     
     // ---------------------------------
@@ -137,12 +149,10 @@
     
     // ---------------------------------
     // Draw the line array for RMS/Gain
-    index = 0;
-    previousY = 0.0;
+    index = 0; previousY = 0.0;
     CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
     NSArray *tempRMS = [NSArray arrayWithArray:lineArray];
     for (NSNumber *someNumber in tempRMS) {
-        
         if (index > 0) {
             CGContextMoveToPoint(context, (index-1) * stepX, previousY);
             CGContextAddLineToPoint(context, index * stepX, [someNumber floatValue]);
@@ -150,6 +160,14 @@
         }
         previousY = [someNumber floatValue];
         index++;
+        
+        for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
+            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
+            if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue]) {
+                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
+                NSLog(@"111 %d/%@", [rmsAverageAry count], [rmsAverageAry description]);
+            }
+        }
     }
     
     [self initTextLayers];
@@ -190,11 +208,14 @@
     
 //    NSLog(@"%@:%f/%f",context,self.frame.size.width, self.frame.size.height);
     CGContextClearRect(context,self.frame);
+    
     [lineArray removeAllObjects];
     [pitchLineArray removeAllObjects];
     [boundsArray removeAllObjects];
     [bndsLocation removeAllObjects];
     [textArray removeAllObjects];
+
+    dynLinNum = kLines;
 }
 
 @end

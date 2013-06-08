@@ -37,12 +37,12 @@
 
 - (IBAction)startOrStopRecording:(id)sender {
 	if (!processing) {
+        [theView cleanUpContext];
+
 		[self recording];
 		[recordButton setTitle:@"Stop" forState:UIControlStateNormal];
         
-        [theView cleanUpContext];
         [rioRef startListening:self];
-        
         [self hideStartStopBtns];
 	} else {
 		[recorder stop];
