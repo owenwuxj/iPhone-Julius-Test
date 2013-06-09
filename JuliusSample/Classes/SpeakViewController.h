@@ -10,5 +10,7 @@
 
 @interface SpeakViewController : UIViewController
 
+@property (nonatomic, assign) CGPoint circleCenter;
+@property (nonatomic, assign) CGFloat circleRadius;
 
 @end
