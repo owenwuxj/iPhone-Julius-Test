@@ -49,6 +49,7 @@
 		4510C2AD1755ED6900C697AE /* test.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2AC1755ED6900C697AE /* test.jconf */; };
 		45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F2B3491764155A00500BA4 /* SpeakViewController.m */; };
 		45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34A1764155A00500BA4 /* SpeakViewController.xib */; };
+		45F2B350176416D400500BA4 /* speak.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34F176416D400500BA4 /* speak.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		45F2B3481764155A00500BA4 /* SpeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakViewController.h; sourceTree = "<group>"; };
 		45F2B3491764155A00500BA4 /* SpeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakViewController.m; sourceTree = "<group>"; };
 		45F2B34A1764155A00500BA4 /* SpeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SpeakViewController.xib; path = Classes/SpeakViewController.xib; sourceTree = "<group>"; };
+		45F2B34F176416D400500BA4 /* speak.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speak.jpg; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JuliusSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JuliusSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -332,6 +334,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45F2B34E176416C700500BA4 /* images */,
 				13684FAF12E0ABE800FBF870 /* xib */,
 				13684FDB12E0AC5A00FBF870 /* model */,
 				8D1107310486CEB800E47090 /* JuliusSample-Info.plist */,
@@ -356,6 +359,14 @@
 				13684FCA12E0AC0D00FBF870 /* libz.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		45F2B34E176416C700500BA4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				45F2B34F176416D400500BA4 /* speak.jpg */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,6 +455,7 @@
 				131BA5421761D4BC0033530B /* Readme.markdown in Resources */,
 				131BA5921761E4D60033530B /* langmodel.zip in Resources */,
 				45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */,
+				45F2B350176416D400500BA4 /* speak.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
