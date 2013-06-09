@@ -23,7 +23,7 @@
 - (void)initCircle
 {
     self.circleCenter = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
-    self.circleRadius = 1;
+    self.circleRadius = 40;
     
     // Set up the shape of the circle
     _circle = [CAShapeLayer layer];
@@ -35,6 +35,8 @@
     
     // Add to parent layer
     [self.view.layer addSublayer:self.circle];
+    
+    [self drawGrayCircle];
 }
 
 - (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius
@@ -49,13 +51,24 @@
     return path;
 }
 
+- (void)drawGrayCircle
+{
+    CAShapeLayer *redCircle = [[CAShapeLayer alloc] init];
+    redCircle.fillColor = [UIColor lightGrayColor].CGColor;
+    redCircle.strokeColor = [UIColor clearColor].CGColor;
+    redCircle.lineWidth = 1;
+    
+    redCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
+    [self.view.layer addSublayer:redCircle];
+}
+
 - (void)drawCircleWithRadius:(CGFloat)radius
 {
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue   = [NSNumber numberWithFloat:1.0f];
 
-    [pathAnimation setDuration:0.1];
+    [pathAnimation setDuration:0.05];
     [pathAnimation setRepeatCount:1.0f];
     [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
     
@@ -67,7 +80,7 @@
 
 - (void)animateCircle
 {
-    if (self.circleRadius == 1){
+    if (self.circleRadius == 40){
         self.scaleUp = YES;
     } else if (self.circleRadius == 100){
         self.scaleUp = NO;
@@ -78,7 +91,7 @@
         self.circleRadius += 1;
     } else {
         self.circleRadius -= 1;
-    }    
+    }
     
     [self drawCircleWithRadius:circleRadius];
 }
@@ -87,7 +100,21 @@
 {
     [self initCircle];
 
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+}
+
+- (void)drawImage
+{
+    CGRect rect = CGRectMake(CGRectGetMidX(self.view.frame) - 40, CGRectGetMidY(self.view.frame) -40, 80, 80);
+    UIGraphicsBeginImageContext(rect.size);
+    UIImage *image = [UIImage imageNamed:@"speak.jpg"];
+    [image drawInRect:rect];
+    UIGraphicsEndImageContext();
+    
+    UIImageView *ivSpeak = [[UIImageView alloc] initWithFrame:rect];
+    ivSpeak.image = image;
+    
+    [self.view addSubview:ivSpeak];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -116,11 +143,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    UIGraphicsBeginImageContext(CGSizeMake(100, 100));
-    UIImage *image = [UIImage imageNamed:@"speak.jpg"];
-    //    [image drawAtPoint:CGPointMake(110, 224)];
-    [image drawInRect:CGRectMake(0, 0, 2.0*circleRadius, 2.0*circleRadius)];
-    UIGraphicsEndImageContext();
 }
 
 - (void)dealloc
