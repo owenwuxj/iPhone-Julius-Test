@@ -12,5 +12,6 @@
 
 @property (nonatomic, assign) CGPoint circleCenter;
 @property (nonatomic, assign) CGFloat circleRadius;
+@property (nonatomic, assign) BOOL scaleUp;
 
 @end
