@@ -47,6 +47,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* JuliusSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */; };
 		4510C2AD1755ED6900C697AE /* test.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2AC1755ED6900C697AE /* test.jconf */; };
+		45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F2B3491764155A00500BA4 /* SpeakViewController.m */; };
+		45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34A1764155A00500BA4 /* SpeakViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,9 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSample_Prefix.pch; sourceTree = "<group>"; };
 		4510C2AC1755ED6900C697AE /* test.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.jconf; path = model/test.jconf; sourceTree = "<group>"; };
+		45F2B3481764155A00500BA4 /* SpeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakViewController.h; sourceTree = "<group>"; };
+		45F2B3491764155A00500BA4 /* SpeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakViewController.m; sourceTree = "<group>"; };
+		45F2B34A1764155A00500BA4 /* SpeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SpeakViewController.xib; path = Classes/SpeakViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JuliusSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JuliusSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +214,8 @@
 		13684FAE12E0ABDB00FBF870 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				45F2B3481764155A00500BA4 /* SpeakViewController.h */,
+				45F2B3491764155A00500BA4 /* SpeakViewController.m */,
 				28D7ACF60DDB3853001CB0EB /* JuliusSampleViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */,
 				13A7B9E6174F040500E832F3 /* DisplayView.h */,
@@ -220,6 +227,7 @@
 		13684FAF12E0ABE800FBF870 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				45F2B34A1764155A00500BA4 /* SpeakViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				2899E5210DE3E06400AC0155 /* JuliusSampleViewController.xib */,
 			);
@@ -435,6 +443,7 @@
 				131BA53D1761D4BC0033530B /* LICENSE in Resources */,
 				131BA5421761D4BC0033530B /* Readme.markdown in Resources */,
 				131BA5921761E4D60033530B /* langmodel.zip in Resources */,
+				45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +467,7 @@
 				131BA5401761D4BC0033530B /* unzip.c in Sources */,
 				131BA5411761D4BC0033530B /* zip.c in Sources */,
 				131BA5431761D4BC0033530B /* SSZipArchive.m in Sources */,
+				45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
