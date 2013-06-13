@@ -249,7 +249,6 @@
 
 - (void)dealloc {
 	
-
     if (theView) {
         theView = nil;
     }

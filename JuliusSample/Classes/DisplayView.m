@@ -175,13 +175,9 @@
 
 -(void)dealloc
 {
-    
-    
-    
     if (bndsLocation) {
         bndsLocation = nil;
     }
-    
 }
 
 -(void)cleanUpContext
