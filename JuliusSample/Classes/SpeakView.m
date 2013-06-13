@@ -7,8 +7,11 @@
 //
 
 #import "SpeakView.h"
+#import "TTTAttributedLabel.h"
+#import <CoreText/CoreText.h>
 
 #define kCircleRadius 40
+#define kInnerCircleBgColor [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0]
 
 @implementation SpeakView
 
@@ -24,10 +27,13 @@
         [self initCircle:frame];
         [self setBackgroundColor:[UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]];
         
+        // show start text
+        [self showText:self.frame];
+        
         UITapGestureRecognizer *tap =
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(handleSingleTap:)];
-        [self addGestureRecognizer:tap];
+        [self addGestureRecognizer:tap];        
     }
     
     return self;
@@ -35,6 +41,7 @@
 
 - (void)handleSingleTap:(UIGestureRecognizer *)recognizer
 {
+    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
 
 }
@@ -73,11 +80,11 @@
 - (void)drawInnerCircle
 {
     CAShapeLayer *innerCircle = [[CAShapeLayer alloc] init];
-    innerCircle.fillColor = [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0].CGColor;
+    innerCircle.fillColor = kInnerCircleBgColor.CGColor;
     innerCircle.strokeColor = [UIColor clearColor].CGColor;
     innerCircle.lineWidth = 1;
-    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
-    
+    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;    
+
     [self.layer addSublayer:innerCircle];
 }
 
@@ -129,13 +136,37 @@
     [self addSubview:ivSpeak];
 }
 
-/*
+- (void)showText:(CGRect)frame
+{
+    CGRect rect = CGRectMake(CGRectGetMidX(frame) - 20, CGRectGetMidY(frame) -20, 40, 40);
+    
+    TTTAttributedLabel *label = [[TTTAttributedLabel alloc] initWithFrame:rect];
+    [label setBackgroundColor:kInnerCircleBgColor];
+//    label.font = [UIFont systemFontOfSize:18];
+    label.textColor = [UIColor whiteColor];
+    label.numberOfLines = 0;
+    
+    NSString *text = @"Start";
+    [label setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+        UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:16];
+        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+        if (font) {
+            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(0,5)];
+            CFRelease(font);
+        }
+        
+        return mutableAttributedString;
+    }];
+    
+    [self addSubview:label];
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
 }
-*/
+
 
 @end

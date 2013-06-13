@@ -24,6 +24,7 @@
     {
         SpeakView *speakView = [[SpeakView alloc] initWithFrame:self.view.frame];
         [self.view addSubview:speakView];
+        [self.view setNeedsDisplay];
     }
     
     return self;
