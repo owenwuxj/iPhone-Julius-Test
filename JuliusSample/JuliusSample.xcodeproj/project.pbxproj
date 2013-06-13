@@ -47,6 +47,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* JuliusSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */; };
 		4510C2AD1755ED6900C697AE /* test.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2AC1755ED6900C697AE /* test.jconf */; };
+		45CB7CF01769632200FD9DF8 /* SpeakView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CB7CEF1769632200FD9DF8 /* SpeakView.m */; };
 		45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F2B3491764155A00500BA4 /* SpeakViewController.m */; };
 		45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34A1764155A00500BA4 /* SpeakViewController.xib */; };
 		45F2B350176416D400500BA4 /* speak.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34F176416D400500BA4 /* speak.jpg */; };
@@ -120,6 +121,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSample_Prefix.pch; sourceTree = "<group>"; };
 		4510C2AC1755ED6900C697AE /* test.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.jconf; path = model/test.jconf; sourceTree = "<group>"; };
+		45CB7CEE1769632200FD9DF8 /* SpeakView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakView.h; sourceTree = "<group>"; };
+		45CB7CEF1769632200FD9DF8 /* SpeakView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakView.m; sourceTree = "<group>"; };
 		45F2B3481764155A00500BA4 /* SpeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakViewController.h; sourceTree = "<group>"; };
 		45F2B3491764155A00500BA4 /* SpeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakViewController.m; sourceTree = "<group>"; };
 		45F2B34A1764155A00500BA4 /* SpeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SpeakViewController.xib; path = Classes/SpeakViewController.xib; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */,
 				13A7B9E6174F040500E832F3 /* DisplayView.h */,
 				13A7B9E7174F040500E832F3 /* DisplayView.m */,
+				45CB7CEE1769632200FD9DF8 /* SpeakView.h */,
+				45CB7CEF1769632200FD9DF8 /* SpeakView.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				131BA5411761D4BC0033530B /* zip.c in Sources */,
 				131BA5431761D4BC0033530B /* SSZipArchive.m in Sources */,
 				45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */,
+				45CB7CF01769632200FD9DF8 /* SpeakView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
