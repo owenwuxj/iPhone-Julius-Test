@@ -41,7 +41,7 @@
     Julius *julius;
 }
 
-@property(nonatomic, assign) JuliusSampleViewController *juliusListener;
+@property(nonatomic, assign) id juliusListener;
 @property(nonatomic, assign) Julius *julius;
 @property(nonatomic, assign) float sampleRate;
 
@@ -49,11 +49,12 @@
 -(void)initializeAudioSession;
 
 -(void)createAUProcessingGraph;
+
 -(size_t)ASBDForSoundMode;
-- (void)printASBD:(AudioStreamBasicDescription)asbd;
+-(void)printASBD:(AudioStreamBasicDescription)asbd;
 
 #pragma mark Listener Controls
--(void)startListening:(JuliusSampleViewController*)aListener;
+-(void)startListening:(id)aListener;
 -(void)stopListening;
 
 #pragma mark Generic Audio Controls

@@ -40,6 +40,16 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 #pragma mark Audio Session/Graph Setup
 
 -(void)initializeAudioSession{
+    // Set the stream format.
+    size_t bytesPerSample = [self ASBDForSoundMode];
+
+	bufferList = (AudioBufferList *)malloc(sizeof(AudioBuffer));
+	bufferList->mNumberBuffers = 1;
+	bufferList->mBuffers[0].mNumberChannels = 1;
+	
+	bufferList->mBuffers[0].mDataByteSize = kBufferSize*bytesPerSample;
+	bufferList->mBuffers[0].mData = calloc(kBufferSize, bytesPerSample);
+
     NSError *err = nil;
     AVAudioSession *session = [AVAudioSession sharedInstance];
     
@@ -82,22 +92,9 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 	
 	err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Input,0, &callbackStruct, sizeof(callbackStruct));
     
-    // Set the stream format.
-    size_t bytesPerSample = [self ASBDForSoundMode];
-    
     err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &streamFormat, sizeof(streamFormat));
     
     err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &streamFormat, sizeof(streamFormat));
-    
-	// Allocate AudioBuffers for use when listening.
-	// TODO: Move into initialization...should only be required once.
-    // ????
-	bufferList = (AudioBufferList *)malloc(sizeof(AudioBuffer));
-	bufferList->mNumberBuffers = 1;
-	bufferList->mBuffers[0].mNumberChannels = 1;
-	
-	bufferList->mBuffers[0].mDataByteSize = kBufferSize*bytesPerSample;
-	bufferList->mBuffers[0].mData = calloc(kBufferSize, bytesPerSample);
 }
 
 // Set the AudioStreamBasicDescription for listening to audio data. Set the
@@ -141,7 +138,7 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 }
 
 #pragma mark Listener Controls
--(void)startListening:(JuliusSampleViewController*)aListener{
+-(void)startListening:(id)aListener{
 	self.juliusListener = aListener;
 	[self createAUProcessingGraph];
 	[self initializeAndStartProcessingGraph];
