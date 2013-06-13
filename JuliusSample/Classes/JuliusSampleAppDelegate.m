@@ -53,8 +53,9 @@
         NSLog(@"UNZIP SUCCEED.");
     }
     
+    SpeakViewController *speakVC = [[SpeakViewController alloc] initWithNibName:@"SpeakViewController" bundle:nil];
     // Add the view controller's view to the window and display.
-    self.window.rootViewController = viewController;
+    self.window.rootViewController = speakVC;
     [self.window makeKeyAndVisible];
 
     return YES;

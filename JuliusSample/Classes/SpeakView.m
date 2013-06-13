@@ -18,22 +18,26 @@
 @synthesize circle = _circle,
             circleCenter,
             circleRadius,
-            scaleUp;
+            scaleUp,
+            label,
+isStarted = _isStarted;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _isStarted = NO;
         [self initCircle:frame];
         [self setBackgroundColor:[UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]];
         
         // show start text
-        [self showText:self.frame];
+        [self showText:self.frame withString:@"Start"];
         
         UITapGestureRecognizer *tap =
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(handleSingleTap:)];
-        [self addGestureRecognizer:tap];        
+        [self.label addGestureRecognizer:tap];        
+        
     }
     
     return self;
@@ -41,8 +45,16 @@
 
 - (void)handleSingleTap:(UIGestureRecognizer *)recognizer
 {
-    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
-    [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+//    CGPoint location = [recognizer locationInView:recognizer.view];
+    
+    if (!self.isStarted)
+    {
+        [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+        self.isStarted = YES;
+        [self showText:self.frame withString:@"Stop"];
+    } else {
+        [self showText:self.frame withString:@"Start"];
+    }
 
 }
 
@@ -136,22 +148,21 @@
     [self addSubview:ivSpeak];
 }
 
-- (void)showText:(CGRect)frame
+- (void)showText:(CGRect)frame withString:(NSString *)text
 {
     CGRect rect = CGRectMake(CGRectGetMidX(frame) - 20, CGRectGetMidY(frame) -20, 40, 40);
     
-    TTTAttributedLabel *label = [[TTTAttributedLabel alloc] initWithFrame:rect];
+   label = [[TTTAttributedLabel alloc] initWithFrame:rect];
     [label setBackgroundColor:kInnerCircleBgColor];
 //    label.font = [UIFont systemFontOfSize:18];
     label.textColor = [UIColor whiteColor];
     label.numberOfLines = 0;
     
-    NSString *text = @"Start";
     [label setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
         UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:16];
         CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
         if (font) {
-            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(0,5)];
+            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(0, text.length)];
             CFRelease(font);
         }
         
