@@ -25,6 +25,19 @@
 
 #define kLines 50 // initial line number
 
+-(float)calculateAverageOfAry:(NSArray*)temp fromIdx:(NSInteger)strPt toIdx:(NSInteger)endPt
+{
+    float avgFloat = 0;
+    
+    for (int i=strPt; i<endPt; i++) {
+        avgFloat += [[temp objectAtIndex:i] floatValue];
+    }
+    NSLog(@"222 %f",avgFloat);
+    
+    avgFloat = avgFloat/(endPt-strPt);
+    return avgFloat;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -49,19 +62,6 @@
     return self;
 }
 
--(float)calculateAverageOfAry:(NSArray*)temp fromIdx:(NSInteger)strPt toIdx:(NSInteger)endPt
-{
-    float avgFloat = 0;
-    
-    for (int i=strPt; i<endPt; i++) {
-        avgFloat += [[temp objectAtIndex:i] floatValue];
-    }
-    NSLog(@"222 %f",avgFloat);
-
-    avgFloat = avgFloat/(endPt-strPt);
-    return avgFloat;
-}
-
 -(void) initTextLayers
 {
     self.clipsToBounds = YES;
@@ -75,7 +75,7 @@
     CGContextSetCharacterSpacing(context, 1.7);
     CGContextSetTextDrawingMode(context, kCGTextFill);
 
-    if ([textArray count] == 0) return;
+    if ([textArray count] == 0 || [bndsLocation count] == 0) return;
     
     for (int i = 0; i < [textArray count]; i++) {
         NSString *oneWord = [textArray objectAtIndex:i];
@@ -129,6 +129,7 @@
     
     float percentage, xIndex = 0.0;
     if ([tempPitch count] != 0) {
+        NSLog(@"TEST");
         previousY = [[tempPitch objectAtIndex:0] floatValue];
 //        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
         
@@ -141,7 +142,6 @@
             
             //Draw the vertical lines
 //            CGContextFillRect(context, CGRectMake(xIndex*stepX,previousY,3,-100));
-//            CGContextAddEllipseInRect(context,CGRectMake(xIndex, previousY, 13.0, 13.0));
 //            CGContextDrawPath(context, kCGPathFill);
 //            CGContextStrokePath(context);
         }
@@ -165,39 +165,23 @@
             NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
             if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue]) {
                 [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
-                NSLog(@"111 %d/%@", [rmsAverageAry count], [rmsAverageAry description]);
+                NSLog(@"111 %d/\n%@", [rmsAverageAry count], [rmsAverageAry description]);
             }
         }
     }
     
     [self initTextLayers];
-//    NSLog(@"number of pitchLineArray:%d", [pitchLineArray count]);
-//    NSLog(@"number of lineArray:%d", [lineArray count]);
 }
 
 -(void)dealloc
 {
-    if (lineArray) {
-        [lineArray release];
-        lineArray = nil;
-    }
     
-    if (pitchLineArray) {
-        [pitchLineArray release];
-        pitchLineArray = nil;
-    }
     
-    if (boundsArray) {
-        [boundsArray release];
-        boundsArray = nil;
-    }
     
     if (bndsLocation) {
-        [bndsLocation release];
         bndsLocation = nil;
     }
     
-    [super dealloc];
 }
 
 -(void)cleanUpContext
@@ -205,8 +189,6 @@
     if (!context) {
         context = UIGraphicsGetCurrentContext();
     }
-    
-//    NSLog(@"%@:%f/%f",context,self.frame.size.width, self.frame.size.height);
     CGContextClearRect(context,self.frame);
     
     [lineArray removeAllObjects];

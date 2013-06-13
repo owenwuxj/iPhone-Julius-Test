@@ -8,7 +8,7 @@
 
 #import "JuliusSampleViewController.h"
 #import "DisplayView.h"
-#import "RIOInterface.h"
+//#import "RIOInterface.h"
 
 @interface JuliusSampleViewController ()
 - (void)recording;
@@ -42,13 +42,13 @@
 		[self recording];
 		[recordButton setTitle:@"Stop" forState:UIControlStateNormal];
         
-        [rioRef startListening:self];
+//        [rioRef startListening:self];
         [self hideStartStopBtns];
 	} else {
 		[recorder stop];
 		[recordButton setTitle:@"Record" forState:UIControlStateNormal];
         
-        [rioRef stopListening];
+//        [rioRef stopListening];
         [self showStartStopBtns];
     }
     
@@ -63,9 +63,9 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yMMddHHmmss"];
 	NSString *fileName = [NSString stringWithFormat:@"%@.wav", [formatter stringFromDate:[NSDate date]]];
-	[formatter release];
 
 	self.filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+//    self.filePath = [NSURL fileURLWithPath:@"/dev/null"];
 
 	// Change Audio category to Record.
 	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
@@ -78,6 +78,15 @@
 							  [NSNumber numberWithUnsignedInt:16], AVLinearPCMBitDepthKey,
 //							  [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,
 							  nil];
+    
+    /*
+    NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+							  nil];
+    */
 
     NSError *err;
 	self.recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:filePath] settings:settings error:&err];
@@ -97,7 +106,6 @@
 		julius.delegate = self;
 	}
     else {// Owen 20130607: Init Julius every time starting recognition
-        [julius release];
         self.julius = nil;
         
         self.julius = [Julius new];
@@ -106,7 +114,6 @@
     
     NSLog(@"filePath is %@",filePath);
 
-	
 	[julius recognizeRawFileAtPath:filePath];
 }
 
@@ -142,10 +149,10 @@
 }
 
 - (void)updateRMS_ZCR_ACR_Labels {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+//	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
     [theView.lineArray addObject:[NSNumber numberWithFloat:(1 - self.currentRMS) * DisplayHeight/2 - 100]];// Loglize and Replace
-    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and Placement
+//    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and Placement
 //    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:(1 - self.currentFrequencyACF) * DisplayHeight / 100 + 150]];
     [theView setNeedsDisplay];
     
@@ -163,8 +170,8 @@
 	[self.currentPitchLabel setNeedsDisplay];
     */
      
-	[pool drain];
-	pool = nil;
+//	[pool drain];
+//	pool = nil;
 }
 
 #pragma mark -
@@ -173,11 +180,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	rioRef = [RIOInterface sharedInstance];
-    [rioRef initializeAudioSession];
-    [rioRef setSampleRate:SamplingRate];
+//	rioRef = [RIOInterface sharedInstance];
+//    [rioRef initializeAudioSession];
+//    [rioRef setSampleRate:SamplingRate];
     
-    theView = [[DisplayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2, self.view.frame.size.width, self.view.frame.size.height/2)];
+    theView = [[DisplayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/4, self.view.frame.size.width, self.view.frame.size.height/4*3)];
     [self.view addSubview:theView];
 }
 
@@ -205,7 +212,7 @@
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
 	if (flag) {
 		if (!HUD) {
-			self.HUD = [[[MBProgressHUD alloc] initWithView:self.view] autorelease];
+			self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
 			HUD.labelText = @"Processing...";
 			[self.view addSubview:HUD];
 		}
@@ -217,7 +224,6 @@
     else {
         UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"Recording" message:@"File Not Saved" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
         [alertView show];
-        [alertView release];
     }
 }
 
@@ -242,20 +248,12 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-	self.recorder = nil;
-	self.julius = nil;
-    self.filePath = nil;
 	
-	self.recordButton = nil;
-	self.textView = nil;
-	self.HUD = nil;
 
     if (theView) {
-        [theView release];
         theView = nil;
     }
 
-    [super dealloc];
 }
 
 @end

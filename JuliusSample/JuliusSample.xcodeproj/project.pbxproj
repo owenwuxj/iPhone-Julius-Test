@@ -35,7 +35,6 @@
 		13C537A812E1FFEA0071E4ED /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C5378E12E1FFEA0071E4ED /* MBProgressHUD.m */; };
 		13C537A912E1FFEA0071E4ED /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 13C5378F12E1FFEA0071E4ED /* README.mdown */; };
 		13D3FE10174A002600A5EF7F /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 13D3FE0F174A002600A5EF7F /* README.textile */; };
-		13D3FE1D174A106500A5EF7F /* RIOInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13D3FE1C174A106400A5EF7F /* RIOInterface.mm */; };
 		13D3FE28174A221800A5EF7F /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13D3FE26174A221800A5EF7F /* CAXException.cpp */; };
 		13D3FE2B174A26A300A5EF7F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */; };
 		1D3623260D0F684500981E51 /* JuliusSampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JuliusSampleAppDelegate.m */; };
@@ -101,8 +100,6 @@
 		13C5378E12E1FFEA0071E4ED /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		13C5378F12E1FFEA0071E4ED /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		13D3FE0F174A002600A5EF7F /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.textile; path = ../README.textile; sourceTree = "<group>"; };
-		13D3FE19174A103200A5EF7F /* RIOInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIOInterface.h; sourceTree = "<group>"; };
-		13D3FE1C174A106400A5EF7F /* RIOInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RIOInterface.mm; sourceTree = "<group>"; };
 		13D3FE24174A221800A5EF7F /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
 		13D3FE25174A221800A5EF7F /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
 		13D3FE26174A221800A5EF7F /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
@@ -157,8 +154,6 @@
 				131BA4FD1761D4A90033530B /* 3rdParty */,
 				13684FAE12E0ABDB00FBF870 /* Controller */,
 				13684FAD12E0ABD500FBF870 /* AppDelegate */,
-				13D3FE19174A103200A5EF7F /* RIOInterface.h */,
-				13D3FE1C174A106400A5EF7F /* RIOInterface.mm */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -476,7 +471,6 @@
 				28D7ACF80DDB3853001CB0EB /* JuliusSampleViewController.m in Sources */,
 				13C5373F12E1FA910071E4ED /* Julius.m in Sources */,
 				13C537A812E1FFEA0071E4ED /* MBProgressHUD.m in Sources */,
-				13D3FE1D174A106500A5EF7F /* RIOInterface.mm in Sources */,
 				13D3FE28174A221800A5EF7F /* CAXException.cpp in Sources */,
 				13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */,
 				131BA53E1761D4BC0033530B /* ioapi.c in Sources */,
@@ -496,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -514,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JuliusSample_Prefix.pch;

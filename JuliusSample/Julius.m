@@ -173,7 +173,6 @@ static void output_result(Recog *recog_, void *data) {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yMMddHHmmss"];
     NSString *fileName = [NSString stringWithFormat:@"%@.txt", [formatter stringFromDate:[NSDate date]]];
-	[formatter release];
     
 	NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
     NSString *zStr = [NSString stringWithFormat:@"%s",result];
@@ -189,7 +188,7 @@ static void output_result(Recog *recog_, void *data) {
 
     // Callback delegate.
 	if (data) {
-		Julius *julius = (Julius *)data;
+		Julius *julius = (__bridge id)data;
 		if (julius.delegate) {
 			[julius.delegate callBackResult:[NSArray arrayWithArray:words] withBounds:bounds];
 		}
@@ -261,7 +260,7 @@ static void output_result(Recog *recog_, void *data) {
 			}
 		}
 		
-		callback_add(recog, CALLBACK_RESULT, output_result, self);
+		callback_add(recog, CALLBACK_RESULT, output_result, (__bridge void *)(self));
 	}
 	
 	return self;
@@ -293,7 +292,6 @@ static void output_result(Recog *recog_, void *data) {
 - (void)dealloc {
 	j_recog_free(recog);
 
-	[super dealloc];
 }
 
 @end

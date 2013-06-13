@@ -16,11 +16,11 @@
 
 	Recog *recog;
 
-	id<JuliusDelegate> delegate;
+	id<JuliusDelegate> __weak delegate;
 
 }
 
-@property (nonatomic, assign) id<JuliusDelegate> delegate;
+@property (nonatomic, weak) id<JuliusDelegate> delegate;
 
 - (void)recognizeRawFileAtPath:(NSString *)path;
 

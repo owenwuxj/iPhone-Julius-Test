@@ -10,10 +10,10 @@
 
 @interface DisplayView : UIView
 
-@property(nonatomic, retain) NSMutableArray *lineArray;
-@property(nonatomic, retain) NSMutableArray *pitchLineArray;
-@property(nonatomic, retain) NSMutableArray *boundsArray;
-@property(nonatomic, retain) NSMutableArray *textArray;
+@property(nonatomic, strong) NSMutableArray *lineArray;
+@property(nonatomic, strong) NSMutableArray *pitchLineArray;
+@property(nonatomic, strong) NSMutableArray *boundsArray;
+@property(nonatomic, strong) NSMutableArray *textArray;
 
 -(void)cleanUpContext;
 

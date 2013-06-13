@@ -19,8 +19,8 @@ static NSString *kPrivateAppDir = @"PrivateDocuments";
     JuliusSampleViewController *viewController;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet JuliusSampleViewController *viewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet JuliusSampleViewController *viewController;
 
 -(NSString *)applicationLibraryPrivateDocument;
 @end
