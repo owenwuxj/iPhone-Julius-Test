@@ -7,7 +7,10 @@
 //
 
 #import "JuliusSampleAppDelegate.h"
+
 #import "JuliusSampleViewController.h"
+#import "SpeakViewController.h"
+
 #import "RIOInterface.h"
 
 @implementation JuliusSampleAppDelegate

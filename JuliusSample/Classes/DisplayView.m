@@ -88,7 +88,6 @@
     }
 }
 
-// Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
@@ -129,7 +128,6 @@
     
     float percentage, xIndex = 0.0;
     if ([tempPitch count] != 0) {
-        NSLog(@"TEST");
         previousY = [[tempPitch objectAtIndex:0] floatValue];
 //        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
         
@@ -138,12 +136,9 @@
             xIndex += percentage * [pitchLineArray count];
             [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
             
-            NSLog(@"%f/%u:%f", xIndex*stepX, [pitchLineArray count], previousY);
+//            NSLog(@"%f/%u:%f", xIndex*stepX, [pitchLineArray count], previousY);
             
             //Draw the vertical lines
-//            CGContextFillRect(context, CGRectMake(xIndex*stepX,previousY,3,-100));
-//            CGContextDrawPath(context, kCGPathFill);
-//            CGContextStrokePath(context);
         }
     }
     
@@ -162,7 +157,7 @@
         index++;
         
         for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
-            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
+//            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
             if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue]) {
                 [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
                 NSLog(@"111 %d/\n%@", [rmsAverageAry count], [rmsAverageAry description]);

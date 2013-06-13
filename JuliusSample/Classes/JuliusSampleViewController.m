@@ -8,7 +8,7 @@
 
 #import "JuliusSampleViewController.h"
 #import "DisplayView.h"
-//#import "RIOInterface.h"
+#import "RIOInterface.h"
 
 @interface JuliusSampleViewController ()
 - (void)recording;
@@ -42,14 +42,14 @@
 		[self recording];
 		[recordButton setTitle:@"Stop" forState:UIControlStateNormal];
         
-//        [rioRef startListening:self];
-        [self hideStartStopBtns];
+        [rioRef startListening:self];
+//        [self hideStartStopBtns];
 	} else {
 		[recorder stop];
 		[recordButton setTitle:@"Record" forState:UIControlStateNormal];
         
-//        [rioRef stopListening];
-        [self showStartStopBtns];
+        [rioRef stopListening];
+//        [self showStartStopBtns];
     }
     
 	self.processing = !processing;
@@ -76,7 +76,7 @@
 							  [NSNumber numberWithFloat:16000.0], AVSampleRateKey,
 							  [NSNumber numberWithUnsignedInt:1], AVNumberOfChannelsKey,
 							  [NSNumber numberWithUnsignedInt:16], AVLinearPCMBitDepthKey,
-//							  [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,
 							  nil];
     
     /*
@@ -138,21 +138,16 @@
 #pragma mark Public methods
 
 - (void)frequencyChangedWithRMS:(float)newRMS withACF:(float)newACF andZCR:(float)newZCR withFreq:(float)newFreq{
-//	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	self.currentRMS = newRMS;
     self.currentFrequencyACF = newACF;
     self.currentFrequencyZCR = newZCR;
     self.currentFrequency = newFreq;
 	[self performSelectorInBackground:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil];
-//	[pool drain];
-//	pool = nil;
 }
 
 - (void)updateRMS_ZCR_ACR_Labels {
-//	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    
     [theView.lineArray addObject:[NSNumber numberWithFloat:(1 - self.currentRMS) * DisplayHeight/2 - 100]];// Loglize and Replace
-//    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and Placement
+    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and Placement
 //    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:(1 - self.currentFrequencyACF) * DisplayHeight / 100 + 150]];
     [theView setNeedsDisplay];
     
@@ -169,9 +164,6 @@
 	self.currentPitchLabel.text = [NSString stringWithFormat:@"%f", self.currentFrequency];
 	[self.currentPitchLabel setNeedsDisplay];
     */
-     
-//	[pool drain];
-//	pool = nil;
 }
 
 #pragma mark -
@@ -180,9 +172,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//	rioRef = [RIOInterface sharedInstance];
-//    [rioRef initializeAudioSession];
-//    [rioRef setSampleRate:SamplingRate];
+	rioRef = [RIOInterface sharedInstance];
+    [rioRef initializeAudioSession];
+    [rioRef setSampleRate:SamplingRate];
     
     theView = [[DisplayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/4, self.view.frame.size.width, self.view.frame.size.height/4*3)];
     [self.view addSubview:theView];
@@ -195,10 +187,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-//	currentPitchLabel = nil;
-//    listenButton = nil;
-    
+- (void)viewDidUnload {    
     [super viewDidUnload];
 }
 
