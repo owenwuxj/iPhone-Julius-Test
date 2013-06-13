@@ -8,6 +8,8 @@
 
 #import "SpeakView.h"
 
+#define kCircleRadius 40
+
 @implementation SpeakView
 
 @synthesize circle = _circle,
@@ -20,31 +22,40 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initCircle:frame];
+        [self setBackgroundColor:[UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]];
         
-        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
-
+        UITapGestureRecognizer *tap =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(handleSingleTap:)];
+        [self addGestureRecognizer:tap];
     }
     
     return self;
 }
 
+- (void)handleSingleTap:(UIGestureRecognizer *)recognizer
+{
+    [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+
+}
+
 - (void)initCircle:(CGRect)frame
 {
     self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
-    self.circleRadius = 40;
+    self.circleRadius = kCircleRadius;
     
     // Set up the shape of the circle
     _circle = [CAShapeLayer layer];
     
     // Configure the apperence of the circle
-    self.circle.fillColor = [UIColor clearColor].CGColor;
-    self.circle.strokeColor = [UIColor grayColor].CGColor;
-    self.circle.lineWidth = 3;
+    self.circle.fillColor = [UIColor colorWithRed:198/255.0 green:236/255.0 blue:252/255.0 alpha:1.0].CGColor;
+    self.circle.strokeColor = [UIColor colorWithRed:198/255.0 green:236/255.0 blue:252/255.0 alpha:1.0].CGColor;
+    self.circle.lineWidth = 5;
     
     // Add to parent layer
     [self.layer addSublayer:self.circle];
     
-    [self drawGrayCircle];
+    [self drawInnerCircle];
 }
 
 - (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius
@@ -53,21 +64,21 @@
     [path addArcWithCenter:location
                     radius:radius
                 startAngle:0.0
-                  endAngle:M_PI * 2.0
+                  endAngle:M_PI * 2
                  clockwise:YES];
     
     return path;
 }
 
-- (void)drawGrayCircle
+- (void)drawInnerCircle
 {
-    CAShapeLayer *redCircle = [[CAShapeLayer alloc] init];
-    redCircle.fillColor = [UIColor lightGrayColor].CGColor;
-    redCircle.strokeColor = [UIColor clearColor].CGColor;
-    redCircle.lineWidth = 1;
+    CAShapeLayer *innerCircle = [[CAShapeLayer alloc] init];
+    innerCircle.fillColor = [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0].CGColor;
+    innerCircle.strokeColor = [UIColor clearColor].CGColor;
+    innerCircle.lineWidth = 1;
+    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
     
-    redCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
-    [self.layer addSublayer:redCircle];
+    [self.layer addSublayer:innerCircle];
 }
 
 - (void)drawCircleWithRadius:(CGFloat)radius
@@ -90,7 +101,7 @@
 {
     if (self.circleRadius == 40){
         self.scaleUp = YES;
-    } else if (self.circleRadius == 100){
+    } else if (self.circleRadius == 80){
         self.scaleUp = NO;
     }
     
