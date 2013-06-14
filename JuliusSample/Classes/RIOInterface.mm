@@ -324,7 +324,9 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 		memset(outputBuffer, 0, n*sizeof(SInt16));
 
 //        [THIS->julius recognizeRawFileAtPath:(NSString *)dataBuffer];
-        [THIS->juliusListener frequencyChangedWithRMS:rmsOfThisFrame withACF:nil andZCR:nil withFreq:bin*(THIS->sampleRate/bufferCapacity/2)];
+        if (THIS->juliusListener && [THIS->juliusListener respondsToSelector:@selector(frequencyChangedWithRMS:withACF:andZCR:withFreq:)]) {
+            [THIS->juliusListener frequencyChangedWithRMS:rmsOfThisFrame withACF:nil andZCR:nil withFreq:bin*(THIS->sampleRate/bufferCapacity/2)];
+        }
     }
 
     return noErr;

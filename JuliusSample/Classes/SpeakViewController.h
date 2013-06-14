@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SpeakViewController : UIViewController
+#import <AVFoundation/AVFoundation.h>
 
+#import "RIOInterface.h"
+#import "Julius.h"
+
+@interface SpeakViewController : UIViewController <AVAudioRecorderDelegate, JuliusDelegate> {
+  
+    AVAudioRecorder *recorder;
+	Julius *julius;
+    RIOInterface *rioRef;
+
+}
+
+@property (nonatomic, strong) NSString *filePath;
 
 @end

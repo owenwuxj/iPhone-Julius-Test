@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TTTAttributedLabel.h"
 
+#define kRecordingStartNotif @"RecordingStartNotif"
+
 @interface SpeakView : UIView
 
 @property (nonatomic, assign) CGPoint circleCenter;
