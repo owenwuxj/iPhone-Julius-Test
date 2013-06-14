@@ -20,12 +20,15 @@
             circleRadius,
             scaleUp,
             label,
-isStarted = _isStarted;
+            isStarted = _isStarted,
+            timer;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    
+    if (self)
+    {
         _isStarted = NO;
         [self initCircle:frame];
         [self setBackgroundColor:[UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]];
@@ -36,8 +39,7 @@ isStarted = _isStarted;
         UITapGestureRecognizer *tap =
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(handleSingleTap:)];
-        [self.label addGestureRecognizer:tap];        
-        
+        [self addGestureRecognizer:tap];
     }
     
     return self;
@@ -49,13 +51,21 @@ isStarted = _isStarted;
     
     if (!self.isStarted)
     {
-        [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+        [self.timer invalidate];
+        NSTimer *repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+        self.timer = repeatingTimer;
+        
         self.isStarted = YES;
         [self showText:self.frame withString:@"Stop"];
     } else {
+        
+        [self.timer invalidate];
+//        [self.circle removeFromSuperlayer];
+//        [self initCircle:self.frame];
+
+        self.isStarted = NO;
         [self showText:self.frame withString:@"Start"];
     }
-
 }
 
 - (void)initCircle:(CGRect)frame
