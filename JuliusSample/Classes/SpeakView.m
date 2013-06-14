@@ -60,6 +60,7 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingStartNotif object:nil];
     } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
         
         [self.timer invalidate];
         self.timer = nil;
@@ -69,7 +70,7 @@
         self.isStarted = NO;
         [self showText:self.frame withString:@"Start"];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
         
         [UIView animateWithDuration:0.5
                               delay:1.0

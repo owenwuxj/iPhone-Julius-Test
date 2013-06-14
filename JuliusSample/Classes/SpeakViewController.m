@@ -20,6 +20,7 @@
 {
     SpeakView *speakView;
     DisplayView *displayView;
+    BOOL juliusDone;
 }
 @property(nonatomic, assign) float currentFrequency;
 @property(nonatomic, assign) float currentFrequencyACF;
@@ -67,9 +68,12 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yMMddHHmmss"];
 	NSString *fileName = [NSString stringWithFormat:@"%@.wav", [formatter stringFromDate:[NSDate date]]];
-    
+
+#if TARGET_IPHONE_SIMULATOR
+    self.filePath = [NSString stringWithFormat:@"/Users/%@",fileName];
+#else
 	self.filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
-//    self.filePath = [NSURL fileURLWithPath:@"/dev/null"];
+#endif
     
 	// Change Audio category to Record.
 	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
@@ -102,8 +106,17 @@
 
 -(void)recordEnd {
     displayView = [[DisplayView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:displayView];
 
+//    while (!juliusDone) {
+//        NSLog(@"%d",juliusDone);
+//    }
+    
+    [UIView transitionFromView:speakView toView:displayView duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished){
+        if (finished) {
+            displayView.transform = CGAffineTransformMakeScale(1.0,1.1);
+        }
+    }];
+    
     [recorder stop];
     [rioRef stopListening];
 }
@@ -181,6 +194,8 @@
 	// Show results.
 //	textView.text = [results componentsJoinedByString:@""];
     NSLog(@"Show Results: %@ /n has %d bounds",[results componentsJoinedByString:@""], [boundsAry count]);
+    
+    juliusDone = YES;
     
     displayView.textArray = [NSMutableArray arrayWithArray:results];
     displayView.boundsArray = [NSMutableArray arrayWithArray:boundsAry];

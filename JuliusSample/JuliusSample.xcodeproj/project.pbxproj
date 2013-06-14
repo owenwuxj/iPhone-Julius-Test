@@ -34,6 +34,13 @@
 		1344A4091769E86400BD73F9 /* JuliusSampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1344A4071769E86400BD73F9 /* JuliusSampleViewController.xib */; };
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
+		13A78FDD176B116600EEFA51 /* DazFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FD6176B116600EEFA51 /* DazFire.png */; };
+		13A78FDE176B116600EEFA51 /* DazSmoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FD7176B116600EEFA51 /* DazSmoke.png */; };
+		13A78FDF176B116600EEFA51 /* DazHeart.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FD8176B116600EEFA51 /* DazHeart.png */; };
+		13A78FE0176B116600EEFA51 /* DazFlake.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FD9176B116600EEFA51 /* DazFlake.png */; };
+		13A78FE1176B116600EEFA51 /* DazStarOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FDA176B116600EEFA51 /* DazStarOutline.png */; };
+		13A78FE2176B116600EEFA51 /* DazTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FDB176B116600EEFA51 /* DazTriangle.png */; };
+		13A78FE3176B116600EEFA51 /* DazRing.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A78FDC176B116600EEFA51 /* DazRing.png */; };
 		13A7B9E8174F040500E832F3 /* DisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7B9E7174F040500E832F3 /* DisplayView.m */; };
 		13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7B9E9174F347200E832F3 /* Accelerate.framework */; };
 		13C5372212E1F9FB0071E4ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C5372112E1F9FB0071E4ED /* AVFoundation.framework */; };
@@ -101,6 +108,13 @@
 		1344A4071769E86400BD73F9 /* JuliusSampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JuliusSampleViewController.xib; sourceTree = "<group>"; };
 		13684FCA12E0AC0D00FBF870 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13684FEA12E0AC9900FBF870 /* light.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.jconf; sourceTree = "<group>"; };
+		13A78FD6176B116600EEFA51 /* DazFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazFire.png; sourceTree = "<group>"; };
+		13A78FD7176B116600EEFA51 /* DazSmoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazSmoke.png; sourceTree = "<group>"; };
+		13A78FD8176B116600EEFA51 /* DazHeart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazHeart.png; sourceTree = "<group>"; };
+		13A78FD9176B116600EEFA51 /* DazFlake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazFlake.png; sourceTree = "<group>"; };
+		13A78FDA176B116600EEFA51 /* DazStarOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazStarOutline.png; sourceTree = "<group>"; };
+		13A78FDB176B116600EEFA51 /* DazTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazTriangle.png; sourceTree = "<group>"; };
+		13A78FDC176B116600EEFA51 /* DazRing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazRing.png; sourceTree = "<group>"; };
 		13A7B9E6174F040500E832F3 /* DisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayView.h; sourceTree = "<group>"; };
 		13A7B9E7174F040500E832F3 /* DisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayView.m; sourceTree = "<group>"; };
 		13A7B9E9174F347200E832F3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -290,6 +304,20 @@
 			path = phone_m;
 			sourceTree = "<group>";
 		};
+		13A78FD5176B114300EEFA51 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				13A78FD6176B116600EEFA51 /* DazFire.png */,
+				13A78FD7176B116600EEFA51 /* DazSmoke.png */,
+				13A78FD8176B116600EEFA51 /* DazHeart.png */,
+				13A78FD9176B116600EEFA51 /* DazFlake.png */,
+				13A78FDA176B116600EEFA51 /* DazStarOutline.png */,
+				13A78FDB176B116600EEFA51 /* DazTriangle.png */,
+				13A78FDC176B116600EEFA51 /* DazRing.png */,
+			);
+			name = Sprite;
+			sourceTree = "<group>";
+		};
 		13C5374012E1FA940071E4ED /* Julius */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +415,7 @@
 		45F2B34E176416C700500BA4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				13A78FD5176B114300EEFA51 /* Sprite */,
 				45F2B34F176416D400500BA4 /* speak.jpg */,
 			);
 			name = images;
@@ -479,6 +508,13 @@
 				45F2B350176416D400500BA4 /* speak.jpg in Resources */,
 				1344A4081769E86400BD73F9 /* MainWindow.xib in Resources */,
 				1344A4091769E86400BD73F9 /* JuliusSampleViewController.xib in Resources */,
+				13A78FDD176B116600EEFA51 /* DazFire.png in Resources */,
+				13A78FDE176B116600EEFA51 /* DazSmoke.png in Resources */,
+				13A78FDF176B116600EEFA51 /* DazHeart.png in Resources */,
+				13A78FE0176B116600EEFA51 /* DazFlake.png in Resources */,
+				13A78FE1176B116600EEFA51 /* DazStarOutline.png in Resources */,
+				13A78FE2176B116600EEFA51 /* DazTriangle.png in Resources */,
+				13A78FE3176B116600EEFA51 /* DazRing.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
