@@ -9,6 +9,7 @@
 #import "SpeakView.h"
 #import "TTTAttributedLabel.h"
 #import <CoreText/CoreText.h>
+#import "DisplayView.h"
 
 #define kCircleRadius 40
 #define kInnerCircleBgColor [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0]
@@ -60,11 +61,26 @@
     } else {
         
         [self.timer invalidate];
+        self.timer = nil;
 //        [self.circle removeFromSuperlayer];
 //        [self initCircle:self.frame];
 
         self.isStarted = NO;
         [self showText:self.frame withString:@"Start"];
+        
+        [UIView animateWithDuration:0.5
+                              delay:1.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             UIView *superView = self.superview;
+                             [self removeFromSuperview];
+                             
+                             DisplayView *displayView = [[DisplayView alloc] initWithFrame:self.frame];
+                             [superView addSubview:displayView];
+                         }
+                         completion:^(BOOL finished){
+                             NSLog(@"Done!");
+                         }];
     }
 }
 
