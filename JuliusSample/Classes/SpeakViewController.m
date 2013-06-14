@@ -55,7 +55,9 @@
 }
 
 -(void)recordStart
-{}
+{
+    NSLog(@"Started");
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

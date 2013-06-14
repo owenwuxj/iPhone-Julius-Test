@@ -11,6 +11,7 @@
 #import "TTTAttributedLabel.h"
 
 #define kRecordingStartNotif @"RecordingStartNotif"
+#define kRecordingEndNotif @"RecordingEndNotif"
 
 @interface SpeakView : UIView
 
