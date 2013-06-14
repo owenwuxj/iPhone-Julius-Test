@@ -38,6 +38,13 @@
     return avgFloat;
 }
 
+-(void)handleSwipeRight
+{
+    [self removeFromSuperview];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBackToRecordingInterface object:nil];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -58,6 +65,9 @@
         //temporarily populate the array with random data
 //        for (int aloop = 0; aloop < kLines; aloop++) {
 //            int rand = arc4random()%100;
+        
+        UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
+        [self addGestureRecognizer:swipeRight];
     }
     return self;
 }
@@ -130,15 +140,13 @@
     if ([tempPitch count] != 0) {
         previousY = [[tempPitch objectAtIndex:0] floatValue];
 //        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-        
+//        NSLog(@"333/%u:%f", [boundsArray count], previousY);
         for (NSNumber *dur in boundsArray) {
             percentage = [dur floatValue] / sumOfDuration;
             xIndex += percentage * [pitchLineArray count];
             [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
-            
-//            NSLog(@"%f/%u:%f", xIndex*stepX, [pitchLineArray count], previousY);
-            
             //Draw the vertical lines
+//            NSLog(@"444/%u:%f", [bndsLocation count], previousY);
         }
     }
     
@@ -166,13 +174,6 @@
     }
     
     [self initTextLayers];
-}
-
--(void)dealloc
-{
-    if (bndsLocation) {
-        bndsLocation = nil;
-    }
 }
 
 -(void)cleanUpContext

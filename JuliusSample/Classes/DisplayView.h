@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kBackToRecordingInterface @"backToSpeakView"
+
 @interface DisplayView : UIView
 
 @property(nonatomic, strong) NSMutableArray *lineArray;

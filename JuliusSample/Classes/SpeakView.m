@@ -76,11 +76,11 @@
                               delay:1.0
                             options: UIViewAnimationCurveEaseOut
                          animations:^{
-                             UIView *superView = self.superview;
+//                             UIView *superView = self.superview;
                              [self removeFromSuperview];
                              
-                             DisplayView *displayView = [[DisplayView alloc] initWithFrame:self.frame];
-                             [superView addSubview:displayView];
+//                             DisplayView *displayView = [[DisplayView alloc] initWithFrame:self.frame];
+//                             [superView addSubview:displayView];
                          }
                          completion:^(BOOL finished){
                              NSLog(@"Done!");
