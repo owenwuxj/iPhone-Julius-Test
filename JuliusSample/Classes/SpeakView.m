@@ -11,7 +11,6 @@
 #import <CoreText/CoreText.h>
 #import "DisplayView.h"
 
-#define kCircleRadius 40
 #define kInnerCircleBgColor [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0]
 
 @implementation SpeakView
@@ -91,7 +90,7 @@
 - (void)initCircle:(CGRect)frame
 {
     self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
-    self.circleRadius = kCircleRadius;
+    self.circleRadius = kMinCircleRadius;
     
     // Set up the shape of the circle
     _circle = [CAShapeLayer layer];
@@ -148,9 +147,9 @@
 
 - (void)animateCircle
 {
-    if (self.circleRadius == 40){
+    if (self.circleRadius == kMinCircleRadius){
         self.scaleUp = YES;
-    } else if (self.circleRadius == 80){
+    } else if (self.circleRadius == kMaxCircleRadius){
         self.scaleUp = NO;
     }
     

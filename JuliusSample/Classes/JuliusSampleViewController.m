@@ -149,7 +149,7 @@
     [theView.lineArray addObject:[NSNumber numberWithFloat:(1 - self.currentRMS) * DisplayHeight/2 - 100]];// Loglize and Replace
     [theView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and Placement
 //    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:(1 - self.currentFrequencyACF) * DisplayHeight / 100 + 150]];
-    [theView setNeedsDisplay];
+//    [theView setNeedsDisplay];
     
     /*
 	self.currentRMSLabel.text = [NSString stringWithFormat:@"%f", self.currentRMS];

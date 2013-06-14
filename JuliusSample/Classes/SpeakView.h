@@ -10,6 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TTTAttributedLabel.h"
 
+#define kMinCircleRadius 60
+#define kMaxCircleRadius 150
+
 #define kRecordingStartNotif @"RecordingStartNotif"
 #define kRecordingEndNotif @"RecordingEndNotif"
 
