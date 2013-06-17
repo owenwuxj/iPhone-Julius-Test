@@ -64,27 +64,9 @@
         
         [self.timer invalidate];
         self.timer = nil;
-//        [self.circle removeFromSuperlayer];
-//        [self initCircle:self.frame];
 
         self.isStarted = NO;
         [self showText:self.frame withString:@"Start"];
-        
-//        [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
-        
-        [UIView animateWithDuration:0.5
-                              delay:1.0
-                            options: UIViewAnimationCurveEaseOut
-                         animations:^{
-//                             UIView *superView = self.superview;
-                             [self removeFromSuperview];
-                             
-//                             DisplayView *displayView = [[DisplayView alloc] initWithFrame:self.frame];
-//                             [superView addSubview:displayView];
-                         }
-                         completion:^(BOOL finished){
-                             NSLog(@"Done!");
-                         }];
     }
 }
 
