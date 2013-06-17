@@ -25,6 +25,9 @@
 
 #define kLines 50 // initial line number
 
+#pragma mark -
+#pragma mark Private methods
+
 -(float)calculateAverageOfAry:(NSArray*)temp fromIdx:(NSInteger)strPt toIdx:(NSInteger)endPt
 {
     float avgFloat = 0;
@@ -112,10 +115,81 @@
 	[self.layer addSublayer:fireworksEmitter];
 }
 
+-(void)drawTextContent
+{
+    self.clipsToBounds = YES;
+    
+    CGRect viewBounds = self.bounds;
+    CGContextTranslateCTM(context, 0, viewBounds.size.height);
+    CGContextScaleCTM(context, 1, -1);
+    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1.0);
+    CGContextSetLineWidth(context, 2.0);
+    CGContextSelectFont(context, "Helvetica", 20.0, kCGEncodingMacRoman);
+    CGContextSetCharacterSpacing(context, 1.7);
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    
+    if ([textArray count] == 0 || [bndsLocation count] == 0) return;
+    
+    for (int i = 0; i < [textArray count]; i++) {
+        NSString *oneWord = [textArray objectAtIndex:i];
+        CGFloat xValue = [[bndsLocation objectAtIndex:i] floatValue];
+        
+        // DO NOT DISPLAY SILENCE
+        // DISPLAY ONLY WORDS
+        if ([oneWord isEqualToString:@"<s>"] || [oneWord isEqualToString:@"</s>"]) continue;
+        else CGContextShowTextAtPoint(context, xValue, 125.0, [oneWord cStringUsingEncoding:NSUTF8StringEncoding], [oneWord length]);
+    }
+}
+
+-(NSInteger)drawPitchLine{
+    int index = 0;
+    float previousY = 0.0;
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+    NSArray *tempPitch = [NSArray arrayWithArray:pitchLineArray];
+    for (NSNumber *aNumber in tempPitch) {
+        
+        if (index > 0) {
+            CGContextMoveToPoint(context, (index-1) * stepX, previousY);
+            CGContextAddLineToPoint(context, index * stepX, [aNumber floatValue]);
+            CGContextStrokePath(context);
+        }
+        previousY = [aNumber floatValue];
+        index++;
+    }
+    return [tempPitch count];
+}
+
+-(void)drawGainLine{
+    int index = 0;
+    int previousY = 0.0;
+    CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
+    NSArray *tempRMS = [NSArray arrayWithArray:lineArray];
+    for (NSNumber *someNumber in tempRMS) {
+        if (index > 0) {
+            CGContextMoveToPoint(context, (index-1) * stepX, previousY);
+            CGContextAddLineToPoint(context, index * stepX, [someNumber floatValue]);
+            CGContextStrokePath(context);
+        }
+        previousY = [someNumber floatValue];
+        index++;
+        
+        for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
+//            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
+//            if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue])
+//                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark UIResponder Inherited methods
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"%s",__FUNCTION__);
     [self handleSwipeRight];
 }
+
+#pragma mark -
+#pragma mark UIView Inherited methods
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -143,32 +217,6 @@
     return self;
 }
 
--(void) initTextLayers
-{
-    self.clipsToBounds = YES;
-    
-    CGRect viewBounds = self.bounds;
-    CGContextTranslateCTM(context, 0, viewBounds.size.height);
-    CGContextScaleCTM(context, 1, -1);
-    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1.0);
-    CGContextSetLineWidth(context, 2.0);
-    CGContextSelectFont(context, "Helvetica", 20.0, kCGEncodingMacRoman);
-    CGContextSetCharacterSpacing(context, 1.7);
-    CGContextSetTextDrawingMode(context, kCGTextFill);
-
-    if ([textArray count] == 0 || [bndsLocation count] == 0) return;
-    
-    for (int i = 0; i < [textArray count]; i++) {
-        NSString *oneWord = [textArray objectAtIndex:i];
-        CGFloat xValue = [[bndsLocation objectAtIndex:i] floatValue];
-        
-        // DO NOT DISPLAY SILENCE
-        // DISPLAY ONLY WORDS
-        if ([oneWord isEqualToString:@"<s>"] || [oneWord isEqualToString:@"</s>"]) continue;
-        else CGContextShowTextAtPoint(context, xValue, 125.0, [oneWord cStringUsingEncoding:NSUTF8StringEncoding], [oneWord length]);
-    }
-}
-
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
@@ -185,66 +233,38 @@
     
     // ---------------------------------
     // Draw the line array for Pitch
-    int index = 0;
-    float previousY = 0.0;
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    NSArray *tempPitch = [NSArray arrayWithArray:pitchLineArray];
-    for (NSNumber *aNumber in tempPitch) {
-        
-        if (index > 0) {
-            CGContextMoveToPoint(context, (index-1) * stepX, previousY);
-            CGContextAddLineToPoint(context, index * stepX, [aNumber floatValue]);
-            CGContextStrokePath(context);
-        }
-        previousY = [aNumber floatValue];
-        index++;
-    }
+    NSInteger pitchCnt = [self drawPitchLine];
 
     // ---------------------------------
-    // Draw the points as boundaries
+    // Draw the points as boundaries/Get the points of duration
     int sumOfDuration = 0;
     for (NSNumber *duration in boundsArray) {
         sumOfDuration += [duration intValue];
     }
     
     float percentage, xIndex = 0.0;
-    if ([tempPitch count] != 0) {
-        previousY = [[tempPitch objectAtIndex:0] floatValue];
+    if (pitchCnt != 0) {
+        //Draw the vertical lines
+//        previousY = [[tempPitch objectAtIndex:0] floatValue];
 //        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
 //        NSLog(@"333/%u:%f", [boundsArray count], previousY);
         for (NSNumber *dur in boundsArray) {
             percentage = [dur floatValue] / sumOfDuration;
             xIndex += percentage * [pitchLineArray count];
             [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
-            //Draw the vertical lines
 //            NSLog(@"444/%u:%f", [bndsLocation count], previousY);
         }
     }
     
     // ---------------------------------
     // Draw the line array for RMS/Gain
-    index = 0; previousY = 0.0;
-    CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
-    NSArray *tempRMS = [NSArray arrayWithArray:lineArray];
-    for (NSNumber *someNumber in tempRMS) {
-        if (index > 0) {
-            CGContextMoveToPoint(context, (index-1) * stepX, previousY);
-            CGContextAddLineToPoint(context, index * stepX, [someNumber floatValue]);
-            CGContextStrokePath(context);
-        }
-        previousY = [someNumber floatValue];
-        index++;
-        
-        for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
-//            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
-            if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue]) {
-//                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
-            }
-        }
-    }
+    [self drawGainLine];
     
-    [self initTextLayers];
+    [self drawTextContent];
 }
+
+#pragma mark -
+#pragma mark Public methods
 
 -(void)cleanUpContext
 {

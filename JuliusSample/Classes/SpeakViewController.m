@@ -119,6 +119,9 @@
 	NSString *fileName = [NSString stringWithFormat:@"%@.wav", [formatter stringFromDate:[NSDate date]]];
 
 #if TARGET_IPHONE_SIMULATOR
+//    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    self.filePath = [[NSString alloc] initWithFormat: @"%@/%@", [documentsDirectory stringByAppendingPathComponent:@"Recorders"], fileName];
     self.filePath = [NSString stringWithFormat:@"/Users/owenwu/Documents/%@",fileName];
 #else
 	self.filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
@@ -230,7 +233,7 @@
 {
     [super viewWillAppear:animated];
     
-    displayView = [[DisplayView alloc] initWithFrame:CGRectMake(0, speakView.frame.size.height, speakView.frame.size.width, speakView.frame.size.height/2)];
+    displayView = [[DisplayView alloc] initWithFrame:CGRectMake(0, speakView.frame.size.height, speakView.frame.size.width, speakView.frame.size.height*.5)];
     [self.view addSubview:displayView];
 
     displayView.hidden = false;
@@ -259,7 +262,8 @@
 		
         [self.view addSubview:HUD];
 		[HUD show:YES];
-		[self performSelector:@selector(recognition) withObject:nil afterDelay:0.0];
+//		[self performSelector:@selector(recognition) withObject:nil afterDelay:0.0];
+        [self performSelectorInBackground:@selector(recognition) withObject:nil];
 	}
     else {
         UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"Recording" message:@"File Not Saved" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
