@@ -16,6 +16,7 @@
 
 #define SamplingRate 16000 //in Hz
 #define DisplayHeight 320  //in pixel
+#define ZAxisPosition -5000
 
 @interface SpeakViewController ()
 {
@@ -23,6 +24,8 @@
     
     SpeakView *speakView;
     DisplayView *displayView;
+    UIView *primaryShadeView;
+    
     BOOL juliusDone;
 }
 @property(nonatomic, assign) float currentFrequency;
@@ -47,23 +50,66 @@
 //    [self performSelectorOnMainThread:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil waitUntilDone:NO];
 }
 
+#pragma mark -
+#pragma mark Private methods
+
 - (void)updateRMS_ZCR_ACR_Labels {
     [displayView.lineArray addObject:[NSNumber numberWithFloat:(1 - self.currentRMS) * DisplayHeight/2 - 100]];// Loglize and Replace
     [displayView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and
-    [displayView setNeedsDisplay];
+//    [displayView setNeedsDisplay];
     
     speakView.circleRadius = kMinCircleRadius + 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius);
 //    [speakView setNeedsDisplay];
-
 }
 
-- (void)updateSpeakView {
-    if (!speakView) {
-        speakView = [[SpeakView alloc] initWithFrame:self.view.frame];
-    }
+- (void)pullAnimation {
+    speakView.userInteractionEnabled=YES;
     
-    [self.view addSubview:speakView];
-    [speakView setNeedsDisplay];
+    [UIView animateWithDuration:0.3 animations:^{
+        CALayer *layer = speakView.layer;
+        layer.zPosition = ZAxisPosition;
+        CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
+        rotationAndPerspectiveTransform.m34 = 1.0 / 300;
+        layer.transform = CATransform3DRotate(rotationAndPerspectiveTransform, -10.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
+        
+        primaryShadeView.alpha = 0.35;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{
+            speakView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            
+            primaryShadeView.alpha = 0.0;
+            
+            displayView.frame = CGRectMake(0, speakView.frame.size.height, displayView.frame.size.width, displayView.frame.size.height);
+        }];
+    }];
+}
+
+- (void)pushAnimation
+{
+    speakView.userInteractionEnabled=NO;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        // show the display view
+        displayView.frame = CGRectMake(0, speakView.frame.size.height - displayView.frame.size.height, displayView.frame.size.width, displayView.frame.size.height);
+        
+        // "pushing" the speak view
+        CALayer *layer = speakView.layer;
+        layer.zPosition = ZAxisPosition;
+        CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
+        rotationAndPerspectiveTransform.m34 = 1.0 / -300;
+        layer.transform = CATransform3DRotate(rotationAndPerspectiveTransform, 10.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
+        
+        // shade the shadeView
+        primaryShadeView.alpha = 0.35;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{
+            // push speak view into destination position
+            speakView.transform = CGAffineTransformMakeScale(0.9, 0.9);
+            
+            // unshade the shadeView a bit
+            primaryShadeView.alpha = 0.5;
+        }];
+    }];
 }
 
 - (void)recording {
@@ -108,18 +154,20 @@
 }
 
 -(void)recordEnd {
-    displayView = [[DisplayView alloc] initWithFrame:self.view.frame];
-
+    primaryShadeView = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view insertSubview:primaryShadeView belowSubview:displayView];
+    
 //    while (!juliusDone) {
 //        NSLog(@"%d",juliusDone);
 //    }
     
-    [UIView transitionFromView:speakView toView:displayView duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished){
-        if (finished) {
+//    [UIView transitionFromView:speakView toView:displayView duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished){
+//        if (finished) {
 //            [displayView setNeedsDisplay];
-            displayView.transform = CGAffineTransformMakeScale(1.0,1.1);
-        }
-    }];
+//            displayView.transform = CGAffineTransformMakeScale(1.0,1.1);
+//        }
+//    }];
+    [self pushAnimation];
     
     [recorder stop];
     [rioRef stopListening];
@@ -140,13 +188,21 @@
 	[julius recognizeRawFileAtPath:filePath];
 }
 
+#pragma mark -
+#pragma mark View Lifecycle
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self)
     {
-        [self updateSpeakView];
+//        if (!speakView) {
+            speakView = [[SpeakView alloc] initWithFrame:self.view.frame];
+//        }
+        
+        [self.view addSubview:speakView];
+//        [speakView setNeedsDisplay];
 
         rioRef = [RIOInterface sharedInstance];
         [rioRef initializeAudioSession];
@@ -159,13 +215,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//    NSLog(@"Random Number: %d",(arc4random()%100));
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordStart) name:kRecordingStartNotif object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordEnd) name:kRecordingEndNotif object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSpeakView) name:kBackToRecordingInterface object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pullAnimation) name:kBackToRecordingInterface object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    displayView = [[DisplayView alloc] initWithFrame:CGRectMake(0, speakView.frame.size.height, speakView.frame.size.width, speakView.frame.size.height/2)];
+    [self.view addSubview:displayView];
+
+    displayView.hidden = false;
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,4 +23,6 @@
 
 @property (nonatomic, strong) NSString *filePath;
 
+- (void)frequencyChangedWithRMS:(float)newRMS withACF:(float)newACF andZCR:(float)newZCR withFreq:(float)newFreq;
+
 @end

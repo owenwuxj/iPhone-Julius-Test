@@ -40,11 +40,11 @@
 
 -(void)handleSwipeRight
 {
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBackToRecordingInterface object:nil];
 }
 
-- (void)drawSomething{
+- (void)animateFireworks{
 	// Cells spawn in the bottom, moving up
 	CAEmitterLayer *fireworksEmitter = [CAEmitterLayer layer];
 	CGRect viewBounds = self.layer.bounds;
@@ -96,7 +96,7 @@
 	spark.yAcceleration		= 75;		// gravity
 	spark.lifetime			= 3;
     
-	spark.contents			= (id) [[UIImage imageNamed:@"DazStarOutline"] CGImage];
+	spark.contents			= (id) [[UIImage imageNamed:@"DazRing"] CGImage];
 	spark.scaleSpeed		=-0.2;
 	spark.greenSpeed		=-0.1;
 	spark.redSpeed			= 0.4;
@@ -112,12 +112,18 @@
 	[self.layer addSublayer:fireworksEmitter];
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"%s",__FUNCTION__);
+    [self handleSwipeRight];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor =  [UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0];
+//        self.backgroundColor =  [UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0];
+        self.backgroundColor = [UIColor whiteColor];
         
         lineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
         pitchLineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
@@ -129,14 +135,10 @@
         bndsLocation = [[NSMutableArray alloc] initWithCapacity:kLines];
         rmsAverageAry = [[NSMutableArray alloc] initWithCapacity:kLines];
         
-        //temporarily populate the array with random data
-//        for (int aloop = 0; aloop < kLines; aloop++) {
-//            int rand = arc4random()%100;
+        UITapGestureRecognizer *tapView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
+        [self addGestureRecognizer:tapView];
         
-        UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
-        [self addGestureRecognizer:swipeRight];
-        
-        [self drawSomething];
+//        [self animateFireworks];
     }
     return self;
 }
@@ -236,8 +238,7 @@
         for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
 //            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
             if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue]) {
-                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
-//                NSLog(@"111 %d/\n%@", [rmsAverageAry count], [rmsAverageAry description]);
+//                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
             }
         }
     }
