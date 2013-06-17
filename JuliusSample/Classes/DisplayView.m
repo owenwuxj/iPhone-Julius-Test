@@ -117,7 +117,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor =  [UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0];
         
         lineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
         pitchLineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
@@ -237,7 +237,7 @@
 //            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
             if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue]) {
                 [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
-                NSLog(@"111 %d/\n%@", [rmsAverageAry count], [rmsAverageAry description]);
+//                NSLog(@"111 %d/\n%@", [rmsAverageAry count], [rmsAverageAry description]);
             }
         }
     }

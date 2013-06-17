@@ -12,12 +12,15 @@
 
 #import "SpeakView.h"
 #import "DisplayView.h"
+#import "MBProgressHUD.h"
 
 #define SamplingRate 16000 //in Hz
 #define DisplayHeight 320  //in pixel
 
 @interface SpeakViewController ()
 {
+	MBProgressHUD *HUD;
+    
     SpeakView *speakView;
     DisplayView *displayView;
     BOOL juliusDone;
@@ -70,7 +73,7 @@
 	NSString *fileName = [NSString stringWithFormat:@"%@.wav", [formatter stringFromDate:[NSDate date]]];
 
 #if TARGET_IPHONE_SIMULATOR
-    self.filePath = [NSString stringWithFormat:@"/Users/%@",fileName];
+    self.filePath = [NSString stringWithFormat:@"/Users/owenwu/Documents/%@",fileName];
 #else
 	self.filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
 #endif
@@ -113,6 +116,7 @@
     
     [UIView transitionFromView:speakView toView:displayView duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished){
         if (finished) {
+//            [displayView setNeedsDisplay];
             displayView.transform = CGAffineTransformMakeScale(1.0,1.1);
         }
     }];
@@ -179,6 +183,14 @@
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
 	if (flag) {
+		if (!HUD) {
+			HUD = [[MBProgressHUD alloc] initWithView:self.view];
+			HUD.labelText = @"Processing...";
+//			[self.view addSubview:HUD];
+		}
+		
+        [self.view addSubview:HUD];
+		[HUD show:YES];
 		[self performSelector:@selector(recognition) withObject:nil afterDelay:0.0];
 	}
     else {
@@ -191,6 +203,8 @@
 #pragma mark Julius delegate
 
 - (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+    [HUD hide:YES];
+    
 	// Show results.
 //	textView.text = [results componentsJoinedByString:@""];
     NSLog(@"Show Results: %@ /n has %d bounds",[results componentsJoinedByString:@""], [boundsAry count]);
