@@ -155,6 +155,10 @@
 
 -(void)recordEnd {
     primaryShadeView = [[UIView alloc] initWithFrame:self.view.frame];
+    
+    UITapGestureRecognizer *tapOnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pullAnimation)];
+    [primaryShadeView addGestureRecognizer:tapOnView];
+
     [self.view insertSubview:primaryShadeView belowSubview:displayView];
     
 //    while (!juliusDone) {

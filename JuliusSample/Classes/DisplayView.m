@@ -135,8 +135,8 @@
         bndsLocation = [[NSMutableArray alloc] initWithCapacity:kLines];
         rmsAverageAry = [[NSMutableArray alloc] initWithCapacity:kLines];
         
-        UITapGestureRecognizer *tapView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
-        [self addGestureRecognizer:tapView];
+//        UITapGestureRecognizer *tapView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
+//        [self addGestureRecognizer:tapView];
         
 //        [self animateFireworks];
     }
