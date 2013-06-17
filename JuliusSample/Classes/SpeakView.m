@@ -15,13 +15,16 @@
 
 @implementation SpeakView
 
-@synthesize circle = _circle,
-            circleCenter,
+@synthesize circleCenter,
             circleRadius,
             scaleUp,
             label,
             isStarted = _isStarted,
-            timer;
+            timer,
+            btnSpeak,
+            circleOne,
+            circleTwo,
+            circleThree;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,24 +33,47 @@
     if (self)
     {
         _isStarted = NO;
-        [self initCircle:frame];
         [self setBackgroundColor:[UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]];
+
+        self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
+        self.circleRadius = kMinCircleRadius;
+        [self drawInnerCircle];
+        circleOne = [self createCircle];
+        circleTwo = [self createCircle];
+//        circleThree = [self createCircle];
         
-        // show start text
-        [self showText:self.frame withString:@"Start"];
+        btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 40)];
+
+        [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
+        [btnSpeak setBackgroundColor:kInnerCircleBgColor];
+        [btnSpeak addTarget:self action:@selector(touchUp) forControlEvents:UIControlEventTouchUpInside];
+        [btnSpeak addTarget:self action:@selector(handleSingleTap) forControlEvents:UIControlEventTouchDown];
+
+        [self addSubview:btnSpeak];
         
-        UITapGestureRecognizer *tap =
-        [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                action:@selector(handleSingleTap:)];
-        [self addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap =
+//        [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                action:@selector(handleSingleTap:)];
+//        [self addGestureRecognizer:tap];
+        
+//        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap)];
+//        [btnSpeak addGestureRecognizer:longPressGesture];
     }
     
     return self;
 }
 
-- (void)handleSingleTap:(UIGestureRecognizer *)recognizer
+- (void)touchUp
+{
+    NSLog(@"Touch up inside");
+    [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
+}
+
+- (void)handleSingleTap
 {
 //    CGPoint location = [recognizer locationInView:recognizer.view];
+    
+    [btnSpeak setTitle:@"Release to stop" forState:UIControlStateNormal];
     
     if (!self.isStarted)
     {
@@ -55,9 +81,7 @@
         NSTimer *repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
         self.timer = repeatingTimer;
         
-        self.isStarted = YES;
-        [self showText:self.frame withString:@"Stop"];
-        
+        self.isStarted = YES;        
         [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingStartNotif object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
@@ -66,27 +90,22 @@
         self.timer = nil;
 
         self.isStarted = NO;
-        [self showText:self.frame withString:@"Start"];
     }
 }
 
-- (void)initCircle:(CGRect)frame
+- (CAShapeLayer *)createCircle
 {
-    self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
-    self.circleRadius = kMinCircleRadius;
-    
-    // Set up the shape of the circle
-    _circle = [CAShapeLayer layer];
+    CAShapeLayer *circle = [CAShapeLayer layer];
     
     // Configure the apperence of the circle
-    self.circle.fillColor = [UIColor colorWithRed:198/255.0 green:236/255.0 blue:252/255.0 alpha:1.0].CGColor;
-    self.circle.strokeColor = [UIColor colorWithRed:198/255.0 green:236/255.0 blue:252/255.0 alpha:1.0].CGColor;
-    self.circle.lineWidth = 5;
+    circle.fillColor = [UIColor colorWithRed:198/255.0 green:236/255.0 blue:252/255.0 alpha:1.0].CGColor;
+    circle.strokeColor = [UIColor colorWithRed:198/255.0 green:236/255.0 blue:252/255.0 alpha:1.0].CGColor;
+    circle.lineWidth = 1;
     
     // Add to parent layer
-    [self.layer addSublayer:self.circle];
+    [self.layer addSublayer:circle];
     
-    [self drawInnerCircle];
+    return circle;
 }
 
 - (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius
@@ -101,13 +120,36 @@
     return path;
 }
 
+- (CGFloat)degreeToRadian:(float)degree
+{
+    return ((degree / 180.0f) * M_PI);
+}
+
+- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startRadian:(CGFloat)startRadian endRadian:(CGFloat)endRadian
+{
+    CGFloat startAngle = [self degreeToRadian:startRadian];
+    CGFloat endAngle = [self degreeToRadian:endRadian];
+    CGPoint center = self.circleCenter;
+    
+    CGPoint point = CGPointMake(center.x + radius * cosf(startRadian), center.y + radius * sinf(startRadian));
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:center];
+    [path addLineToPoint:point];
+    [path addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+    [path closePath];
+    
+    return path;
+}
+
 - (void)drawInnerCircle
 {
     CAShapeLayer *innerCircle = [[CAShapeLayer alloc] init];
     innerCircle.fillColor = kInnerCircleBgColor.CGColor;
     innerCircle.strokeColor = [UIColor clearColor].CGColor;
     innerCircle.lineWidth = 1;
-    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;    
+    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
+    innerCircle.opacity = 0.7;
 
     [self.layer addSublayer:innerCircle];
 }
@@ -121,11 +163,12 @@
     [pathAnimation setDuration:0.05];
     [pathAnimation setRepeatCount:1.0f];
     [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-    
-    UIBezierPath *path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius];
-    self.circle.path = path.CGPath;
-    
-    [self.circle addAnimation:pathAnimation forKey:@"changePathAnimation"];
+ 
+    circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:0.0f endRadian:45.0f].CGPath;
+    [circleOne addAnimation:pathAnimation forKey:@"changePathAnimation"];
+
+//    circleThree.path = [self makeArcWithradius:self.circleRadius * 1.5 startRadian:0.0f endRadian:-45.0f].CGPath;
+//    [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
 }
 
 - (void)animateCircle
@@ -141,7 +184,7 @@
         self.circleRadius += 1;
     } else {
         self.circleRadius -= 1;
-    }
+    }    
     
     [self drawCircleWithRadius:circleRadius];
 }

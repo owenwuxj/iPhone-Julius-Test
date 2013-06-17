@@ -21,9 +21,14 @@
 @property (nonatomic, assign) CGPoint circleCenter;
 @property (nonatomic, assign) CGFloat circleRadius;
 @property (nonatomic, assign) BOOL scaleUp;
-@property (nonatomic, strong) CAShapeLayer *circle;
+@property (nonatomic, strong) CAShapeLayer *circleOne;
+@property (nonatomic, strong) CAShapeLayer *circleTwo;
+@property (nonatomic, strong) CAShapeLayer *circleThree;
+
+
 @property (nonatomic, strong) TTTAttributedLabel *label;
 @property (nonatomic, assign) BOOL isStarted;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UIButton *btnSpeak;
 
 @end
