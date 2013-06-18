@@ -40,7 +40,7 @@
         [self drawInnerCircle];
         circleOne = [self createCircle];
         circleTwo = [self createCircle];
-//        circleThree = [self createCircle];
+        circleThree = [self createCircle];
         
         btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 40)];
 
@@ -125,18 +125,18 @@
     return ((degree / 180.0f) * M_PI);
 }
 
-- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startRadian:(CGFloat)startRadian endRadian:(CGFloat)endRadian
+- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startRadian:(CGFloat)startRadian endRadian:(CGFloat)endRadian clockwise:(BOOL)clockwise
 {
     CGFloat startAngle = [self degreeToRadian:startRadian];
     CGFloat endAngle = [self degreeToRadian:endRadian];
     CGPoint center = self.circleCenter;
     
-    CGPoint point = CGPointMake(center.x + radius * cosf(startRadian), center.y + radius * sinf(startRadian));
+//    CGPoint point = CGPointMake(center.x + radius * cosf(startRadian), center.y + radius * sinf(startRadian));
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:center];
-    [path addLineToPoint:point];
-    [path addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+//    [path addLineToPoint:point];
+    [path addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
     [path closePath];
     
     return path;
@@ -164,11 +164,14 @@
     [pathAnimation setRepeatCount:1.0f];
     [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
  
-    circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:0.0f endRadian:45.0f].CGPath;
+    circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:0.0f endRadian:60.0f clockwise:YES].CGPath;
     [circleOne addAnimation:pathAnimation forKey:@"changePathAnimation"];
-
-//    circleThree.path = [self makeArcWithradius:self.circleRadius * 1.5 startRadian:0.0f endRadian:-45.0f].CGPath;
-//    [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
+    
+    circleTwo.path = [self makeArcWithradius:self.circleRadius startRadian:120.0f endRadian:180.0f clockwise:YES].CGPath;
+    [circleTwo addAnimation:pathAnimation forKey:@"changePathAnimation"];    
+    
+    circleThree.path = [self makeArcWithradius:self.circleRadius startRadian:-60.0f endRadian:-120.0f clockwise:NO].CGPath;
+    [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
 }
 
 - (void)animateCircle
@@ -209,7 +212,7 @@
     
    label = [[TTTAttributedLabel alloc] initWithFrame:rect];
     [label setBackgroundColor:kInnerCircleBgColor];
-//    label.font = [UIFont systemFontOfSize:18];
+//    label.font = [UIFont systemFontOfSize:18];r
     label.textColor = [UIColor whiteColor];
     label.numberOfLines = 0;
     
@@ -233,6 +236,5 @@
 {
     // Drawing code
 }
-
 
 @end
