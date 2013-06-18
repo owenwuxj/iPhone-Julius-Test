@@ -42,7 +42,9 @@
         circleTwo = [self createCircle];
         circleThree = [self createCircle];
         
-        btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 40)];
+//        circleOne.position = self.circleCenter;        
+        
+        btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 60)];
 
         [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
         [btnSpeak setBackgroundColor:kInnerCircleBgColor];
@@ -125,7 +127,7 @@
     return ((degree / 180.0f) * M_PI);
 }
 
-- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startRadian:(CGFloat)startRadian endRadian:(CGFloat)endRadian clockwise:(BOOL)clockwise
+- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startRadian:(CGFloat)startRadian endRadian:(CGFloat)endRadian clockwise:(BOOL)isBottomHalf
 {
     CGFloat startAngle = [self degreeToRadian:startRadian];
     CGFloat endAngle = [self degreeToRadian:endRadian];
@@ -136,7 +138,7 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:center];
 //    [path addLineToPoint:point];
-    [path addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
+    [path addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:isBottomHalf];
     [path closePath];
     
     return path;
@@ -150,8 +152,26 @@
     innerCircle.lineWidth = 1;
     innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
     innerCircle.opacity = 0.7;
+//    innerCircle.position = self.circleCenter;
 
     [self.layer addSublayer:innerCircle];
+    
+//    CABasicAnimation* rotationAnimation;
+//    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
+//    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+//    rotationAnimation.duration = 5.0;
+//    rotationAnimation.fillMode = kCAFillModeForwards;
+//    rotationAnimation.repeatCount = FLT_MAX;
+//    rotationAnimation.removedOnCompletion = NO;
+//    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//    
+    NSLog(@"innerCircle.bounds.size.x = %f, innerCircle.bounds.size.y= %f", innerCircle.bounds.size.width, innerCircle.bounds.size.height);
+
+    NSLog(@"self.layer.position.x = %f, self.layer.position.y= %f", innerCircle.position.x, innerCircle.position.y);
+
+//    [innerCircle addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
 }
 
 - (void)drawCircleWithRadius:(CGFloat)radius
@@ -167,11 +187,16 @@
     circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:0.0f endRadian:60.0f clockwise:YES].CGPath;
     [circleOne addAnimation:pathAnimation forKey:@"changePathAnimation"];
     
-    circleTwo.path = [self makeArcWithradius:self.circleRadius startRadian:120.0f endRadian:180.0f clockwise:YES].CGPath;
-    [circleTwo addAnimation:pathAnimation forKey:@"changePathAnimation"];    
+//    circleOne.anchorPoint = CGPointMake(1.0f, 0.5f);
+//    circleOne.affineTransform = CGAffineTransformMakeRotation((CGFloat)M_PI / 3);    
+        
+    NSLog(@"circleOne.anchorPoint.x = %f, circleOne.anchorPoint.y =  %f", circleOne.anchorPoint.x, circleOne.anchorPoint.y);
     
-    circleThree.path = [self makeArcWithradius:self.circleRadius startRadian:-60.0f endRadian:-120.0f clockwise:NO].CGPath;
-    [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
+//    circleTwo.path = [self makeArcWithradius:self.circleRadius startRadian:120.0f endRadian:180.0f clockwise:YES].CGPath;
+//    [circleTwo addAnimation:pathAnimation forKey:@"changePathAnimation"];    
+//    
+//    circleThree.path = [self makeArcWithradius:self.circleRadius startRadian:-60.0f endRadian:-120.0f clockwise:NO].CGPath;
+//    [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
 }
 
 - (void)animateCircle
