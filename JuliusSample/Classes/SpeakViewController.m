@@ -14,9 +14,13 @@
 #import "DisplayView.h"
 #import "MBProgressHUD.h"
 
+#import "TISpringLoadedSpinnerView.h"
+#import "TISpringLoadedView.h"
+
 #define SamplingRate 16000 //in Hz
 #define DisplayHeight 320  //in pixel
 #define ZAxisPosition -5000
+#define LoadedViewLength 100
 
 @interface SpeakViewController ()
 {
@@ -27,6 +31,10 @@
     UIView *primaryShadeView;
     
     BOOL juliusDone;
+
+	TISpringLoadedSpinnerView * _spinnerView;
+	TISpringLoadedView * _springLoadedView;
+	CADisplayLink * _displayLink;
 }
 @property(nonatomic, assign) float currentFrequency;
 @property(nonatomic, assign) float currentFrequencyACF;
@@ -95,6 +103,7 @@
         // "pushing" the speak view
         CALayer *layer = speakView.layer;
         layer.zPosition = ZAxisPosition;
+        
         CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
         rotationAndPerspectiveTransform.m34 = 1.0 / -300;
         layer.transform = CATransform3DRotate(rotationAndPerspectiveTransform, 10.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
@@ -106,6 +115,9 @@
             // push speak view into destination position
             speakView.transform = CGAffineTransformMakeScale(0.9, 0.9);
             
+            [self.view insertSubview:_springLoadedView aboveSubview:displayView];
+            [self.view insertSubview:_spinnerView aboveSubview:_springLoadedView];
+
             // unshade the shadeView a bit
             primaryShadeView.alpha = 0.5;
         }];
@@ -195,6 +207,11 @@
 	[julius recognizeRawFileAtPath:filePath];
 }
 
+- (void)displayLinkTick:(CADisplayLink *)link {
+	[_spinnerView simulateSpringWithDisplayLink:link];
+    //	[_springLoadedView simulateSpringWithDisplayLink:link];
+}
+
 #pragma mark -
 #pragma mark View Lifecycle
 
@@ -227,6 +244,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordEnd) name:kRecordingEndNotif object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pullAnimation) name:kBackToRecordingInterface object:nil];
+    
+    CGRect aRect = CGRectMake((self.view.frame.size.width-LoadedViewLength)/2, self.view.frame.size.height/2, LoadedViewLength, LoadedViewLength);
+    _springLoadedView = [[TISpringLoadedView alloc] initWithFrame:aRect];
+	[_springLoadedView setBackgroundColor:[UIColor whiteColor]];
+	
+	// Like the one in the Letterpress app by Loren Brichter (atebits.com)
+	_spinnerView = [[TISpringLoadedSpinnerView alloc] initWithFrame:CGRectInset(aRect, 15, 15)];
+	
+	// Create the display link. I use one to handle all the views.
+	_displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkTick:)];
+	[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -254,14 +282,15 @@
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
 	if (flag) {
-		if (!HUD) {
-			HUD = [[MBProgressHUD alloc] initWithView:self.view];
-			HUD.labelText = @"Processing...";
-//			[self.view addSubview:HUD];
-		}
-		
-        [self.view addSubview:HUD];
-		[HUD show:YES];
+//		if (!HUD) {
+//			HUD = [[MBProgressHUD alloc] initWithView:self.view];
+//			HUD.labelText = @"Processing...";
+////			[self.view addSubview:HUD];
+//		}
+//		
+//        [self.view addSubview:HUD];
+//		[HUD show:YES];
+
 //		[self performSelector:@selector(recognition) withObject:nil afterDelay:0.0];
         [self performSelectorInBackground:@selector(recognition) withObject:nil];
 	}
@@ -275,7 +304,13 @@
 #pragma mark Julius delegate
 
 - (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
-    [HUD hide:YES];
+//    [HUD hide:YES];
+    
+    for (id aView in self.view.subviews) {
+        if ([aView isKindOfClass:[TISpringLoadedSpinnerView class]] || [aView isKindOfClass:[TISpringLoadedView class]]) {
+            [aView removeFromSuperview];
+        }
+    }
     
 	// Show results.
 //	textView.text = [results componentsJoinedByString:@""];

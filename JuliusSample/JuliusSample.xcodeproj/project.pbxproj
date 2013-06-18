@@ -50,6 +50,8 @@
 		13C537A912E1FFEA0071E4ED /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 13C5378F12E1FFEA0071E4ED /* README.mdown */; };
 		13D3FE28174A221800A5EF7F /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13D3FE26174A221800A5EF7F /* CAXException.cpp */; };
 		13D3FE2B174A26A300A5EF7F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */; };
+		13D8F8A21770269900FFA29F /* TISpringLoadedSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D8F89F1770269900FFA29F /* TISpringLoadedSpinnerView.m */; };
+		13D8F8A31770269900FFA29F /* TISpringLoadedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D8F8A11770269900FFA29F /* TISpringLoadedView.m */; };
 		1D3623260D0F684500981E51 /* JuliusSampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JuliusSampleAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -130,6 +132,10 @@
 		13D3FE26174A221800A5EF7F /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
 		13D3FE27174A221800A5EF7F /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
 		13D3FE2A174A26A300A5EF7F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		13D8F89E1770269900FFA29F /* TISpringLoadedSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISpringLoadedSpinnerView.h; sourceTree = "<group>"; };
+		13D8F89F1770269900FFA29F /* TISpringLoadedSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISpringLoadedSpinnerView.m; sourceTree = "<group>"; };
+		13D8F8A01770269900FFA29F /* TISpringLoadedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISpringLoadedView.h; sourceTree = "<group>"; };
+		13D8F8A11770269900FFA29F /* TISpringLoadedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISpringLoadedView.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* JuliusSampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSampleAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* JuliusSampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuliusSampleAppDelegate.m; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 		131BA4FD1761D4A90033530B /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				13D8F89D1770268C00FFA29F /* SpringLoadedViews */,
 				131E74291769BFB600457C90 /* TTTAttributedLabel */,
 				131BA4FE1761D4BC0033530B /* ssziparchive */,
 			);
@@ -346,6 +353,17 @@
 				13D3FE27174A221800A5EF7F /* CAXException.h */,
 			);
 			name = CAUtility;
+			sourceTree = "<group>";
+		};
+		13D8F89D1770268C00FFA29F /* SpringLoadedViews */ = {
+			isa = PBXGroup;
+			children = (
+				13D8F89E1770269900FFA29F /* TISpringLoadedSpinnerView.h */,
+				13D8F89F1770269900FFA29F /* TISpringLoadedSpinnerView.m */,
+				13D8F8A01770269900FFA29F /* TISpringLoadedView.h */,
+				13D8F8A11770269900FFA29F /* TISpringLoadedView.m */,
+			);
+			path = SpringLoadedViews;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -542,6 +560,8 @@
 				45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */,
 				45CB7CF01769632200FD9DF8 /* SpeakView.m in Sources */,
 				131E74301769BFB600457C90 /* TTTAttributedLabel.m in Sources */,
+				13D8F8A21770269900FFA29F /* TISpringLoadedSpinnerView.m in Sources */,
+				13D8F8A31770269900FFA29F /* TISpringLoadedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
