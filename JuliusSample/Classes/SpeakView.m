@@ -39,10 +39,19 @@
         self.circleRadius = kMinCircleRadius;
         [self drawInnerCircle];
         circleOne = [self createCircle];
-        circleTwo = [self createCircle];
-        circleThree = [self createCircle];
+//        circleTwo = [self createCircle];
+//        circleThree = [self createCircle];
         
-//        circleOne.position = self.circleCenter;        
+        circleOne.frame = CGRectMake(self.circleCenter.x, self.circleCenter.y, self.circleRadius, self.circleRadius);
+
+        CABasicAnimation* rotationAnimation;
+        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
+        rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+        rotationAnimation.duration = 5.0;
+        rotationAnimation.repeatCount = FLT_MAX;
+        rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]; 
+        [circleOne addAnimation:rotationAnimation forKey:@"rotationAnimation"];
         
         btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 60)];
 
@@ -153,23 +162,36 @@
     innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
     innerCircle.opacity = 0.7;
 //    innerCircle.position = self.circleCenter;
+    
+    innerCircle.frame = CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2);
 
     [self.layer addSublayer:innerCircle];
     
-//    CABasicAnimation* rotationAnimation;
-//    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
 //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
-//    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-//    rotationAnimation.duration = 5.0;
-//    rotationAnimation.fillMode = kCAFillModeForwards;
-//    rotationAnimation.repeatCount = FLT_MAX;
-//    rotationAnimation.removedOnCompletion = NO;
-//    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+    rotationAnimation.duration = 5.0;
+    rotationAnimation.repeatCount = FLT_MAX;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];    
+    [innerCircle addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
+
+    NSLog(@"innerCircle.bounds.size.x = %f, innerCircle.bounds.size.y= %f", innerCircle.frame.origin.x, innerCircle.frame.origin.y);
+
+    NSLog(@"innerCircle.anchorPoint.x = %f, innerCircle.anchorPoint.y= %f", innerCircle.position.x, innerCircle.position.y);
+
+    
+//    CATransform3D rotationTransform = CATransform3DMakeRotation(1.0f * M_PI, 0, 0, 1.0);
 //    
-    NSLog(@"innerCircle.bounds.size.x = %f, innerCircle.bounds.size.y= %f", innerCircle.bounds.size.width, innerCircle.bounds.size.height);
-
-    NSLog(@"self.layer.position.x = %f, self.layer.position.y= %f", innerCircle.position.x, innerCircle.position.y);
-
+//    CABasicAnimation* rotationAnimation;
+//    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+//    
+//    rotationAnimation.toValue = [NSValue valueWithCATransform3D:rotationTransform];
+//    rotationAnimation.duration = 3.0f;
+//    rotationAnimation.cumulative = YES;
+//    rotationAnimation.repeatCount = FLT_MAX;
+//    
 //    [innerCircle addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 
 }
