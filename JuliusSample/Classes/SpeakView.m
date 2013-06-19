@@ -78,6 +78,7 @@
 
 - (void)initInnerCircle
 {
+    self.rotateSpeed = 1.0;
     innerCircle = [CAShapeLayer layer];
     innerCircle.fillColor = kInnerCircleBgColor.CGColor;
     innerCircle.strokeColor = [UIColor clearColor].CGColor;
