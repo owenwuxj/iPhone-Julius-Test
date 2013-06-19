@@ -12,6 +12,7 @@
 #import "DisplayView.h"
 
 #define kInnerCircleBgColor [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0]
+#define kViewBgColor [UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]
 
 @implementation SpeakView
 
@@ -24,7 +25,9 @@
             btnSpeak,
             circleOne,
             circleTwo,
-            circleThree;
+            circleThree,
+            rotationAnimation,
+            ivCenter;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -33,7 +36,7 @@
     if (self)
     {
         _isStarted = NO;
-        [self setBackgroundColor:[UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]];
+        [self setBackgroundColor:kViewBgColor];
 
         self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
         self.circleRadius = kMinCircleRadius;
@@ -43,15 +46,9 @@
         circleTwo = [self createCircle];
         circleThree = [self createCircle];
         
-        btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 60)];
-
-        [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
-        [btnSpeak setBackgroundColor:kInnerCircleBgColor];
-        [btnSpeak addTarget:self action:@selector(touchUp) forControlEvents:UIControlEventTouchUpInside];
-        [btnSpeak addTarget:self action:@selector(handleSingleTap) forControlEvents:UIControlEventTouchDown];
-
-        [self addSubview:btnSpeak];
-        
+        // init the speak button
+        [self initButton];
+                
 //        UITapGestureRecognizer *tap =
 //        [[UITapGestureRecognizer alloc] initWithTarget:self
 //                                                action:@selector(handleSingleTap:)];
@@ -62,6 +59,18 @@
     }
     
     return self;
+}
+
+- (void)initButton
+{
+    btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 60)];
+    btnSpeak.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 20, 0);
+    [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
+    [btnSpeak setBackgroundColor:kInnerCircleBgColor];
+    [btnSpeak addTarget:self action:@selector(touchUp) forControlEvents:UIControlEventTouchUpInside];
+    [btnSpeak addTarget:self action:@selector(handleSingleTap) forControlEvents:UIControlEventTouchDown];
+    
+    [self addSubview:btnSpeak];
 }
 
 - (void)touchUp
@@ -152,13 +161,12 @@
     innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
     innerCircle.opacity = 0.7;
     
-    UIImageView *ivCenter = [[UIImageView alloc] initWithFrame:CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2)];
+    ivCenter = [[UIImageView alloc] initWithFrame:CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2)];
     [ivCenter setBackgroundColor:kInnerCircleBgColor];
     [self addSubview:ivCenter];
     innerCircle.frame = ivCenter.frame;
     [ivCenter.layer addSublayer:innerCircle];
     
-    CABasicAnimation* rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];

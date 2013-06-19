@@ -25,10 +25,12 @@
 @property (nonatomic, strong) CAShapeLayer *circleTwo;
 @property (nonatomic, strong) CAShapeLayer *circleThree;
 
-
 @property (nonatomic, strong) TTTAttributedLabel *label;
 @property (nonatomic, assign) BOOL isStarted;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIButton *btnSpeak;
+
+@property (nonatomic, strong) CABasicAnimation* rotationAnimation;
+@property (nonatomic, strong) UIImageView *ivCenter;
 
 @end
