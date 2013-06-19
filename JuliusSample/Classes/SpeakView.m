@@ -104,7 +104,7 @@
     rotationAnimation.speed = 1.0;
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = FLT_MAX;
-    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
@@ -191,7 +191,7 @@
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = FLT_MAX;
     rotationAnimation.speed = self.rotateSpeed;
-    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
@@ -205,7 +205,7 @@
     
     [pathAnimation setDuration:0.05];
     [pathAnimation setRepeatCount:1.0f];
-    [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
  
     circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:0.0f endRadian:60.0f clockwise:YES].CGPath;
     [circleOne addAnimation:pathAnimation forKey:@"changePathAnimation"];
