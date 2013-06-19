@@ -24,6 +24,9 @@
 @synthesize lineArray, pitchLineArray, boundsArray, textArray;
 
 #define kLines 50 // initial line number
+#define kLetterWidth 20 // letter width unit
+#define kLetterHeight 16.0
+#define kLetterPositionY 100.0
 
 #pragma mark -
 #pragma mark Private methods
@@ -35,7 +38,7 @@
     for (int i=strPt; i<endPt; i++) {
         avgFloat += [[temp objectAtIndex:i] floatValue];
     }
-    NSLog(@"222 %f",avgFloat);
+//    NSLog(@"222 %f",avgFloat);
     
     avgFloat = avgFloat/(endPt-strPt);
     return avgFloat;
@@ -43,10 +46,29 @@
 
 -(void)handleSwipeRight
 {
-//    [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBackToRecordingInterface object:nil];
 }
 
+-(void)getBoundaryArrayWithLinePoints:(NSInteger)checker {
+    int sumOfDuration = 0;
+    for (NSNumber *duration in boundsArray) {
+        sumOfDuration += [duration intValue];
+    }
+    
+    // ---------------------------------
+    //Draw the vertical lines
+    float percentage, xIndex = 0.0;
+    if (checker != 0) {
+        for (NSNumber *dur in boundsArray) {
+            percentage = [dur floatValue] / sumOfDuration;
+            xIndex += percentage * [pitchLineArray count];
+            [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
+            //            NSLog(@"444/%u:%f", [bndsLocation count], previousY);
+        }
+    }
+}
+
+/*
 - (void)animateFireworks{
 	// Cells spawn in the bottom, moving up
 	CAEmitterLayer *fireworksEmitter = [CAEmitterLayer layer];
@@ -128,9 +150,9 @@
     CGContextSetCharacterSpacing(context, 1.7);
     CGContextSetTextDrawingMode(context, kCGTextFill);
     
-    if ([textArray count] == 0 || [bndsLocation count] == 0) return;
+    if ([textArray count] <= 2 || [bndsLocation count] <= 1) return;// Deal with <s></s>
     
-    for (int i = 0; i < [textArray count]; i++) {
+    for (int i = 1; i < [textArray count]; i++) {// Display words skipping <s> (the first silence)
         NSString *oneWord = [textArray objectAtIndex:i];
         CGFloat xValue = [[bndsLocation objectAtIndex:i] floatValue];
         
@@ -138,6 +160,37 @@
         // DISPLAY ONLY WORDS
         if ([oneWord isEqualToString:@"<s>"] || [oneWord isEqualToString:@"</s>"]) continue;
         else CGContextShowTextAtPoint(context, xValue, 125.0, [oneWord cStringUsingEncoding:NSUTF8StringEncoding], [oneWord length]);
+    }
+}
+*/
+
+-(void)addTextLabelsToView
+{
+    [self getBoundaryArrayWithLinePoints:1];//just don't pass 0
+
+    if ([textArray count] <= 2 || [bndsLocation count] <= 1) return;
+    
+    for (int i = 1; i < [textArray count]; i++) {
+        NSString *oneWord = [textArray objectAtIndex:i];
+
+        CGFloat xValue = 0.0;
+        for (int j=i-1; j>0; j--) {
+            xValue += [[textArray objectAtIndex:j] length] * kLetterWidth;
+            NSLog(@"xValue[%d]:%f",i,xValue);
+        }
+        
+        UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(xValue, kLetterPositionY, [oneWord length] * kLetterWidth, kLetterHeight)];
+    
+//        aLabel.font = [UIFont systemFontOfSize:40.0];
+        
+        if (i == 3) {// change the background color on the 3rd word
+            aLabel.backgroundColor = [UIColor blueColor];
+        }
+
+        if ([oneWord isEqualToString:@"<s>"] || [oneWord isEqualToString:@"</s>"]) continue;// DO NOT DISPLAY SILENCE
+        else aLabel.text = oneWord;// DISPLAY ONLY WORDS
+        
+        [self addSubview:aLabel];
     }
 }
 
@@ -173,11 +226,11 @@
         previousY = [someNumber floatValue];
         index++;
         
-        for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
+//        for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
 //            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
 //            if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue])
 //                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
-        }
+//        }
     }
 }
 
@@ -196,7 +249,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        self.backgroundColor =  [UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0];
         self.backgroundColor = [UIColor whiteColor];
         
         lineArray = [[NSMutableArray alloc] initWithCapacity:kLines];
@@ -211,7 +263,6 @@
         
 //        UITapGestureRecognizer *tapView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
 //        [self addGestureRecognizer:tapView];
-        
 //        [self animateFireworks];
     }
     return self;
@@ -237,30 +288,14 @@
 
     // ---------------------------------
     // Draw the points as boundaries/Get the points of duration
-    int sumOfDuration = 0;
-    for (NSNumber *duration in boundsArray) {
-        sumOfDuration += [duration intValue];
-    }
-    
-    float percentage, xIndex = 0.0;
-    if (pitchCnt != 0) {
-        //Draw the vertical lines
-//        previousY = [[tempPitch objectAtIndex:0] floatValue];
-//        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-//        NSLog(@"333/%u:%f", [boundsArray count], previousY);
-        for (NSNumber *dur in boundsArray) {
-            percentage = [dur floatValue] / sumOfDuration;
-            xIndex += percentage * [pitchLineArray count];
-            [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
-//            NSLog(@"444/%u:%f", [bndsLocation count], previousY);
-        }
-    }
+    [self getBoundaryArrayWithLinePoints:pitchCnt];
     
     // ---------------------------------
     // Draw the line array for RMS/Gain
     [self drawGainLine];
     
-    [self drawTextContent];
+//    [self drawTextContent];
+//    [self addTextLabelsToView];
 }
 
 #pragma mark -
@@ -268,17 +303,26 @@
 
 -(void)cleanUpContext
 {
+    // Clear the whole context
     if (!context) {
         context = UIGraphicsGetCurrentContext();
     }
     CGContextClearRect(context,self.frame);
     
+    // Clear all the arrays
     [lineArray removeAllObjects];
     [pitchLineArray removeAllObjects];
     [boundsArray removeAllObjects];
     [bndsLocation removeAllObjects];
     [textArray removeAllObjects];
 
+    // Clear all the UILabels
+    for (id oneView in self.subviews) {
+        if ([oneView isKindOfClass:[UILabel class]]) {
+            [oneView removeFromSuperview];
+        }
+    }
+    
     dynLinNum = kLines;
 }
 

@@ -19,8 +19,9 @@
 
 #define SamplingRate 16000 //in Hz
 #define DisplayHeight 320  //in pixel
-#define ZAxisPosition -5000
-#define LoadedViewLength 100
+
+#define ZAxisPosition -10000
+#define LoadedViewLength 50
 
 @interface SpeakViewController ()
 {
@@ -77,10 +78,10 @@
         CALayer *layer = speakView.layer;
         layer.zPosition = ZAxisPosition;
         CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
-        rotationAndPerspectiveTransform.m34 = 1.0 / 300;
+        rotationAndPerspectiveTransform.m34 = 1.0 / 500;
         layer.transform = CATransform3DRotate(rotationAndPerspectiveTransform, -10.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
         
-        primaryShadeView.alpha = 0.35;
+        primaryShadeView.alpha = 0.5;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
             speakView.transform = CGAffineTransformMakeScale(1.0, 1.0);
@@ -105,11 +106,11 @@
         layer.zPosition = ZAxisPosition;
         
         CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
-        rotationAndPerspectiveTransform.m34 = 1.0 / -300;
+        rotationAndPerspectiveTransform.m34 = 1.0 / -500;
         layer.transform = CATransform3DRotate(rotationAndPerspectiveTransform, 10.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
         
         // shade the shadeView
-        primaryShadeView.alpha = 0.35;
+        primaryShadeView.alpha = 0.5;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
             // push speak view into destination position
@@ -119,7 +120,7 @@
             [self.view insertSubview:_spinnerView aboveSubview:_springLoadedView];
 
             // unshade the shadeView a bit
-            primaryShadeView.alpha = 0.5;
+            primaryShadeView.alpha = 0.75;
         }];
     }];
 }
@@ -164,12 +165,15 @@
 }
 
 -(void)recordStart {
+    [displayView cleanUpContext];
+    
     [self recording];
     [rioRef startListening:self];
 }
 
 -(void)recordEnd {
     primaryShadeView = [[UIView alloc] initWithFrame:self.view.frame];
+//    primaryShadeView.backgroundColor = [UIColor blackColor];
     
     UITapGestureRecognizer *tapOnView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pullAnimation)];
     [primaryShadeView addGestureRecognizer:tapOnView];
@@ -180,12 +184,7 @@
 //        NSLog(@"%d",juliusDone);
 //    }
     
-//    [UIView transitionFromView:speakView toView:displayView duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished){
-//        if (finished) {
-//            [displayView setNeedsDisplay];
-//            displayView.transform = CGAffineTransformMakeScale(1.0,1.1);
-//        }
-//    }];
+//    speakView.rotationAnimation.speed = 0;
     [self pushAnimation];
     
     [recorder stop];
@@ -245,7 +244,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pullAnimation) name:kBackToRecordingInterface object:nil];
     
-    CGRect aRect = CGRectMake((self.view.frame.size.width-LoadedViewLength)/2, self.view.frame.size.height/2, LoadedViewLength, LoadedViewLength);
+    CGRect aRect = CGRectMake((self.view.frame.size.width-LoadedViewLength)/2, self.view.frame.size.height-LoadedViewLength*1.2, LoadedViewLength, LoadedViewLength);
     _springLoadedView = [[TISpringLoadedView alloc] initWithFrame:aRect];
 	[_springLoadedView setBackgroundColor:[UIColor whiteColor]];
 	
@@ -320,7 +319,7 @@
     
     displayView.textArray = [NSMutableArray arrayWithArray:results];
     displayView.boundsArray = [NSMutableArray arrayWithArray:boundsAry];
-    [displayView setNeedsDisplay];
+    [displayView addTextLabelsToView];
 }
 
 @end

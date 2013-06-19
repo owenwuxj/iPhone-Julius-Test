@@ -18,5 +18,6 @@
 @property(nonatomic, strong) NSMutableArray *textArray;
 
 -(void)cleanUpContext;
+-(void)addTextLabelsToView;
 
 @end

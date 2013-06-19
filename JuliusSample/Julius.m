@@ -184,7 +184,7 @@ static void output_result(Recog *recog_, void *data) {
         NSLog(@"Writing to txt file error: %@",err);
     }
     
-    NSLog(@"Txt File Path is: %@",filePath);
+    NSLog(@"%@",filePath);
 
     // Callback delegate.
 	if (data) {
