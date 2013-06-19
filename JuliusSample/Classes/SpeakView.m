@@ -66,24 +66,18 @@
     btnSpeak = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 60)];
     btnSpeak.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 20, 0);
     [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
+    [btnSpeak setTitle:@"Release to stop" forState:UIControlEventTouchDown];
+
     [btnSpeak setBackgroundColor:kInnerCircleBgColor];
-    [btnSpeak addTarget:self action:@selector(touchUp) forControlEvents:UIControlEventTouchUpInside];
-    [btnSpeak addTarget:self action:@selector(handleSingleTap) forControlEvents:UIControlEventTouchDown];
+    [btnSpeak addTarget:self action:@selector(touchDown) forControlEvents:UIControlEventTouchDown];
+    [btnSpeak addTarget:self action:@selector(touchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:btnSpeak];
 }
 
-- (void)touchUp
+- (void)touchDown
 {
-    NSLog(@"Touch up inside");
-    [btnSpeak setTitle:@"Hold to talk" forState:UIControlStateNormal];
-}
-
-- (void)handleSingleTap
-{
-//    CGPoint location = [recognizer locationInView:recognizer.view];
-    
-    [btnSpeak setTitle:@"Release to stop" forState:UIControlStateNormal];
+//    CGPoint location = [recognizer locationInView:recognizer.view];    
     
     if (!self.isStarted)
     {
@@ -93,14 +87,17 @@
         
         self.isStarted = YES;        
         [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingStartNotif object:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
-        
-        [self.timer invalidate];
-        self.timer = nil;
-
-        self.isStarted = NO;
     }
+}
+
+- (void)touchUpInside
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRecordingEndNotif object:nil];
+    
+    [self.timer invalidate];
+    self.timer = nil;
+    
+    self.isStarted = NO;
 }
 
 - (CAShapeLayer *)createCircle
