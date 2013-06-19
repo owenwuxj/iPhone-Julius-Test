@@ -148,7 +148,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSample_Prefix.pch; sourceTree = "<group>"; };
 		4510C2AC1755ED6900C697AE /* test.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.jconf; path = model/test.jconf; sourceTree = "<group>"; };
-		4561EA5017719ED200EE391B /* rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotate.png; sourceTree = "<group>"; };
+		4561EA5017719ED200EE391B /* rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rotate.png; path = Classes/rotate.png; sourceTree = "<group>"; };
 		45CB7CEE1769632200FD9DF8 /* SpeakView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakView.h; sourceTree = "<group>"; };
 		45CB7CEF1769632200FD9DF8 /* SpeakView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakView.m; sourceTree = "<group>"; };
 		45F2B3481764155A00500BA4 /* SpeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakViewController.h; sourceTree = "<group>"; };
@@ -259,7 +259,6 @@
 		13684FAE12E0ABDB00FBF870 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4561EA5017719ED200EE391B /* rotate.png */,
 				131E74331769DAAD00457C90 /* RIOInterface.h */,
 				131E74341769DAAD00457C90 /* RIOInterface.mm */,
 				45F2B3481764155A00500BA4 /* SpeakViewController.h */,
@@ -436,6 +435,7 @@
 		45F2B34E176416C700500BA4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4561EA5017719ED200EE391B /* rotate.png */,
 				13A78FD5176B114300EEFA51 /* Sprite */,
 				45F2B34F176416D400500BA4 /* speak.jpg */,
 			);
