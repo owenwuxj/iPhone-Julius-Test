@@ -26,10 +26,9 @@
             circleOne,
             circleTwo,
             circleThree,
-            rotationAnimation,
             ivCenter,
             innerCircle,
-            rotateSpeed;
+            offsetRadian;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,6 +38,8 @@
     {
         _isStarted = NO;
         [self setBackgroundColor:kViewBgColor];
+        
+        self.offsetRadian = 1;
 
         self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
         self.circleRadius = kMinCircleRadius;
@@ -49,14 +50,6 @@
         circleThree = [self createCircle];
         
         [self initButton];
-                
-//        UITapGestureRecognizer *tap =
-//        [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                action:@selector(handleSingleTap:)];
-//        [self addGestureRecognizer:tap];
-        
-//        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap)];
-//        [btnSpeak addGestureRecognizer:longPressGesture];
     }
     
     return self;
@@ -78,40 +71,18 @@
 
 - (void)initInnerCircle
 {
-    self.rotateSpeed = 1.0;
-    innerCircle = [CAShapeLayer layer];
-    innerCircle.fillColor = kInnerCircleBgColor.CGColor;
-    innerCircle.strokeColor = [UIColor clearColor].CGColor;
-    innerCircle.lineWidth = 1;
-    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
-    innerCircle.opacity = 0.7;
-    
     ivCenter = [[UIImageView alloc] initWithFrame:CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2)];
     [ivCenter setBackgroundColor:kInnerCircleBgColor];
-    [self addSubview:ivCenter];
-    innerCircle.frame = ivCenter.frame;    
     
     UIImage *image = [UIImage imageNamed:@"rotate"];
     ivCenter.layer.cornerRadius = 60;
     ivCenter.layer.masksToBounds = YES;
     ivCenter.image = image;
-    [ivCenter.layer addSublayer:innerCircle];
-    
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-    rotationAnimation.duration = 5.0;
-    rotationAnimation.speed = 1.0;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = FLT_MAX;
-    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    [self addSubview:ivCenter];
 }
 
 - (void)touchDown
-{
-//    CGPoint location = [recognizer locationInView:recognizer.view];
-    
+{    
     if (!self.isStarted)
     {
         [self.timer invalidate];
@@ -182,23 +153,8 @@
     return path;
 }
 
-- (void)drawInnerCircle
-{    
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-    rotationAnimation.duration = 5.0;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = FLT_MAX;
-    rotationAnimation.speed = self.rotateSpeed;
-    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-}
-
 - (void)drawCircleWithRadius:(CGFloat)radius
 {
-    [self drawInnerCircle];
-    
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue   = [NSNumber numberWithFloat:1.0f];
@@ -207,13 +163,13 @@
     [pathAnimation setRepeatCount:1.0f];
     [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
  
-    circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:0.0f endRadian:60.0f clockwise:YES].CGPath;
+    circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:self.offsetRadian + 0.0f endRadian:self.offsetRadian + 60.0f clockwise:YES].CGPath;
     [circleOne addAnimation:pathAnimation forKey:@"changePathAnimation"];
     
-    circleTwo.path = [self makeArcWithradius:self.circleRadius startRadian:120.0f endRadian:180.0f clockwise:YES].CGPath;
-    [circleTwo addAnimation:pathAnimation forKey:@"changePathAnimation"];    
+    circleTwo.path = [self makeArcWithradius:self.circleRadius startRadian:self.offsetRadian + 120.0f endRadian:self.offsetRadian + 180.0f clockwise:YES].CGPath;
+    [circleTwo addAnimation:pathAnimation forKey:@"changePathAnimation"];
     
-    circleThree.path = [self makeArcWithradius:self.circleRadius startRadian:-60.0f endRadian:-120.0f clockwise:NO].CGPath;
+    circleThree.path = [self makeArcWithradius:self.circleRadius startRadian:self.offsetRadian - 60.0f endRadian:self.offsetRadian - 120.0f clockwise:NO].CGPath;
     [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
 }
 
@@ -228,49 +184,13 @@
     if (self.scaleUp)
     {
         self.circleRadius += 1;
+        self.offsetRadian += 1;
     } else {
         self.circleRadius -= 1;
+        self.offsetRadian -= 1;
     }    
     
     [self drawCircleWithRadius:circleRadius];
-}
-
-- (void)drawImage:(CGRect)frame
-{
-    CGRect rect = CGRectMake(CGRectGetMidX(frame) - 40, CGRectGetMidY(frame) -40, 80, 80);
-    UIGraphicsBeginImageContext(rect.size);
-    UIImage *image = [UIImage imageNamed:@"speak.jpg"];
-    [image drawInRect:rect];
-    UIGraphicsEndImageContext();
-    
-    UIImageView *ivSpeak = [[UIImageView alloc] initWithFrame:rect];
-    ivSpeak.image = image;
-    
-    [self addSubview:ivSpeak];
-}
-
-- (void)showText:(CGRect)frame withString:(NSString *)text
-{
-    CGRect rect = CGRectMake(CGRectGetMidX(frame) - 20, CGRectGetMidY(frame) -20, 40, 40);
-    
-   label = [[TTTAttributedLabel alloc] initWithFrame:rect];
-    [label setBackgroundColor:kInnerCircleBgColor];
-//    label.font = [UIFont systemFontOfSize:18];r
-    label.textColor = [UIColor whiteColor];
-    label.numberOfLines = 0;
-    
-    [label setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-        UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:16];
-        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
-        if (font) {
-            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(0, text.length)];
-            CFRelease(font);
-        }
-        
-        return mutableAttributedString;
-    }];
-    
-    [self addSubview:label];
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -278,32 +198,6 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    // Create the path
-//	CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-//	CGFloat radius = 60;
-//	
-//	CGContextBeginPath(ctx);
-//	CGContextMoveToPoint(ctx, center.x, center.y);
-//	
-//    CGFloat startAngle = 45.0f;
-//    CGFloat endAngle = 90.0f;
-//	CGPoint p1 = CGPointMake(center.x + radius * cosf(startAngle), center.y + radius * sinf(startAngle));
-//	CGContextAddLineToPoint(ctx, p1.x, p1.y);
-//    
-//	int clockwise = startAngle > endAngle;
-//	CGContextAddArc(ctx, center.x, center.y, radius, startAngle, endAngle, clockwise);
-//    
-//    //	CGContextAddLineToPoint(ctx, center.x, center.y);
-//    
-//	CGContextClosePath(ctx);
-//	
-//	// Color it
-//	CGContextSetFillColorWithColor(ctx, kInnerCircleBgColor.CGColor);
-//	CGContextSetStrokeColorWithColor(ctx, [UIColor clearColor].CGColor);
-//	CGContextSetLineWidth(ctx, 3);
-//    
-//	CGContextDrawPath(ctx, kCGPathFillStroke);
 }
 
 @end

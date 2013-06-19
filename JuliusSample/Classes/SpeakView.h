@@ -31,8 +31,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIButton *btnSpeak;
 
-@property (nonatomic, strong) CABasicAnimation* rotationAnimation;
 @property (nonatomic, strong) UIImageView *ivCenter;
-@property (nonatomic, assign) CFTimeInterval rotateSpeed;
+@property (nonatomic, assign) CGFloat offsetRadian;
 
 @end
