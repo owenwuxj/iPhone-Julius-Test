@@ -24,6 +24,7 @@
 @property (nonatomic, strong) CAShapeLayer *circleOne;
 @property (nonatomic, strong) CAShapeLayer *circleTwo;
 @property (nonatomic, strong) CAShapeLayer *circleThree;
+@property (nonatomic, strong) CAShapeLayer *innerCircle;
 
 @property (nonatomic, strong) TTTAttributedLabel *label;
 @property (nonatomic, assign) BOOL isStarted;

@@ -27,7 +27,8 @@
             circleTwo,
             circleThree,
             rotationAnimation,
-            ivCenter;
+            ivCenter,
+            innerCircle;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -40,13 +41,12 @@
 
         self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
         self.circleRadius = kMinCircleRadius;
-        [self drawInnerCircle];
+        [self initInnerCircle];
         
         circleOne = [self createCircle];
         circleTwo = [self createCircle];
         circleThree = [self createCircle];
         
-        // init the speak button
         [self initButton];
                 
 //        UITapGestureRecognizer *tap =
@@ -75,9 +75,34 @@
     [self addSubview:btnSpeak];
 }
 
+- (void)initInnerCircle
+{
+    innerCircle = [CAShapeLayer layer];
+    innerCircle.fillColor = kInnerCircleBgColor.CGColor;
+    innerCircle.strokeColor = [UIColor clearColor].CGColor;
+    innerCircle.lineWidth = 1;
+    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
+    innerCircle.opacity = 0.7;
+    
+    ivCenter = [[UIImageView alloc] initWithFrame:CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2)];
+    [ivCenter setBackgroundColor:kInnerCircleBgColor];
+    [self addSubview:ivCenter];
+    innerCircle.frame = ivCenter.frame;
+    [ivCenter.layer addSublayer:innerCircle];
+    
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+    rotationAnimation.duration = 5.0;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = FLT_MAX;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+
 - (void)touchDown
 {
-//    CGPoint location = [recognizer locationInView:recognizer.view];    
+//    CGPoint location = [recognizer locationInView:recognizer.view];
     
     if (!self.isStarted)
     {
@@ -150,31 +175,22 @@
 }
 
 - (void)drawInnerCircle
-{
-    CAShapeLayer *innerCircle = [CAShapeLayer layer];
-    innerCircle.fillColor = kInnerCircleBgColor.CGColor;
-    innerCircle.strokeColor = [UIColor clearColor].CGColor;
-    innerCircle.lineWidth = 1;
-    innerCircle.path = [self makeCircleAtLocation:self.circleCenter radius:self.circleRadius].CGPath;
-    innerCircle.opacity = 0.7;
-    
-    ivCenter = [[UIImageView alloc] initWithFrame:CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2)];
-    [ivCenter setBackgroundColor:kInnerCircleBgColor];
-    [self addSubview:ivCenter];
-    innerCircle.frame = ivCenter.frame;
-    [ivCenter.layer addSublayer:innerCircle];
-    
+{    
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
     rotationAnimation.duration = 5.0;
+    rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = FLT_MAX;
+    rotationAnimation.speed = self.circleRadius;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
 - (void)drawCircleWithRadius:(CGFloat)radius
 {
+    [self drawInnerCircle];
+    
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue   = [NSNumber numberWithFloat:1.0f];
