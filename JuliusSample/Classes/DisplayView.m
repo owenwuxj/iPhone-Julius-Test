@@ -11,7 +11,7 @@
 
 @implementation DisplayView {
 
-    float stepX;//
+    float stepX, xIndex;//
     int dynLinNum;// Dynamic Line Number
 
     CGContextRef context;// Drawing Context
@@ -49,7 +49,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kBackToRecordingInterface object:nil];
 }
 
--(void)getBoundaryArrayWithLinePoints:(NSInteger)checker {
+-(void)initBoundsLocationWithPoints:(NSInteger)checker {
     int sumOfDuration = 0;
     for (NSNumber *duration in boundsArray) {
         sumOfDuration += [duration intValue];
@@ -57,13 +57,13 @@
     
     // ---------------------------------
     //Draw the vertical lines
-    float percentage, xIndex = 0.0;
+    float percentage = 0.0;
     if (checker != 0) {
         for (NSNumber *dur in boundsArray) {
             percentage = [dur floatValue] / sumOfDuration;
             xIndex += percentage * [pitchLineArray count];
             [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
-            //            NSLog(@"444/%u:%f", [bndsLocation count], previousY);
+//            NSLog(@"444/%u", [bndsLocation count]);
         }
     }
 }
@@ -166,7 +166,7 @@
 
 -(void)addTextLabelsToView
 {
-    [self getBoundaryArrayWithLinePoints:1];//just don't pass 0
+    [self initBoundsLocationWithPoints:1];//just don't pass 0
 
     if ([textArray count] <= 2 || [bndsLocation count] <= 1) return;
     
@@ -176,12 +176,14 @@
         CGFloat xValue = 0.0;
         for (int j=i-1; j>0; j--) {
             xValue += [[textArray objectAtIndex:j] length] * kLetterWidth;
-            NSLog(@"xValue[%d]:%f",i,xValue);
         }
         
         UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(xValue, kLetterPositionY, [oneWord length] * kLetterWidth, kLetterHeight)];
-    
-//        aLabel.font = [UIFont systemFontOfSize:40.0];
+
+        if (i == 1) {
+            aLabel.font = [UIFont systemFontOfSize:14.0+5];
+            aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y-5, aLabel.frame.size.width, aLabel.frame.size.height);
+        }
         
         if (i == 3) {// change the background color on the 3rd word
             aLabel.backgroundColor = [UIColor blueColor];
@@ -194,13 +196,12 @@
     }
 }
 
--(NSInteger)drawPitchLine{
+-(NSInteger)drawPitchLine {
     int index = 0;
     float previousY = 0.0;
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     NSArray *tempPitch = [NSArray arrayWithArray:pitchLineArray];
     for (NSNumber *aNumber in tempPitch) {
-        
         if (index > 0) {
             CGContextMoveToPoint(context, (index-1) * stepX, previousY);
             CGContextAddLineToPoint(context, index * stepX, [aNumber floatValue]);
@@ -212,11 +213,22 @@
     return [tempPitch count];
 }
 
--(void)drawGainLine{
+//-(void)doSomething{
+//    NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:0] floatValue]);
+//    for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
+//        //            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
+//        if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue])
+//            [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
+//    }
+//}
+//
+-(void)drawGainLine {
     int index = 0;
     int previousY = 0.0;
+    
     CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
     NSArray *tempRMS = [NSArray arrayWithArray:lineArray];
+    
     for (NSNumber *someNumber in tempRMS) {
         if (index > 0) {
             CGContextMoveToPoint(context, (index-1) * stepX, previousY);
@@ -225,12 +237,6 @@
         }
         previousY = [someNumber floatValue];
         index++;
-        
-//        for (int bndIdx = 0; bndIdx < [bndsLocation count]; bndIdx++) {
-//            NSLog(@"%f:%u:%f", xIndex*stepX, [bndsLocation count], [[bndsLocation objectAtIndex:bndIdx] floatValue]);
-//            if (index*stepX == [[bndsLocation objectAtIndex:bndIdx] floatValue])
-//                [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
-//        }
     }
 }
 
@@ -288,7 +294,7 @@
 
     // ---------------------------------
     // Draw the points as boundaries/Get the points of duration
-    [self getBoundaryArrayWithLinePoints:pitchCnt];
+//    [self initBoundsLocationWithPoints:pitchCnt];
     
     // ---------------------------------
     // Draw the line array for RMS/Gain

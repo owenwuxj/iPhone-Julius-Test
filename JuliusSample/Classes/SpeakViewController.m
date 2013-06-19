@@ -23,6 +23,8 @@
 #define ZAxisPosition -10000
 #define LoadedViewLength 50
 
+#define MODNUMBER 4
+
 @interface SpeakViewController ()
 {
 	MBProgressHUD *HUD;
@@ -32,6 +34,7 @@
     UIView *primaryShadeView;
     
     BOOL juliusDone;
+    int modNumber;
 
 	TISpringLoadedSpinnerView * _spinnerView;
 	TISpringLoadedView * _springLoadedView;
@@ -55,7 +58,15 @@
     self.currentFrequencyACF = newACF;
     self.currentFrequencyZCR = newZCR;
     self.currentFrequency = newFreq;
-	[self performSelectorInBackground:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil];
+    
+//    if (modNumber == MODNUMBER) {
+        [self performSelectorInBackground:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil];
+//        modNumber--;
+//        if (modNumber == 0) {
+//            modNumber = MODNUMBER;
+//        }
+//    }
+
 //    [self performSelectorOnMainThread:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil waitUntilDone:NO];
 }
 
@@ -65,10 +76,10 @@
 - (void)updateRMS_ZCR_ACR_Labels {
     [displayView.lineArray addObject:[NSNumber numberWithFloat:(1 - self.currentRMS) * DisplayHeight/2 - 100]];// Loglize and Replace
     [displayView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and
-//    [displayView setNeedsDisplay];
+    [displayView setNeedsDisplay];
     
     speakView.circleRadius = kMinCircleRadius + 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius);
-//    [speakView setNeedsDisplay];
+    speakView.rotationAnimation.speed = self.currentFrequency/50;
 }
 
 - (void)pullAnimation {
@@ -85,6 +96,7 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
             speakView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            speakView.rotationAnimation.speed = 1;
             
             primaryShadeView.alpha = 0.0;
             
@@ -230,6 +242,8 @@
         rioRef = [RIOInterface sharedInstance];
         [rioRef initializeAudioSession];
         [rioRef setSampleRate:SamplingRate];
+        
+        modNumber = MODNUMBER;//used for downsampling
     }
     
     return self;
