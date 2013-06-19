@@ -59,6 +59,7 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D7ACF80DDB3853001CB0EB /* JuliusSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* JuliusSampleViewController.m */; };
 		4510C2AD1755ED6900C697AE /* test.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 4510C2AC1755ED6900C697AE /* test.jconf */; };
+		4561EA5117719ED200EE391B /* rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 4561EA5017719ED200EE391B /* rotate.png */; };
 		45CB7CF01769632200FD9DF8 /* SpeakView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CB7CEF1769632200FD9DF8 /* SpeakView.m */; };
 		45F2B34B1764155A00500BA4 /* SpeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F2B3491764155A00500BA4 /* SpeakViewController.m */; };
 		45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34A1764155A00500BA4 /* SpeakViewController.xib */; };
@@ -147,6 +148,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliusSample_Prefix.pch; sourceTree = "<group>"; };
 		4510C2AC1755ED6900C697AE /* test.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.jconf; path = model/test.jconf; sourceTree = "<group>"; };
+		4561EA5017719ED200EE391B /* rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotate.png; sourceTree = "<group>"; };
 		45CB7CEE1769632200FD9DF8 /* SpeakView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakView.h; sourceTree = "<group>"; };
 		45CB7CEF1769632200FD9DF8 /* SpeakView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakView.m; sourceTree = "<group>"; };
 		45F2B3481764155A00500BA4 /* SpeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakViewController.h; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		13684FAE12E0ABDB00FBF870 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4561EA5017719ED200EE391B /* rotate.png */,
 				131E74331769DAAD00457C90 /* RIOInterface.h */,
 				131E74341769DAAD00457C90 /* RIOInterface.mm */,
 				45F2B3481764155A00500BA4 /* SpeakViewController.h */,
@@ -533,6 +536,7 @@
 				13A78FE1176B116600EEFA51 /* DazStarOutline.png in Resources */,
 				13A78FE2176B116600EEFA51 /* DazTriangle.png in Resources */,
 				13A78FE3176B116600EEFA51 /* DazRing.png in Resources */,
+				4561EA5117719ED200EE391B /* rotate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

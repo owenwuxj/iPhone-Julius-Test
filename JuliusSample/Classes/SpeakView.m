@@ -89,9 +89,12 @@
     ivCenter = [[UIImageView alloc] initWithFrame:CGRectMake(self.circleCenter.x - self.circleRadius, self.circleCenter.y - self.circleRadius, self.circleRadius * 2, self.circleRadius * 2)];
     [ivCenter setBackgroundColor:kInnerCircleBgColor];
     [self addSubview:ivCenter];
-    innerCircle.frame = ivCenter.frame;
+    innerCircle.frame = ivCenter.frame;    
     
+    UIImage *image = [UIImage imageNamed:@"rotate"];
     ivCenter.layer.cornerRadius = 60;
+    ivCenter.layer.masksToBounds = YES;
+    ivCenter.image = image;
     [ivCenter.layer addSublayer:innerCircle];
     
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
