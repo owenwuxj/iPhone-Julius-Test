@@ -79,7 +79,7 @@
     [displayView setNeedsDisplay];
     
     speakView.circleRadius = kMinCircleRadius + 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius);
-    speakView.rotateSpeed = self.currentFrequency/50;
+    speakView.offsetRadian = self.currentFrequency/50;
 }
 
 - (void)pullAnimation {
@@ -96,7 +96,6 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
             speakView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-            speakView.rotationAnimation.speed = 1;
             
             primaryShadeView.alpha = 0.0;
             
