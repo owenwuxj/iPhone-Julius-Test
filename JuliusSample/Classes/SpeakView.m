@@ -90,6 +90,8 @@
     [ivCenter setBackgroundColor:kInnerCircleBgColor];
     [self addSubview:ivCenter];
     innerCircle.frame = ivCenter.frame;
+    
+    ivCenter.layer.cornerRadius = 60;
     [ivCenter.layer addSublayer:innerCircle];
     
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
