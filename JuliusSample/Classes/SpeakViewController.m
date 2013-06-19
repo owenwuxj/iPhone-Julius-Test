@@ -79,7 +79,7 @@
     [displayView setNeedsDisplay];
     
     speakView.circleRadius = kMinCircleRadius + 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius);
-    speakView.rotationAnimation.speed = self.currentFrequency/50;
+    speakView.rotateSpeed = self.currentFrequency/50;
 }
 
 - (void)pullAnimation {

@@ -33,5 +33,6 @@
 
 @property (nonatomic, strong) CABasicAnimation* rotationAnimation;
 @property (nonatomic, strong) UIImageView *ivCenter;
+@property (nonatomic, assign) CFTimeInterval rotateSpeed;
 
 @end

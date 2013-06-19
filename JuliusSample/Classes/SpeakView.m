@@ -28,7 +28,8 @@
             circleThree,
             rotationAnimation,
             ivCenter,
-            innerCircle;
+            innerCircle,
+            rotateSpeed;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -94,6 +95,7 @@
     //    rotationAnimation.fromValue = [innerCircle valueForKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
     rotationAnimation.duration = 5.0;
+    rotationAnimation.speed = 1.0;
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = FLT_MAX;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
@@ -182,7 +184,7 @@
     rotationAnimation.duration = 5.0;
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = FLT_MAX;
-    rotationAnimation.speed = self.circleRadius;
+    rotationAnimation.speed = self.rotateSpeed;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     [ivCenter.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
