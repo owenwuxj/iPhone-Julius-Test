@@ -81,7 +81,9 @@
     NSLog(@"4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius) = %f", 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius));
     
     speakView.circleRadius = kMinCircleRadius + 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius);
-    speakView.offsetDegree = self.currentFrequency / 50;
+    speakView.offsetDegree = (((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2)) + 100) /10.0f;
+    
+    NSLog(@"speakView.offsetDegree = %f", speakView.offsetDegree);
 }
 
 - (void)pullAnimation {

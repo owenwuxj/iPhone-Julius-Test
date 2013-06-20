@@ -14,7 +14,7 @@
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define kInnerCircleBgColor RGBCOLOR(51, 144, 211)
 #define kViewBgColor RGBCOLOR(92, 183, 236)
-#define kFriction 1.5f
+#define kFriction 0.3f
 
 @implementation SpeakView
 
@@ -191,7 +191,7 @@
         self.offsetDegree = 0.0f;
     }
     
-    self.offsetDegree += 1.2f;
+    self.offsetDegree += 1.0f;
     
     if (self.scaleUp)
     {
