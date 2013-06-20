@@ -11,8 +11,10 @@
 #import <CoreText/CoreText.h>
 #import "DisplayView.h"
 
-#define kInnerCircleBgColor [UIColor colorWithRed:51/255.0 green:144/255.0 blue:211/255.0 alpha:1.0]
-#define kViewBgColor [UIColor colorWithRed:92/255.0 green:183/255.0 blue:236/255.0 alpha:1.0]
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define kInnerCircleBgColor RGBCOLOR(51, 144, 211)
+#define kViewBgColor RGBCOLOR(92, 183, 236)
+#define kFriction 1.5f
 
 @implementation SpeakView
 
@@ -28,7 +30,7 @@
             circleThree,
             ivCenter,
             innerCircle,
-            offsetRadian;
+            offsetDegree;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,7 +41,7 @@
         _isStarted = NO;
         [self setBackgroundColor:kViewBgColor];
         
-        self.offsetRadian = 1;
+        self.offsetDegree = 1.0f;
 
         self.circleCenter = CGPointMake(frame.size.width/2, frame.size.height/2);
         self.circleRadius = kMinCircleRadius;
@@ -86,7 +88,7 @@
     if (!self.isStarted)
     {
         [self.timer invalidate];
-        NSTimer *repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
+        NSTimer *repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/60 target:self selector:@selector(animateCircle) userInfo:nil repeats:YES];
         self.timer = repeatingTimer;
         
         self.isStarted = YES;        
@@ -136,10 +138,10 @@
     return ((degree / 180.0f) * M_PI);
 }
 
-- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startRadian:(CGFloat)startRadian endRadian:(CGFloat)endRadian clockwise:(BOOL)isBottomHalf
+- (UIBezierPath *)makeArcWithradius:(CGFloat)radius startDegree:(CGFloat)startDegree endDegree:(CGFloat)endDegree clockwise:(BOOL)isBottomHalf
 {
-    CGFloat startAngle = [self degreeToRadian:startRadian];
-    CGFloat endAngle = [self degreeToRadian:endRadian];
+    CGFloat startAngle = [self degreeToRadian:startDegree];
+    CGFloat endAngle = [self degreeToRadian:endDegree];
     CGPoint center = self.circleCenter;
     
 //    CGPoint point = CGPointMake(center.x + radius * cosf(startRadian), center.y + radius * sinf(startRadian));
@@ -163,13 +165,13 @@
     [pathAnimation setRepeatCount:1.0f];
     [pathAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
  
-    circleOne.path = [self makeArcWithradius:self.circleRadius startRadian:self.offsetRadian + 0.0f endRadian:self.offsetRadian + 60.0f clockwise:YES].CGPath;
+    circleOne.path = [self makeArcWithradius:self.circleRadius startDegree:self.offsetDegree + 0.0f endDegree:self.offsetDegree + 60.0f clockwise:YES].CGPath;
     [circleOne addAnimation:pathAnimation forKey:@"changePathAnimation"];
     
-    circleTwo.path = [self makeArcWithradius:self.circleRadius startRadian:self.offsetRadian + 120.0f endRadian:self.offsetRadian + 180.0f clockwise:YES].CGPath;
+    circleTwo.path = [self makeArcWithradius:self.circleRadius startDegree:self.offsetDegree + 120.0f endDegree:self.offsetDegree + 180.0f clockwise:YES].CGPath;
     [circleTwo addAnimation:pathAnimation forKey:@"changePathAnimation"];
     
-    circleThree.path = [self makeArcWithradius:self.circleRadius startRadian:self.offsetRadian - 60.0f endRadian:self.offsetRadian - 120.0f clockwise:NO].CGPath;
+    circleThree.path = [self makeArcWithradius:self.circleRadius startDegree:self.offsetDegree - 60.0f endDegree:self.offsetDegree - 120.0f clockwise:NO].CGPath;
     [circleThree addAnimation:pathAnimation forKey:@"changePathAnimation"];
 }
 
@@ -181,14 +183,24 @@
         self.scaleUp = NO;
     }
     
+    if (self.offsetDegree > 0.0f) {
+        self.offsetDegree -= kFriction;
+    }
+        
+    if (self.offsetDegree < 0.0f) {
+        self.offsetDegree = 0.0f;
+    }
+    
+    self.offsetDegree += 1.2f;
+    
     if (self.scaleUp)
     {
+        self.circleRadius -= kFriction;
         self.circleRadius += 1;
-        self.offsetRadian += 1;
     } else {
+        self.circleRadius += kFriction;
         self.circleRadius -= 1;
-        self.offsetRadian -= 1;
-    }    
+    }
     
     [self drawCircleWithRadius:circleRadius];
 }

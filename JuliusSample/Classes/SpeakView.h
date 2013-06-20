@@ -32,6 +32,6 @@
 @property (nonatomic, strong) UIButton *btnSpeak;
 
 @property (nonatomic, strong) UIImageView *ivCenter;
-@property (nonatomic, assign) CGFloat offsetRadian;
+@property (nonatomic, assign) CGFloat offsetDegree;
 
 @end
