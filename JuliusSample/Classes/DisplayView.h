@@ -10,7 +10,7 @@
 
 #define kBackToRecordingInterface @"backToSpeakView"
 
-@interface DisplayView : UIView
+@interface DisplayView : UIScrollView
 
 @property(nonatomic, strong) NSMutableArray *lineArray;
 @property(nonatomic, strong) NSMutableArray *pitchLineArray;

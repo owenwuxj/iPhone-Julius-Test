@@ -17,6 +17,8 @@
     CGContextRef context;// Drawing Context
     
     NSMutableArray *bndsLocation; // Word Boundary Locations in Float
+    NSMutableArray *bndsLocationPt;// in Index
+    
     NSMutableArray *rmsAverageAry;// RMS Average for each word
     NSMutableArray *pitchAvgAry;  // Pitch Average for each word
 }
@@ -38,7 +40,6 @@
     for (int i=strPt; i<endPt; i++) {
         avgFloat += [[temp objectAtIndex:i] floatValue];
     }
-//    NSLog(@"222 %f",avgFloat);
     
     avgFloat = avgFloat/(endPt-strPt);
     return avgFloat;
@@ -63,7 +64,7 @@
             percentage = [dur floatValue] / sumOfDuration;
             xIndex += percentage * [pitchLineArray count];
             [bndsLocation addObject:[NSNumber numberWithFloat:xIndex*stepX]];
-//            NSLog(@"444/%u", [bndsLocation count]);
+            [bndsLocationPt addObject:[NSNumber numberWithInt:xIndex]];
         }
     }
 }
@@ -168,6 +169,12 @@
 {
     [self initBoundsLocationWithPoints:1];//just don't pass 0
 
+    int idx = 0;
+    for (NSNumber *temp in bndsLocationPt) {
+        NSLog(@"444/%d[%d]", [temp intValue],idx);
+        idx++;
+    }
+
     if ([textArray count] <= 2 || [bndsLocation count] <= 1) return;
     
     for (int i = 1; i < [textArray count]; i++) {
@@ -186,7 +193,7 @@
         }
         
         if (i == 3) {// change the background color on the 3rd word
-            aLabel.backgroundColor = [UIColor blueColor];
+            aLabel.backgroundColor = [UIColor lightGrayColor];
         }
 
         if ([oneWord isEqualToString:@"<s>"] || [oneWord isEqualToString:@"</s>"]) continue;// DO NOT DISPLAY SILENCE
@@ -221,7 +228,7 @@
 //            [rmsAverageAry addObject:[NSNumber numberWithFloat:[self calculateAverageOfAry:tempRMS fromIdx:[bndsLocation[bndIdx-1] intValue] toIdx:index]]];
 //    }
 //}
-//
+
 -(void)drawGainLine {
     int index = 0;
     int previousY = 0.0;
@@ -244,7 +251,7 @@
 #pragma mark UIResponder Inherited methods
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self handleSwipeRight];
+//    [self handleSwipeRight];
 }
 
 #pragma mark -
@@ -266,6 +273,7 @@
         
         bndsLocation = [[NSMutableArray alloc] initWithCapacity:kLines];
         rmsAverageAry = [[NSMutableArray alloc] initWithCapacity:kLines];
+        bndsLocationPt = [[NSMutableArray alloc] initWithCapacity:kLines];
         
 //        UITapGestureRecognizer *tapView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight)];
 //        [self addGestureRecognizer:tapView];
@@ -284,13 +292,14 @@
     // Clean up the screen and init the line array if line goes outside the screen
     if ([lineArray count] > dynLinNum) {
         NSLog(@"Goes outside of %d points! Will Double!!", dynLinNum);
-        dynLinNum = dynLinNum * 2;
-        stepX = self.frame.size.width / dynLinNum;
+//        dynLinNum = dynLinNum * 2;
+//        stepX = self.frame.size.width / dynLinNum;
     }
     
     // ---------------------------------
     // Draw the line array for Pitch
     NSInteger pitchCnt = [self drawPitchLine];
+    NSLog(@"pitch line cnt goes %d",pitchCnt);
 
     // ---------------------------------
     // Draw the points as boundaries/Get the points of duration
@@ -320,6 +329,7 @@
     [pitchLineArray removeAllObjects];
     [boundsArray removeAllObjects];
     [bndsLocation removeAllObjects];
+    [bndsLocationPt removeAllObjects];
     [textArray removeAllObjects];
 
     // Clear all the UILabels

@@ -113,6 +113,9 @@
     [UIView animateWithDuration:0.3 animations:^{
         // show the display view
         displayView.frame = CGRectMake(0, speakView.frame.size.height - displayView.frame.size.height, displayView.frame.size.width, displayView.frame.size.height);
+        [displayView setContentSize:CGSizeMake(displayView.frame.size.width*2, displayView.frame.size.height)];
+        displayView.showsHorizontalScrollIndicator = YES;
+        displayView.bounces = YES;
         
         // "pushing" the speak view
         CALayer *layer = speakView.layer;

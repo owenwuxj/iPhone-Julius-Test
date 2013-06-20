@@ -583,6 +583,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JuliusSample_Prefix.pch;
 				INFOPLIST_FILE = "JuliusSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/JuliusSample-dkfxlwvaxsdltharyfnpfcqsertb/Build/Products/Debug-iphoneos\"",
@@ -600,6 +601,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JuliusSample_Prefix.pch;
 				INFOPLIST_FILE = "JuliusSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/JuliusSample-dkfxlwvaxsdltharyfnpfcqsertb/Build/Products/Debug-iphoneos\"",
