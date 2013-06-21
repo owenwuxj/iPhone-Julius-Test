@@ -78,12 +78,11 @@
     [displayView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and
     [displayView setNeedsDisplay];
     
-    NSLog(@"4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius) = %f", 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius));
+    NSLog(@"self.circleRadius = %f", -round((1 - self.currentRMS) * DisplayHeight/2 - 100) + 120.0f);
+    NSLog(@"self.offsetDegree = %f", -round(((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))) + 160);
     
-    speakView.circleRadius = kMinCircleRadius + 4*self.currentRMS * (kMaxCircleRadius - kMinCircleRadius);
-    speakView.offsetDegree = (((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2)) + 100) /10.0f;
-    
-    NSLog(@"speakView.offsetDegree = %f", speakView.offsetDegree);
+    speakView.circleRadius = -round((1 - self.currentRMS) * DisplayHeight/2 - 100) + 120.0f;
+    speakView.offsetDegree = -round(((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))) + 160;
 }
 
 - (void)pullAnimation {

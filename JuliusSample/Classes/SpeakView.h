@@ -13,6 +13,9 @@
 #define kMinCircleRadius 60
 #define kMaxCircleRadius 150
 
+#define kMinOffsetDegree 0.0f
+#define kMaxOffsetDegree 360.0f
+
 #define kRecordingStartNotif @"RecordingStartNotif"
 #define kRecordingEndNotif @"RecordingEndNotif"
 

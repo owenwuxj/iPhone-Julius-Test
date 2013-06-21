@@ -14,7 +14,7 @@
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define kInnerCircleBgColor RGBCOLOR(51, 144, 211)
 #define kViewBgColor RGBCOLOR(92, 183, 236)
-#define kFriction 0.3f
+#define kFriction 1.0f
 
 @implementation SpeakView
 
@@ -177,29 +177,54 @@
 
 - (void)animateCircle
 {
-    if (self.circleRadius == kMinCircleRadius){
-        self.scaleUp = YES;
-    } else if (self.circleRadius == kMaxCircleRadius){
-        self.scaleUp = NO;
+//    if (self.circleRadius == kMinCircleRadius){
+//        self.scaleUp = YES;
+//    } else if (self.circleRadius == kMaxCircleRadius){
+//        self.scaleUp = NO;
+//    }
+//    
+//    if (self.offsetDegree > 20.0f) {
+//        self.offsetDegree -= kFriction;
+//    }
+//        
+//    if (self.offsetDegree < 0.0f) {
+//        self.offsetDegree = 0.0f;
+//    }
+//    
+//    if (self.circleRadius > 60.0f) {
+//        self.circleRadius -= kFriction;
+//    }
+//        
+//    if (self.scaleUp)
+//    {
+//        self.circleRadius += 0.1;
+//    } else {
+//        self.circleRadius += kFriction;
+//        self.circleRadius -= 0.1;
+//    }
+    
+    if (self.circleRadius > kMinCircleRadius){
+        self.circleRadius -= kFriction;
     }
     
-    if (self.offsetDegree > 0.0f) {
-        self.offsetDegree -= kFriction;
+    if (self.circleRadius < kMinCircleRadius){
+        self.circleRadius = kMinCircleRadius;
     }
-        
-    if (self.offsetDegree < 0.0f) {
+    
+    if (self.circleRadius > kMaxCircleRadius){
+        self.circleRadius = kMaxCircleRadius;
+    }
+    
+    if (self.offsetDegree > 0){
+        self.offsetDegree -= 2.0f;
+    }
+    
+    if (self.offsetDegree < 0){
         self.offsetDegree = 0.0f;
     }
     
-    self.offsetDegree += 1.0f;
-    
-    if (self.scaleUp)
-    {
-        self.circleRadius -= kFriction;
-        self.circleRadius += 1;
-    } else {
-        self.circleRadius += kFriction;
-        self.circleRadius -= 1;
+    if (self.offsetDegree > kMaxOffsetDegree){
+        self.offsetDegree = kMaxOffsetDegree;
     }
     
     [self drawCircleWithRadius:circleRadius];
