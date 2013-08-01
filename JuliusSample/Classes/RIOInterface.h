@@ -9,25 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <Accelerate/Accelerate.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVFoundation.h>
-
-#import "Julius.h"
 
 #include <stdlib.h>
 
-@class JuliusSampleViewController;
-
-@interface RIOInterface : NSObject <JuliusDelegate> {
-    UIViewController *selectedViewController;
-    JuliusSampleViewController *juliusListener;
-    
+@interface RIOInterface : NSObject {
     void *dataBuffer;
 	float *outputBuffer;
-	size_t bufferCapacity;	// In samples
-	size_t index;	// In samples
+    
+	size_t bufferCapacity;	// In sample
+	size_t index;	// In sample
     
     FFTSetup fftSetup;
-	COMPLEX_SPLIT A;
+	COMPLEX_SPLIT dspSplitComplex;
     int log2n, n, nOver2;
 
     AUGraph processingGraph;
@@ -37,29 +30,16 @@
     
 	float sampleRate;
 //	float frequency;
-    
-    Julius *julius;
 }
 
-@property(nonatomic, assign) id juliusListener;
-@property(nonatomic, assign) Julius *julius;
 @property(nonatomic, assign) float sampleRate;
 
 #pragma mark Audio Session/Graph Setup
 -(void)initializeAudioSession;
 
--(void)createAUProcessingGraph;
-
--(size_t)ASBDForSoundMode;
--(void)printASBD:(AudioStreamBasicDescription)asbd;
-
 #pragma mark Listener Controls
 -(void)startListening:(id)aListener;
 -(void)stopListening;
-
-#pragma mark Generic Audio Controls
-- (void)initializeAndStartProcessingGraph;
-- (void)stopProcessingGraph;
 
 #pragma mark Singleton Methods
 + (RIOInterface *)sharedInstance;

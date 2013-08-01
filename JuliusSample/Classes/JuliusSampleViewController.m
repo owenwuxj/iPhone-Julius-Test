@@ -142,12 +142,13 @@
     self.currentFrequencyACF = newACF;
     self.currentFrequencyZCR = newZCR;
     self.currentFrequency = newFreq;
+    NSLog(@"[%f] InTotal", self.currentFrequency);
 	[self performSelectorInBackground:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil];
 }
 
 - (void)updateRMS_ZCR_ACR_Labels {
     [theView.lineArray addObject:[NSNumber numberWithFloat:(1 - self.currentRMS) * DisplayHeight/2 - 100]];// Loglize and Replace
-    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and Placement
+    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:self.currentFrequency * (DisplayHeight/2)]];// Normalize and Placement
 //    [theView.pitchLineArray addObject:[NSNumber numberWithFloat:(1 - self.currentFrequencyACF) * DisplayHeight / 100 + 150]];
 //    [theView setNeedsDisplay];
     
@@ -173,8 +174,8 @@
     [super viewDidLoad];
     
 	rioRef = [RIOInterface sharedInstance];
-    [rioRef initializeAudioSession];
     [rioRef setSampleRate:SamplingRate];
+    [rioRef initializeAudioSession];
     
     theView = [[DisplayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/4, self.view.frame.size.width, self.view.frame.size.height/4*3)];
     [self.view addSubview:theView];

@@ -8,20 +8,35 @@
 
 #import "RIOInterface.h"
 
-#import "CAStreamBasicDescription.h"
-#import "CAXException.h"
-
+//#import "CAStreamBasicDescription.h"
+//#import "CAXException.h"
 #import "JuliusSampleViewController.h"
-#import "Julius.h"
 
 #define kBufferSize 1024*2
+#define kFrameLength 5
 
 const float MIN_FREQ = 50.0f;// Human actually sounds around 80Hz, male does
-const float MAX_FREQ = 2000.0f;// Soprano could actually make 1500Hz
+const float MAX_FREQ = 4000.0f;// Soprano could actually make 1500Hz
+
+@interface RIOInterface ()
+{
+    int peakNumberAccum;
+    int frameCounter;
+}
+@property(nonatomic, assign) id juliusListener;
+
+-(void)createAUProcessingGraph;
+-(size_t)ASBDForSoundMode;
+-(void)printASBD:(AudioStreamBasicDescription)asbd;
+
+#pragma mark Generic Audio Controls
+- (void)initializeAndStartProcessingGraph;
+- (void)stopProcessingGraph;
+@end
 
 @implementation RIOInterface
 
-@synthesize juliusListener, sampleRate, julius;
+@synthesize juliusListener, sampleRate;
 
 void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t capacity);
 
@@ -77,7 +92,8 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
     
     AUGraphOpen(processingGraph);// indirectly performs audio unit instantiation
     
-    AUGraphNodeInfo(processingGraph, ioNode, nil, &ioUnit);
+    AudioComponentDescription outDescription;
+    AUGraphNodeInfo(processingGraph, ioNode, &outDescription, &ioUnit);
     
     // Initialize below.
 	AURenderCallbackStruct callbackStruct = {0};
@@ -87,22 +103,21 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
     callbackStruct.inputProcRefCon = self;
     
     err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &enableInput, sizeof(enableInput));
-    
 	err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output,0, &enableOutput, sizeof(enableOutput));
-	
 	err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Input,0, &callbackStruct, sizeof(callbackStruct));
-    
     err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &streamFormat, sizeof(streamFormat));
-    
     err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &streamFormat, sizeof(streamFormat));
+    
+    if (err) {
+        NSLog(@"%s:%ld",__FUNCTION__, err);
+    }
 }
 
 // Set the AudioStreamBasicDescription for listening to audio data. Set the
 // stream member var here as well.
 - (size_t)ASBDForSoundMode {
 	AudioStreamBasicDescription asbd = {0};
-	size_t bytesPerSample;
-	bytesPerSample = sizeof(SInt16);
+	size_t bytesPerSample = sizeof(SInt16);
 	asbd.mFormatID = kAudioFormatLinearPCM;
 	asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
 	asbd.mBitsPerChannel = 8 * bytesPerSample;
@@ -110,7 +125,7 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 	asbd.mChannelsPerFrame = 1;
 	asbd.mBytesPerPacket = bytesPerSample * asbd.mFramesPerPacket;
 	asbd.mBytesPerFrame = bytesPerSample * asbd.mChannelsPerFrame;
-	asbd.mSampleRate = sampleRate;
+	asbd.mSampleRate = self.sampleRate;
 	
 	streamFormat = asbd;
 	[self printASBD:streamFormat];
@@ -142,6 +157,9 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 	self.juliusListener = aListener;
 	[self createAUProcessingGraph];
 	[self initializeAndStartProcessingGraph];
+    
+    peakNumberAccum = 0;
+    frameCounter = 0;
 }
 
 -(void)stopListening{
@@ -154,13 +172,8 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
     if (result >= 0) {
         AUGraphStart(processingGraph);
     } else {
-		XThrow(result, "error initializing processing graph");
+//		XThrow(result, "error initializing processing graph");
     }
-    
-//    if (!julius) {
-//        self.julius = [Julius new];
-//        julius.delegate = self;
-//    }
 }
 
 - (void)stopProcessingGraph{
@@ -172,6 +185,7 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 	OSStatus err;
 	
 	size_t bytesPerSample = sizeof(float);
+    
 	AudioStreamBasicDescription outFormat = {0};
 	outFormat.mFormatID = kAudioFormatLinearPCM;
 	outFormat.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked;
@@ -183,27 +197,33 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 	outFormat.mSampleRate = THIS->sampleRate;
 	
 	const AudioStreamBasicDescription inFormat = THIS->streamFormat;
-	
+	err = AudioConverterNew(&inFormat, &outFormat, &converter);
+
 	UInt32 inSize = capacity*sizeof(SInt16);
 	UInt32 outSize = capacity*sizeof(float);
-	err = AudioConverterNew(&inFormat, &outFormat, &converter);
 	err = AudioConverterConvertBuffer(converter, inSize, buf, &outSize, outputBuf);
+
+    if (err) {
+        NSLog(@"%s:%ld",__FUNCTION__, err);
+    }
 }
 
 /* Setup our FFT */
 - (void)realFFTSetup {
 	UInt32 maxFrames = 2048;
+    
 	dataBuffer = (void*)malloc(maxFrames * sizeof(SInt16));
 	outputBuffer = (float*)malloc(maxFrames *sizeof(float));
+    
 	log2n = log2f(maxFrames);
 	n = 1 << log2n;
-//    NSLog(@"n is %i",n);
+    NSLog(@"log2n is %i, n is %i",log2n,n);
 	assert(n == maxFrames);
 	nOver2 = maxFrames/2;
 	bufferCapacity = maxFrames;
 	index = 0;
-	A.realp = (float *)malloc(nOver2 * sizeof(float));
-	A.imagp = (float *)malloc(nOver2 * sizeof(float));
+	dspSplitComplex.realp = (float *)malloc(nOver2 * sizeof(float));
+	dspSplitComplex.imagp = (float *)malloc(nOver2 * sizeof(float));
 	fftSetup = vDSP_create_fftsetup(log2n, FFT_RADIX2);
 }
 
@@ -217,7 +237,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
                             AudioBufferList				*ioData)
 {
 	RIOInterface* THIS = (RIOInterface *)inRefCon;
-	COMPLEX_SPLIT A = THIS->A;
+	COMPLEX_SPLIT dspSplitComplex = THIS->dspSplitComplex;
 	FFTSetup fftSetup = THIS->fftSetup;
 
     void *dataBuffer = THIS->dataBuffer;
@@ -261,16 +281,22 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         float *hann = (float*)malloc(sizeof(float)*bufferCapacity);
         vDSP_hann_window(hann, bufferCapacity, vDSP_HANN_NORM);
 
+        
         /******RMS or ZCR or ACF*****/
         //RMS
         float sum = 0.0;
 //        float sum4i,sum4ACFinal = 0.0;
         
-        for (int i=0; i<n; i++) {
+        float avgFloat = .0;
+        for (int i=0; i<bufferCapacity; i++) {
             sum = sum + outputBuffer[i]*outputBuffer[i]*hann[i];
+//            NSLog(@"outputBuffer[%d]:%f", i, outputBuffer[i]);
+            avgFloat += outputBuffer[i];
         }
-        float rmsOfThisFrame = sqrtf(sum/n);
-    
+        float rmsOfThisFrame = sqrtf(sum/bufferCapacity);
+//        NSLog(@"rmsOfThisFrame:%f", avgFloat);
+        
+        
 		/*************** FFT ***************/
         // Only a rectangle windowing/framing, no overlapping and pick the highest peak??!
 		// We want to deal with only floating point values here.
@@ -280,20 +306,49 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 		 Then call the transformation function vDSP_ctoz to get a split complex
 		 vector, which for a real signal, divides into an even-odd configuration.
 		 */
-		vDSP_ctoz((COMPLEX*)outputBuffer, 2, &A, 1, nOver2);
+		vDSP_ctoz((COMPLEX*)outputBuffer, 2, &dspSplitComplex, 1, nOver2);
 		
 		// Carry out a Forward FFT transform.
-		vDSP_fft_zrip(fftSetup, &A, stride, log2n, FFT_FORWARD);
+		vDSP_fft_zrip(fftSetup, &dspSplitComplex, stride, log2n, FFT_FORWARD);
 		
 		// The output signal is now in a split real form. Use the vDSP_ztoc to get
 		// a split real vector.
-		vDSP_ztoc(&A, 1, (COMPLEX *)outputBuffer, 2, nOver2);
-		
+		vDSP_ztoc(&dspSplitComplex, 1, (COMPLEX *)outputBuffer, 2, nOver2);
         
+        // find the Max
+        float theMax = .0;
+        for (int idx = 0; idx < bufferCapacity; idx++) {
+            if (outputBuffer[idx] > theMax) {
+                theMax = outputBuffer[idx];
+            }
+        }
+        
+        // Quantify and threshold
+        NSMutableArray *quantifyArray = [[NSMutableArray alloc] initWithCapacity:bufferCapacity];
+        for (int idx = 0; idx < bufferCapacity; idx++) {
+            if (outputBuffer[idx] > theMax * .3) {
+                [quantifyArray addObject:[NSNumber numberWithInt:10]];
+            }
+            else {
+                [quantifyArray addObject:[NSNumber numberWithInt:0]];
+            }
+        }
+        
+        // How many peaks?
+        int peakNumberPerFrame = 0;
+        if (rmsOfThisFrame > .1) {
+            for (int i=0; i < bufferCapacity - 1; i++) {
+                if ([[quantifyArray objectAtIndex:i+1] intValue]-[[quantifyArray objectAtIndex:i] intValue] > 5) {
+                    peakNumberPerFrame++;
+                }
+            }
+            THIS->frameCounter++;
+        }
+        THIS->peakNumberAccum += peakNumberPerFrame;
+//        NSLog(@"[%d] InTotal", peakNumberPerFrame, THIS->peakNumberAccum);
+        
+/*
         // Apply Cutoff
-        int bin = 0;
-        float max = outputBuffer[0];
-        
         int startBin = (int) (MIN_FREQ * n * 2 / THIS->sampleRate) - 1;
         if (startBin < 1)
             startBin = 1;  // we've already looked at bin 0
@@ -302,8 +357,10 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         if (endBin > n)
             endBin = n;
         
-        //        NSLog(@"Start:%d / End:%d",startBin, endBin);
+//        NSLog(@"Start:%d / End:%d",startBin, endBin);
         
+        int bin = 0;
+        float max = outputBuffer[0];
         for (int i = startBin; i < endBin; i++)
         {
             if (outputBuffer[i] > max)
@@ -320,13 +377,64 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         
         // Check Again: Noise Amplitude
         if (max < 20) bin = 0;
+*/
+
+        
+		/*************** ZCR ***************/
+        //        avgFloat = avgFloat/bufferCapacity;
+//        NSMutableArray *sampleArray = [NSMutableArray array];
+//        for (UInt16 idx = 0; idx < bufferCapacity; idx++) {
+//            [sampleArray addObject:[NSNumber numberWithFloat:outputBuffer[idx]]];
+//        }
+//        
+//        // Init the sign
+//        int theSign = 0;
+//        if (sampleArray[0] < 0) {
+//            theSign = -1;
+//        } else {
+//            theSign = 1;
+//        }
+//        
+//        // Step through the frame
+//        NSMutableArray *zc = [[NSMutableArray alloc] initWithCapacity:bufferCapacity];
+//        for (UInt16 idx = 1; idx < bufferCapacity; idx++) {
+//            if (theSign < 0) {
+//                if ([sampleArray[idx] floatValue] >= 0) {
+//                    // zero crossing occured from - to +
+//                    theSign = 1;
+//                    [zc addObject:[NSNumber numberWithInt:idx]];
+//                }
+//            }
+//            else {
+//                if ([sampleArray[idx] floatValue] < 0) {
+//                    //zero crossing occured from + to -
+//                    theSign = -1;
+//                    [zc addObject:[NSNumber numberWithInt:idx]];
+//                }
+//            }
+//        }
+//        
+//        //compute zcr, we need to compute distance between each sample(number) first
+//        float zcr = .0;
+//        NSLog(@"Zero Crossing Count is %d",[zc count]);
+//        for (UInt16 idx = 0; idx < [zc count]; idx++) {
+//            int temp = [zc[idx+1] intValue] - [zc[idx] intValue];
+//            zcr = zcr + (float)temp;
+//            NSLog(@"ZCR @%d is %f", idx, zcr);
+//        }
+//        NSLog(@"ZCR2 is %f",zcr);
+//        zcr = zcr/(float)[zc count];
 
 		memset(outputBuffer, 0, n*sizeof(SInt16));
 
-//        NSLog(@"rmsOfThisFrame:%f",rmsOfThisFrame);
 //        [THIS->julius recognizeRawFileAtPath:(NSString *)dataBuffer];
-        if (THIS->juliusListener && [THIS->juliusListener respondsToSelector:@selector(frequencyChangedWithRMS:withACF:andZCR:withFreq:)]) {
-            [THIS->juliusListener frequencyChangedWithRMS:rmsOfThisFrame withACF:nil andZCR:nil withFreq:bin*(THIS->sampleRate/bufferCapacity/2)];
+//        NSLog(@"123::%d/%d/%d", peakNumberPerFrame, THIS->peakNumberAccum, THIS->frameCounter);
+        if ((peakNumberPerFrame == 0 && THIS->peakNumberAccum > 0)|| (THIS->peakNumberAccum > 0 && THIS->frameCounter >= kFrameLength)) {
+            if (THIS->juliusListener && [THIS->juliusListener respondsToSelector:@selector(frequencyChangedWithRMS:withACF:andZCR:withFreq:)]) {
+                [THIS->juliusListener frequencyChangedWithRMS:rmsOfThisFrame withACF:nil andZCR:nil withFreq:(float)THIS->peakNumberAccum];
+            }
+            THIS->peakNumberAccum = 0;
+            THIS->frameCounter = 0;
         }
     }
 
@@ -336,12 +444,11 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 #pragma mark -
 #pragma mark Julius delegate
 
-- (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+//- (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
 //	[HUD hide:YES];
-    
 	// Show results.
 //	textView.text = [results componentsJoinedByString:@""];
-}
+//}
 
 // *************** Singleton *********************
 

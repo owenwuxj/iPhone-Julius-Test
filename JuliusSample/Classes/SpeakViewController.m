@@ -59,6 +59,7 @@
     self.currentFrequencyZCR = newZCR;
     self.currentFrequency = newFreq;
     
+    NSLog(@"[%f] InTotal/ZCR:%f", self.currentFrequency, self.currentFrequencyZCR);
 //    if (modNumber == MODNUMBER) {
         [self performSelectorInBackground:@selector(updateRMS_ZCR_ACR_Labels) withObject:nil];
 //        modNumber--;
@@ -78,8 +79,8 @@
     [displayView.pitchLineArray addObject:[NSNumber numberWithFloat:((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))]];// Normalize and
     [displayView setNeedsDisplay];
     
-    NSLog(@"self.circleRadius = %f", -round((1 - self.currentRMS) * DisplayHeight/2 - 100) + 120.0f);
-    NSLog(@"self.offsetDegree = %f", -round(((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))) + 160);
+//    NSLog(@"self.circleRadius = %f", -round((1 - self.currentRMS) * DisplayHeight/2 - 100) + 120.0f);
+//    NSLog(@"self.offsetDegree = %f", -round(((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))) + 160);
     
     speakView.circleRadius = -round((1 - self.currentRMS) * DisplayHeight/2 - 100) + 120.0f;
     speakView.offsetDegree = -round(((1 - self.currentFrequency/(rioRef.sampleRate/2))* (DisplayHeight/2))) + 160;
@@ -245,8 +246,8 @@
 //        [speakView setNeedsDisplay];
 
         rioRef = [RIOInterface sharedInstance];
-        [rioRef initializeAudioSession];
         [rioRef setSampleRate:SamplingRate];
+        [rioRef initializeAudioSession];
         
         modNumber = MODNUMBER;//used for downsampling
     }

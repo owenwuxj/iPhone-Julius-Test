@@ -251,7 +251,15 @@
 #pragma mark UIResponder Inherited methods
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    [self handleSwipeRight];
+    NSLog(@"%s",__FUNCTION__);
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self setNeedsDisplay];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"%s",__FUNCTION__);
 }
 
 #pragma mark -
@@ -289,9 +297,9 @@
     context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 1.0);
     
-    // Clean up the screen and init the line array if line goes outside the screen
+    // Zooming out and init the line array if line goes outside the screen
     if ([lineArray count] > dynLinNum) {
-        NSLog(@"Goes outside of %d points! Will Double!!", dynLinNum);
+//        NSLog(@"Goes outside of %d points! Will Double!!", dynLinNum);
 //        dynLinNum = dynLinNum * 2;
 //        stepX = self.frame.size.width / dynLinNum;
     }
@@ -299,7 +307,7 @@
     // ---------------------------------
     // Draw the line array for Pitch
     NSInteger pitchCnt = [self drawPitchLine];
-    NSLog(@"pitch line cnt goes %d",pitchCnt);
+//    NSLog(@"pitch line cnt goes %d",pitchCnt);
 
     // ---------------------------------
     // Draw the points as boundaries/Get the points of duration

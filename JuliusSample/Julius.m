@@ -24,7 +24,7 @@ static void output_result(Recog *recog_, void *data) {
 	WORD_ID *seq;
     
 	int seqnum;
-	int n,i,j;
+	int n,i;//,j;
     
 	Sentence *s;
 	RecogProcess *r;
