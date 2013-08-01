@@ -7,13 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		130F837512E33E9000488D19 /* fast.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 130F837412E33E9000488D19 /* fast.jconf */; };
 		131BA4A9176184EF0033530B /* libjulius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 134018F01760A21A0047EC60 /* libjulius.a */; };
-		131BA4E31761ADAE0033530B /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4DE1761ADAE0033530B /* test.dfa */; };
-		131BA4E41761ADAE0033530B /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4DF1761ADAE0033530B /* test.dict */; };
-		131BA4E51761ADAE0033530B /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4E01761ADAE0033530B /* test.grammar */; };
-		131BA4E71761ADAE0033530B /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 131BA4E21761ADAE0033530B /* test.voca */; };
-		131BA5921761E4D60033530B /* langmodel.zip in Resources */ = {isa = PBXBuildFile; fileRef = 131BA5911761E4D60033530B /* langmodel.zip */; };
 		131BA5AA1762DB720033530B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131BA5A91762DB720033530B /* QuartzCore.framework */; };
 		131E74321769C10E00457C90 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131E74311769C10E00457C90 /* CoreText.framework */; };
 		134018CB1760A14B0047EC60 /* hmmdefs in Resources */ = {isa = PBXBuildFile; fileRef = 134018C91760A14B0047EC60 /* hmmdefs */; };
@@ -65,6 +59,21 @@
 		135CA15717AA454F008F962C /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 135CA12A17AA454F008F962C /* utils.c */; };
 		135CA15817AA454F008F962C /* vecutils.c in Sources */ = {isa = PBXBuildFile; fileRef = 135CA12C17AA454F008F962C /* vecutils.c */; };
 		135CA15A17AA47DC008F962C /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 135CA15917AA47DC008F962C /* README.textile */; };
+		135CA17D17AA701C008F962C /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17917AA701C008F962C /* test.dfa */; };
+		135CA17E17AA701C008F962C /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17A17AA701C008F962C /* test.dict */; };
+		135CA17F17AA701C008F962C /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17B17AA701C008F962C /* test.grammar */; };
+		135CA18017AA701C008F962C /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17C17AA701C008F962C /* test.voca */; };
+		135CA18D17AA702F008F962C /* cmu07a.dic in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18217AA702F008F962C /* cmu07a.dic */; };
+		135CA18E17AA702F008F962C /* gson-2.2.4.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA18317AA702F008F962C /* gson-2.2.4.jar */; };
+		135CA18F17AA702F008F962C /* input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18417AA702F008F962C /* input.txt */; };
+		135CA19017AA702F008F962C /* JuliusTool.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA18517AA702F008F962C /* JuliusTool.jar */; };
+		135CA19117AA702F008F962C /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18617AA702F008F962C /* README.rtf */; };
+		135CA19217AA702F008F962C /* run.sh in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18717AA702F008F962C /* run.sh */; };
+		135CA19317AA702F008F962C /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18817AA702F008F962C /* test.dfa */; };
+		135CA19417AA702F008F962C /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18917AA702F008F962C /* test.dict */; };
+		135CA19517AA702F008F962C /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18A17AA702F008F962C /* test.grammar */; };
+		135CA19617AA702F008F962C /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18B17AA702F008F962C /* test.term */; };
+		135CA19717AA702F008F962C /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18C17AA702F008F962C /* test.voca */; };
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
 		13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7B9E9174F347200E832F3 /* Accelerate.framework */; };
@@ -97,12 +106,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		130F837412E33E9000488D19 /* fast.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fast.jconf; sourceTree = "<group>"; };
-		131BA4DE1761ADAE0033530B /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.dfa; path = ../test.dfa; sourceTree = "<group>"; };
-		131BA4DF1761ADAE0033530B /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; name = test.dict; path = ../test.dict; sourceTree = "<group>"; };
-		131BA4E01761ADAE0033530B /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.grammar; path = ../test.grammar; sourceTree = "<group>"; };
-		131BA4E21761ADAE0033530B /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.voca; path = ../test.voca; sourceTree = "<group>"; };
-		131BA5911761E4D60033530B /* langmodel.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = langmodel.zip; sourceTree = "<group>"; };
 		131BA5A91762DB720033530B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		131E74311769C10E00457C90 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		134018C91760A14B0047EC60 /* hmmdefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hmmdefs; path = model/hmmdefs; sourceTree = SOURCE_ROOT; };
@@ -201,6 +204,21 @@
 		135CA12C17AA454F008F962C /* vecutils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vecutils.c; sourceTree = "<group>"; };
 		135CA12D17AA454F008F962C /* vecutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vecutils.h; sourceTree = "<group>"; };
 		135CA15917AA47DC008F962C /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.textile; path = ../README.textile; sourceTree = "<group>"; };
+		135CA17917AA701C008F962C /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
+		135CA17A17AA701C008F962C /* test.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = test.dict; sourceTree = "<group>"; };
+		135CA17B17AA701C008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
+		135CA17C17AA701C008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
+		135CA18217AA702F008F962C /* cmu07a.dic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmu07a.dic; sourceTree = "<group>"; };
+		135CA18317AA702F008F962C /* gson-2.2.4.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "gson-2.2.4.jar"; sourceTree = "<group>"; };
+		135CA18417AA702F008F962C /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		135CA18517AA702F008F962C /* JuliusTool.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = JuliusTool.jar; sourceTree = "<group>"; };
+		135CA18617AA702F008F962C /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
+		135CA18717AA702F008F962C /* run.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
+		135CA18817AA702F008F962C /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
+		135CA18917AA702F008F962C /* test.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = test.dict; sourceTree = "<group>"; };
+		135CA18A17AA702F008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
+		135CA18B17AA702F008F962C /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
+		135CA18C17AA702F008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
 		13684FCA12E0AC0D00FBF870 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13684FEA12E0AC9900FBF870 /* light.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.jconf; sourceTree = "<group>"; };
 		13A7B9E9174F347200E832F3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -247,6 +265,8 @@
 				131BA4A9176184EF0033530B /* libjulius.a in Frameworks */,
 				13C5372212E1F9FB0071E4ED /* AVFoundation.framework in Frameworks */,
 				13C5372912E1FA070071E4ED /* CoreAudio.framework in Frameworks */,
+				135CA18E17AA702F008F962C /* gson-2.2.4.jar in Frameworks */,
+				135CA19017AA702F008F962C /* JuliusTool.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +460,24 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		135CA18117AA702F008F962C /* JuliusTool */ = {
+			isa = PBXGroup;
+			children = (
+				135CA18217AA702F008F962C /* cmu07a.dic */,
+				135CA18317AA702F008F962C /* gson-2.2.4.jar */,
+				135CA18417AA702F008F962C /* input.txt */,
+				135CA18517AA702F008F962C /* JuliusTool.jar */,
+				135CA18617AA702F008F962C /* README.rtf */,
+				135CA18717AA702F008F962C /* run.sh */,
+				135CA18817AA702F008F962C /* test.dfa */,
+				135CA18917AA702F008F962C /* test.dict */,
+				135CA18A17AA702F008F962C /* test.grammar */,
+				135CA18B17AA702F008F962C /* test.term */,
+				135CA18C17AA702F008F962C /* test.voca */,
+			);
+			path = JuliusTool;
+			sourceTree = "<group>";
+		};
 		13684FAD12E0ABD500FBF870 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,11 +516,10 @@
 		13684FDC12E0AC5A00FBF870 /* lang_m */ = {
 			isa = PBXGroup;
 			children = (
-				131BA5911761E4D60033530B /* langmodel.zip */,
-				131BA4DE1761ADAE0033530B /* test.dfa */,
-				131BA4DF1761ADAE0033530B /* test.dict */,
-				131BA4E01761ADAE0033530B /* test.grammar */,
-				131BA4E21761ADAE0033530B /* test.voca */,
+				135CA17917AA701C008F962C /* test.dfa */,
+				135CA17A17AA701C008F962C /* test.dict */,
+				135CA17B17AA701C008F962C /* test.grammar */,
+				135CA17C17AA701C008F962C /* test.voca */,
 			);
 			path = lang_m;
 			sourceTree = "<group>";
@@ -569,7 +606,7 @@
 				8D1107310486CEB800E47090 /* JuliusSample-Info.plist */,
 				4510C2AC1755ED6900C697AE /* test.jconf */,
 				13684FEA12E0AC9900FBF870 /* light.jconf */,
-				130F837412E33E9000488D19 /* fast.jconf */,
+				135CA18117AA702F008F962C /* JuliusTool */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -670,21 +707,28 @@
 			files = (
 				13684FEB12E0AC9900FBF870 /* light.jconf in Resources */,
 				13C537A912E1FFEA0071E4ED /* README.mdown in Resources */,
-				130F837512E33E9000488D19 /* fast.jconf in Resources */,
 				4510C2AD1755ED6900C697AE /* test.jconf in Resources */,
 				134018CB1760A14B0047EC60 /* hmmdefs in Resources */,
 				134018CC1760A14B0047EC60 /* tiedlist in Resources */,
-				131BA4E31761ADAE0033530B /* test.dfa in Resources */,
-				131BA4E41761ADAE0033530B /* test.dict in Resources */,
-				131BA4E51761ADAE0033530B /* test.grammar in Resources */,
-				131BA4E71761ADAE0033530B /* test.voca in Resources */,
-				131BA5921761E4D60033530B /* langmodel.zip in Resources */,
 				45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */,
 				45F2B350176416D400500BA4 /* speak.jpg in Resources */,
 				1344A4081769E86400BD73F9 /* MainWindow.xib in Resources */,
 				1344A4091769E86400BD73F9 /* JuliusSampleViewController.xib in Resources */,
 				4561EA5117719ED200EE391B /* rotate.png in Resources */,
 				135CA15A17AA47DC008F962C /* README.textile in Resources */,
+				135CA17D17AA701C008F962C /* test.dfa in Resources */,
+				135CA17E17AA701C008F962C /* test.dict in Resources */,
+				135CA17F17AA701C008F962C /* test.grammar in Resources */,
+				135CA18017AA701C008F962C /* test.voca in Resources */,
+				135CA18D17AA702F008F962C /* cmu07a.dic in Resources */,
+				135CA18F17AA702F008F962C /* input.txt in Resources */,
+				135CA19117AA702F008F962C /* README.rtf in Resources */,
+				135CA19217AA702F008F962C /* run.sh in Resources */,
+				135CA19317AA702F008F962C /* test.dfa in Resources */,
+				135CA19417AA702F008F962C /* test.dict in Resources */,
+				135CA19517AA702F008F962C /* test.grammar in Resources */,
+				135CA19617AA702F008F962C /* test.term in Resources */,
+				135CA19717AA702F008F962C /* test.voca in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

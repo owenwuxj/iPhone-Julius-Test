@@ -24,7 +24,6 @@ aubio_pitch_t *pitchObject;
 fvec_t *pitch;
 
 float floatFreq;
-//float *pitchArray[];
 
 @interface MyAudioManager ()
 {
@@ -42,6 +41,7 @@ float floatFreq;
     AVAudioPlayer *player;
 
 	Julius *julius;
+    float *pitchArray;
 }
 
 @property(nonatomic, assign) id theListener;
