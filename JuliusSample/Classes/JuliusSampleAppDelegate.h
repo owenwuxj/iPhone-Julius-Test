@@ -10,12 +10,16 @@
 
 static NSString *kPrivateAppDir = @"PrivateDocuments";
 
-@interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate> {
+#import "MyAudioManager.h"
+
+@interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate, juliusManagerDelegate, aubioManagerDelegate> {
     UIWindow *window;
 }
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UITextView *resultText;
 
 -(NSString *)applicationLibraryPrivateDocument;
+
 @end
 

@@ -75,21 +75,18 @@ uint_t aubio_source_apple_audio_open (aubio_source_apple_audio_t *s, char_t * pa
   OSStatus err = noErr;
   UInt32 propSize;
 
-/*
   s->path = path;
     
   // open the resource url
   CFURLRef fileURL = getURLFromPath(path);
   err = ExtAudioFileOpenURL(fileURL, &s->audioFile);
   if (err) { AUBIO_ERR("error when trying to access %s, in ExtAudioFileOpenURL, %d\n", s->path, (int)err); goto beach;}
-*/
 
   // create an empty AudioStreamBasicDescription
   AudioStreamBasicDescription fileFormat;
   propSize = sizeof(fileFormat);
   memset(&fileFormat, 0, sizeof(AudioStreamBasicDescription));
 
-/*
   // fill it with the file description
   err = ExtAudioFileGetProperty(s->audioFile,
       kExtAudioFileProperty_FileDataFormat, &propSize, &fileFormat);
@@ -97,9 +94,8 @@ uint_t aubio_source_apple_audio_open (aubio_source_apple_audio_t *s, char_t * pa
 
   if (s->samplerate == 0) {
     s->samplerate = fileFormat.mSampleRate;
-    //AUBIO_DBG("sampling rate set to 0, automagically adjusting to %d\n", samplerate);
+//    AUBIO_DBG("sampling rate set to 0, automagically adjusting to %d\n", samplerate);
   }
-*/
 
   s->source_samplerate = fileFormat.mSampleRate;
   s->channels = fileFormat.mChannelsPerFrame;
@@ -117,7 +113,6 @@ uint_t aubio_source_apple_audio_open (aubio_source_apple_audio_t *s, char_t * pa
   clientFormat.mBytesPerPacket   = clientFormat.mFramesPerPacket * clientFormat.mBytesPerFrame;
   clientFormat.mReserved         = 0;
 
-/*
   // set the client format description
   err = ExtAudioFileSetProperty(s->audioFile, kExtAudioFileProperty_ClientDataFormat,
       propSize, &clientFormat);
@@ -142,7 +137,6 @@ uint_t aubio_source_apple_audio_open (aubio_source_apple_audio_t *s, char_t * pa
 #endif
       goto beach;
   }
-*/
     
   smpl_t ratio = s->source_samplerate * 1. / s->samplerate;
   if (ratio < 1.) {

@@ -1,5 +1,4 @@
 -input rawfile
--smpFreq 16000
 
 -h hmmdefs
 -hlist tiedlist

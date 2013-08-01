@@ -12,7 +12,6 @@
 
 #define kBufferSize 512
 #define kBufferSizeInFloat 512.0
-#define kMaxDuration 600.0 // In sec
 #define kMinTimeout 2.0    // In sec
 
 #define kSamplingRate 16000
@@ -25,6 +24,7 @@ aubio_pitch_t *pitchObject;
 fvec_t *pitch;
 
 float floatFreq;
+//float *pitchArray[];
 
 @interface MyAudioManager ()
 {
@@ -40,6 +40,8 @@ float floatFreq;
 
     AVAudioRecorder *recorder;
     AVAudioPlayer *player;
+
+	Julius *julius;
 }
 
 @property(nonatomic, assign) id theListener;
@@ -52,6 +54,7 @@ float floatFreq;
 #pragma mark Generic Audio Controls
 - (void)initializeAndStartProcessingGraph;
 - (void)stopProcessingGraph;
+- (NSURL *)fileUrlInDocFolderWithFileName:(NSString *)inputFileName;
 
 void ConvertInt16ToFloat(MyAudioManager* THIS, void *buf, float *outputBuf, size_t capacity);
 
@@ -60,14 +63,11 @@ void ConvertInt16ToFloat(MyAudioManager* THIS, void *buf, float *outputBuf, size
 @implementation MyAudioManager
 
 @synthesize theListener;
-//@synthesize theRecorder;
+@synthesize aubioORjulius, isRealTime;
+@synthesize delegateAubio, delegateJulius;
 
 unsigned int posInFrame = 0; /*frames%dspblocksize*/
 int framesRIO = 0;
-
-/* pitch objects */
-aubio_pitch_t *pitchObject;
-fvec_t *pitch;
 
 #pragma mark -
 #pragma mark Aubio Callback Methods
@@ -114,10 +114,10 @@ static void process_print (void) {
     smpl_t pitch_found = fvec_read_sample(pitch, 0);
     outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
     
-    //    smpl_t onset_found = fvec_read_sample (onset, 0);
-    //    if (onset_found) {
-    //        outmsg ("Onset:%f\n", aubio_onset_get_last_s (onsetObject) );
-    //    }
+//    smpl_t onset_found = fvec_read_sample (onset, 0);
+//    if (onset_found) {
+//        outmsg ("Onset:%f\n", aubio_onset_get_last_s (onsetObject) );
+//    }
 }
 
 #pragma mark Audio Session/Graph Setup
@@ -131,7 +131,9 @@ static void process_print (void) {
     [session setActive:YES error:&err];
 //    sampleRate = [session preferredSampleRate];
     
-    [self realFFTSetup];
+    if (isRealTime) {
+        [self realFFTSetup];
+    }
 }
 
 #pragma mark Listener Controls
@@ -453,6 +455,8 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     NSString *path = [NSString stringWithFormat:@"%@",[theRecorder.url relativePath]];
     char *temp = (char *)[path UTF8String];
     
+    NSLog(@"filePath is %@",path);
+    
     //    examples_common_init(argc,&temp);
     debug ("Opening files ...\n");
     that_source = new_aubio_source ((char_t *)temp, 0, overlap_size);
@@ -501,14 +505,38 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     //    del_aubio_onset(onsetObject);
     //    del_fvec(onset);
     
+    if (self.delegateAubio) {
+        [self.delegateAubio aubioCallBackResult:nil];
+    }
+    
     examples_common_del();
     debug("End of program.\n");
     fflush(stderr);
 }
 
+-(void)jMethod:(AVAudioRecorder *)theRecorder{
+	if (!julius) {
+		julius = [Julius new];
+		julius.delegate = self;
+	}
+    else {// Owen 20130607: Init Julius every time starting recognition
+        julius = nil;
+        julius = [Julius new];
+        julius.delegate = self;
+    }
+    
+    NSLog(@"filePath is %@",[theRecorder.url relativePath]);
+	[julius recognizeRawFileAtPath:[theRecorder.url relativePath]];
+}
+
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)theRecorder successfully:(BOOL)flag
 {
-    [self aMethod:theRecorder];
+    if (aubioORjulius == LIBAUBIO) {
+        [self aMethod:theRecorder];
+    }
+    else if (aubioORjulius == LIBJULIUS) {
+        [self performSelectorInBackground:@selector(jMethod:) withObject:theRecorder];
+    }
 }
 
 - (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
@@ -523,6 +551,16 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 #ifdef DEBUG
     NSLog(@"%s",__FUNCTION__);
 #endif
+}
+
+#pragma mark -
+#pragma mark Julius delegate
+
+- (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+    NSLog(@"Show Results: %@ /n has %d bounds",[results componentsJoinedByString:@""], [boundsAry count]);    
+    if (self.delegateJulius) {
+        [self.delegateJulius juliusCallBackResult:results withBounds:boundsAry];
+    }
 }
 
 // *************** Singleton *********************
@@ -595,7 +633,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     // Settings for AVAAudioRecorder.
 	NSDictionary *recordSetting = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSNumber numberWithUnsignedInt:kAudioFormatLinearPCM], AVFormatIDKey,
-                                   [NSNumber numberWithFloat:kSamplingRate], AVSampleRateKey,
+                                   [NSNumber numberWithFloat:samplerate], AVSampleRateKey,
                                    [NSNumber numberWithUnsignedInt:1], AVNumberOfChannelsKey,
                                    [NSNumber numberWithUnsignedInt:16], AVLinearPCMBitDepthKey,
                                    [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,

@@ -8,13 +8,13 @@
 
 #import "JuliusSampleAppDelegate.h"
 
-#import "MyAudioManager.h"
+#define kSamplingRate 16000.0 // In Hz
 
-#define kSamplingRate 16000 // In Hz
+#define GET_PITCH 0
 
 @implementation JuliusSampleAppDelegate
 
-@synthesize window;
+@synthesize window, resultText;
 
 // Get the /Library/PrivateDocuments folder, create one if no.
 -(NSString *)applicationLibraryPrivateDocument{
@@ -42,11 +42,26 @@
 //    [rioRef setSampleRate:16000];
 //    [rioRef startListening:viewController];
         
-    // Init and start the real-time audio
-    [[MyAudioManager sharedInstance] initializeAudioSession];
+    // Init and start the non real-time audio
     [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
-    [[MyAudioManager sharedInstance] startListening:self];
+    [[MyAudioManager sharedInstance] initializeAudioSession];
 
+    if (GET_PITCH) {
+        [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
+        [[MyAudioManager sharedInstance] setDelegateAubio:self];
+        [[MyAudioManager sharedInstance] setIsRealTime:NO];
+        [[MyAudioManager sharedInstance] getRecorder];
+//    [[MyAudioManager sharedInstance] isRealTime] = YES;
+//    [[MyAudioManager sharedInstance] startListening:self]; real time YES
+    } else {
+        [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
+        [[MyAudioManager sharedInstance] setDelegateJulius:self];
+        [[MyAudioManager sharedInstance] setIsRealTime:NO];
+        [[[MyAudioManager sharedInstance] getRecorder] record];
+//    [[MyAudioManager sharedInstance] isRealTime] = YES;
+//    [[MyAudioManager sharedInstance] startListening:self]; if real time YES
+    }
+    
     // Add the view controller's view to the window and display.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -102,7 +117,18 @@
      */
 }
 
+//juliusManagerDelegate
+- (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+    for (NSString *temp in results) {
+        NSLog(@"In results:%@",temp);
+    }
+    for (NSNumber *aNum in boundsAry) {
+        NSLog(@"In boundsAry:%d", [aNum intValue]);
+    }
+}
 
-
+//aubioManagerDelegate
+- (void)aubioCallBackResult:(NSArray *)results{
+}
 
 @end
