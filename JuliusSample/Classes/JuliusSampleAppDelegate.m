@@ -8,15 +8,13 @@
 
 #import "JuliusSampleAppDelegate.h"
 
-#import "JuliusSampleViewController.h"
-#import "SpeakViewController.h"
+#import "MyAudioManager.h"
 
-#import "RIOInterface.h"
+#define kSamplingRate 16000 // In Hz
 
 @implementation JuliusSampleAppDelegate
 
 @synthesize window;
-@synthesize viewController;
 
 // Get the /Library/PrivateDocuments folder, create one if no.
 -(NSString *)applicationLibraryPrivateDocument{
@@ -43,19 +41,14 @@
 //    [rioRef initializeAudioSession];
 //    [rioRef setSampleRate:16000];
 //    [rioRef startListening:viewController];
-    
-    NSString *thePath = [self applicationLibraryPrivateDocument];
-    BOOL unzipSuccess = [SSZipArchive unzipFileAtPath:[thePath stringByAppendingString:@"/langmodel.zip"]
-                                        toDestination:thePath
-                                             delegate:self];
-    
-    if (unzipSuccess) {
-        NSLog(@"UNZIP SUCCEED.");
-    }
-    
-    SpeakViewController *speakVC = [[SpeakViewController alloc] initWithNibName:@"SpeakViewController" bundle:nil];
+        
+    // Init and start the real-time audio
+    [[MyAudioManager sharedInstance] initializeAudioSession];
+    [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
+    [[MyAudioManager sharedInstance] startListening:self];
+
     // Add the view controller's view to the window and display.
-    self.window.rootViewController = speakVC;
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
     return YES;
