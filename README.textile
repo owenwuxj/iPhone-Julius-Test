@@ -1,4 +1,4 @@
-For Demo Quick Implementation in EF!!
+For Demo Quick Implementation in EF!! Pure Audio APIs is under construction...
 
 Starts with https://github.com/FLCLjp/iPhone-julius/, but replaced with English models trained by www.voxforge.com. And a real-time interface is added as well.
 
