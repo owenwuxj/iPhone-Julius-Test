@@ -1,3 +1,5 @@
+For Demo Quick Implementation in EF!!
+
 Starts with https://github.com/FLCLjp/iPhone-julius/, but replaced with English models trained by www.voxforge.com. And a real-time interface is added as well.
 
 Thanks to:
