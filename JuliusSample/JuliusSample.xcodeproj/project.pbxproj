@@ -205,7 +205,7 @@
 		135CA12D17AA454F008F962C /* vecutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vecutils.h; sourceTree = "<group>"; };
 		135CA15917AA47DC008F962C /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.textile; path = ../README.textile; sourceTree = "<group>"; };
 		135CA17917AA701C008F962C /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
-		135CA17A17AA701C008F962C /* test.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = test.dict; sourceTree = "<group>"; };
+		135CA17A17AA701C008F962C /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
 		135CA17B17AA701C008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
 		135CA17C17AA701C008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
 		135CA18217AA702F008F962C /* cmu07a.dic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmu07a.dic; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		135CA18617AA702F008F962C /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		135CA18717AA702F008F962C /* run.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
 		135CA18817AA702F008F962C /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
-		135CA18917AA702F008F962C /* test.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = test.dict; sourceTree = "<group>"; };
+		135CA18917AA702F008F962C /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
 		135CA18A17AA702F008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
 		135CA18B17AA702F008F962C /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
 		135CA18C17AA702F008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };

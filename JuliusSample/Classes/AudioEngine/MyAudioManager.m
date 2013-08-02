@@ -128,7 +128,14 @@ static void process_print (void) {
     
     [session setPreferredSampleRate:_sampleRate error:&err];
     [session setCategory:AVAudioSessionCategoryRecord error:&err];
-    [session setActive:YES error:&err];
+
+    if(session == nil) {
+        NSLog(@"Error creating session: %@", [err description]);
+    }
+    else {
+        [session setActive:YES error:nil];
+    }
+    
 //    sampleRate = [session preferredSampleRate];
     
     if (isRealTime) {
@@ -451,7 +458,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 #endif
 }
 
--(void)aMethod:(AVAudioRecorder *)theRecorder {
+-(void)initializeAubioWithRecorder:(AVAudioRecorder *)theRecorder {
     NSString *path = [NSString stringWithFormat:@"%@",[theRecorder.url relativePath]];
     char *temp = (char *)[path UTF8String];
     
@@ -492,9 +499,9 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     
     debug ("Processed %d frames of %d samples.\n", frames, buffer_size);
     
-    for (int idx = 0; idx < frames; idx++) {
-        //        [self.pitchArray addObject:[NSNumber numberWithFloat:pitchAry[idx]]];
-    }
+//    for (int idx = 0; idx < frames; idx++) {
+//        [self.pitchArray addObject:[NSNumber numberWithFloat:pitchAry[idx]]];
+//    }
     
 #ifdef DEBUG
     //    DLog(@"pitchArray cnt: %d", [self.pitchArray count]);
@@ -514,7 +521,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     fflush(stderr);
 }
 
--(void)jMethod:(AVAudioRecorder *)theRecorder{
+-(void)initializeJuliusWithRecorder:(AVAudioRecorder *)theRecorder{
 	if (!julius) {
 		julius = [Julius new];
 		julius.delegate = self;
@@ -532,10 +539,10 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)theRecorder successfully:(BOOL)flag
 {
     if (aubioORjulius == LIBAUBIO) {
-        [self aMethod:theRecorder];
+        [self initializeAubioWithRecorder:theRecorder];
     }
     else if (aubioORjulius == LIBJULIUS) {
-        [self performSelectorInBackground:@selector(jMethod:) withObject:theRecorder];
+        [self performSelectorInBackground:@selector(initializeJuliusWithRecorder:) withObject:theRecorder];
     }
 }
 
@@ -613,14 +620,12 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yyyyMMddHHmmss"];
 	NSString *fileName = [NSString stringWithFormat:@"%@.wav", [formatter stringFromDate:[NSDate date]]];
-    
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setValue:fileName forKey:kSoundFileKey];
-    
+        
     // Set the audio file
     NSURL *outputFileURL = [self fileUrlInDocFolderWithFileName:fileName];
     
-    // Setup audio session
+    // Setup audio session - Removed to initializeAudioSession()
+    /*
     NSError *sessionError;
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
@@ -629,6 +634,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         NSLog(@"Error creating session: %@", [sessionError description]);
     else
         [session setActive:YES error:nil];
+    */
     
     // Settings for AVAAudioRecorder.
 	NSDictionary *recordSetting = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -640,29 +646,12 @@ OSStatus RenderFFTCallback (void					*inRefCon,
                                    [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
                                    [NSNumber numberWithBool:NO], AVLinearPCMIsFloatKey, nil];
     
-    // Initiate and prepare the recorder
+    // Init and prepare the recorder
     recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
     recorder.meteringEnabled = YES;
     recorder.delegate = self;
     
     [recorder recordForDuration:kMaxDuration];
-    
-    /*
-    if ([_timer isValid]) {
-        [_timer invalidate];
-        _timer = nil;
-    }
-    
-    //    [NSThread detachNewThreadSelector:@selector(toMp3:) toTarget:self withObject:fileName];
-    
-    if (recorder.recording) {
-		ETRecordStopTimerInfo *info = [[ETRecordStopTimerInfo alloc] initWithTimeout:kMinTimeout];
-		
-		_timer = [NSTimer timerWithTimeInterval:0.25f target:self selector:@selector(timerRecordSilence:) userInfo:info repeats:YES];
-		[[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
-    }
-    */
-    
     return recorder;
 }
 

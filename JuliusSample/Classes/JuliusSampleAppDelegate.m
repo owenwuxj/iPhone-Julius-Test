@@ -8,9 +8,12 @@
 
 #import "JuliusSampleAppDelegate.h"
 
-#define kSamplingRate 16000.0 // In Hz
+#define kSamplingRate 16000.0 //Sampling Frequency in Hz
+#define GAIN_VALUE_UPDATE_FREQUENCY 0.05//In Second
 
-#define GET_PITCH 0
+
+#define GET_PITCH 1
+#define REAL_TIME 0
 
 @implementation JuliusSampleAppDelegate
 
@@ -30,36 +33,58 @@
     return priAppDir;
 }
 
+// If you need the Gain/Volumn/Stress values, make an array to hold the values from this method
+-(void)updateRecorderMeters{
+    if (aRecorder) {
+        [aRecorder updateMeters];
+        NSLog(@"The Gain Value:%f",[aRecorder averagePowerForChannel:0]);
+    }
+}
+
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-//    RIOInterface *rioRef = [RIOInterface sharedInstance];
-//    
-//    [rioRef initializeAudioSession];
-//    [rioRef setSampleRate:16000];
-//    [rioRef startListening:viewController];
-        
-    // Init and start the non real-time audio
+    
+    // -----------------------------------------------------------------
+    // This is the starting point for detecting the gain/volumn/"stress"
+    // Init a timer to get the gain in real-time
+    gainValueTimer = [NSTimer scheduledTimerWithTimeInterval:GAIN_VALUE_UPDATE_FREQUENCY target:self selector:@selector(updateRecorderMeters) userInfo:nil repeats:YES];
+    
+    // -----------------------------------------------------------------
+    // Init and start the common tasks for non real-time audio
     [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
     [[MyAudioManager sharedInstance] initializeAudioSession];
 
     if (GET_PITCH) {
+        // -----------------------------------------------------------------
+        // This is the starting point for using Julius/Speech Recognition
+        // In real-time or offline modes
         [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
         [[MyAudioManager sharedInstance] setDelegateAubio:self];
+#if REAL_TIME
+        [[MyAudioManager sharedInstance] setIsRealTime:YES];
+        [[MyAudioManager sharedInstance] startListening:self];
+#else
         [[MyAudioManager sharedInstance] setIsRealTime:NO];
-        [[MyAudioManager sharedInstance] getRecorder];
-//    [[MyAudioManager sharedInstance] isRealTime] = YES;
-//    [[MyAudioManager sharedInstance] startListening:self]; real time YES
+        aRecorder = [[MyAudioManager sharedInstance] getRecorder];
+        [aRecorder record];
+#endif
     } else {
+        // -----------------------------------------------------------------
+        // This is the starting point for using Aubio
+        // In real-time or offline modes
         [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
         [[MyAudioManager sharedInstance] setDelegateJulius:self];
+#if REAL_TIME
+    [[MyAudioManager sharedInstance] isRealTime] = YES;
+    [[MyAudioManager sharedInstance] startListening:self]; if real time YES
+#else
         [[MyAudioManager sharedInstance] setIsRealTime:NO];
         [[[MyAudioManager sharedInstance] getRecorder] record];
-//    [[MyAudioManager sharedInstance] isRealTime] = YES;
-//    [[MyAudioManager sharedInstance] startListening:self]; if real time YES
+#endif
     }
     
     // Add the view controller's view to the window and display.
