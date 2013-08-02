@@ -38,11 +38,11 @@ typedef enum {
 #pragma mark Audio Session Init and Setup
 -(void)initializeAudioSession;//should be called after sampleRate is set!
 
-#pragma mark Listen Control ofr non real-time
+#pragma mark Listen Control for non real-time
 -(AVAudioRecorder *)getRecorder;
 -(AVAudioPlayer *)getPlayerByPath:(NSURL *)pathURL;//do not use it for now.
 
-#pragma mark Listener Controls for Real-time only
+#pragma mark Listener Controls for Real-time
 -(void)startListening:(id)aListener;
 -(void)stopListening;
 

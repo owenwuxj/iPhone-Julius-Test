@@ -13,7 +13,7 @@
 
 
 #define GET_PITCH 1
-#define REAL_TIME 0
+#define REAL_TIME 0 // not working for now
 
 @implementation JuliusSampleAppDelegate
 
@@ -61,7 +61,7 @@
     if (GET_PITCH) {
         // -----------------------------------------------------------------
         // This is the starting point for using Julius/Speech Recognition
-        // In real-time or offline modes
+        // Use Macro to change between real-time or offline modes
         [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
         [[MyAudioManager sharedInstance] setDelegateAubio:self];
 #if REAL_TIME
@@ -74,8 +74,8 @@
 #endif
     } else {
         // -----------------------------------------------------------------
-        // This is the starting point for using Aubio
-        // In real-time or offline modes
+        // This is the starting point for using Aubio/Pitch & ADSR & Tempo Tracking
+        // Use Macro to change between real-time or offline modes
         [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
         [[MyAudioManager sharedInstance] setDelegateJulius:self];
 #if REAL_TIME

@@ -15,6 +15,7 @@
 #define kMinTimeout 2.0    // In sec
 
 #define kSamplingRate 16000
+#define kFrameNumber  1000
 
 unsigned int pos = 0; /*frames%dspblocksize*/
 aubio_source_t *that_source = NULL;
@@ -23,7 +24,36 @@ aubio_source_t *that_source = NULL;
 aubio_pitch_t *pitchObject;
 fvec_t *pitch;
 
-float floatFreq;
+//------------------------------------------------------------------------------------------
+// All the staff I need to store the C array for pitch value and pass it to Objectvive-C
+float *pitchArray;
+
+typedef struct {
+    float *array;
+    size_t used;
+    size_t size;
+} GrowingFloatArrayPureC;
+
+void initArray(GrowingFloatArrayPureC *a, size_t initialSize) {
+    a->array = (float *)malloc(initialSize * sizeof(float));
+    a->used = 0;
+    a->size = initialSize;
+}
+
+void insertArray(GrowingFloatArrayPureC *a, int element) {
+    if (a->used == a->size) {
+        a->size *= 2;
+        a->array = (float *)realloc(a->array, a->size * sizeof(float));
+    }
+    a->array[a->used++] = element;
+}
+
+void freeArray(GrowingFloatArrayPureC *a) {
+    free(a->array);
+    a->array = NULL;
+    a->used = a->size = 0;
+}
+//------------------------------------------------------------------------------------------
 
 @interface MyAudioManager ()
 {
@@ -41,7 +71,6 @@ float floatFreq;
     AVAudioPlayer *player;
 
 	Julius *julius;
-    float *pitchArray;
 }
 
 @property(nonatomic, assign) id theListener;
@@ -114,6 +143,8 @@ static void process_print (void) {
     smpl_t pitch_found = fvec_read_sample(pitch, 0);
     outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
     
+    pitchArray[frames] = pitch_found;//the array holding pitch values
+    
 //    smpl_t onset_found = fvec_read_sample (onset, 0);
 //    if (onset_found) {
 //        outmsg ("Onset:%f\n", aubio_onset_get_last_s (onsetObject) );
@@ -146,15 +177,18 @@ static void process_print (void) {
 #pragma mark Listener Controls
 
 -(void)startListening:(id)aListener{
-	self.theListener = aListener;
-	[self createAUProcessingGraph];
-	[self initializeAndStartProcessingGraph];
+    if (isRealTime) {
+        self.theListener = aListener;
+        [self createAUProcessingGraph];
+        [self initializeAndStartProcessingGraph];
+    }
 }
 
 -(void)stopListening{
-    [self stopProcessingGraph];
+    if (isRealTime) {
+        [self stopProcessingGraph];
+    }
 }
-
 
 /* Setup our FFT */
 - (void)realFFTSetup {
@@ -464,7 +498,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     
     NSLog(@"filePath is %@",path);
     
-    //    examples_common_init(argc,&temp);
+//    examples_common_init(argc,&temp);
     debug ("Opening files ...\n");
     that_source = new_aubio_source ((char_t *)temp, 0, overlap_size);
     if (that_source == NULL) {
@@ -478,11 +512,14 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     obuf = new_fvec (overlap_size);
     
     pitchObject = new_aubio_pitch ("yin", buffer_size, overlap_size, samplerate);
-    //    if (threshold != 0.) {
-    //        aubio_pitch_set_silence(pitchObject, -60);
-    //        aubio_pitch_set_unit(pitchObject, "freq");
-    //    }
+//    if (threshold != 0.) {
+//        aubio_pitch_set_silence(pitchObject, -60);
+//        aubio_pitch_set_unit(pitchObject, "freq");
+//    }
     pitch = new_fvec (1);
+
+    // ...
+    pitchArray = (float *)malloc(sizeof(float)*kFrameNumber);
     
     //    examples_common_process(aubio_process,process_print);
     uint_t read = 0;
@@ -512,8 +549,13 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     //    del_aubio_onset(onsetObject);
     //    del_fvec(onset);
     
+    NSMutableArray *tempPitch = [NSMutableArray arrayWithCapacity:kFrameNumber];
+    for (int idx=0; idx<kFrameNumber; idx++) {
+        [tempPitch addObject:[NSNumber numberWithFloat:pitchArray[idx]]];
+    }
+
     if (self.delegateAubio) {
-        [self.delegateAubio aubioCallBackResult:nil];
+        [self.delegateAubio aubioCallBackResult:tempPitch];
     }
     
     examples_common_del();
