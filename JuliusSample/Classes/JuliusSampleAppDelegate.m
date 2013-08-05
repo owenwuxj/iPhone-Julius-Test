@@ -48,20 +48,20 @@
     
     // Override point for customization after application launch.
     
+    // This is the starting point for detecting the gain/volumn/"stress"...
+    // init a timer to get the gain in real-time firstly
     // -----------------------------------------------------------------
-    // This is the starting point for detecting the gain/volumn/"stress"
-    // Init a timer to get the gain in real-time
     gainValueTimer = [NSTimer scheduledTimerWithTimeInterval:GAIN_VALUE_UPDATE_FREQUENCY target:self selector:@selector(updateRecorderMeters) userInfo:nil repeats:YES];
     
-    // -----------------------------------------------------------------
     // Init and start the common tasks for non real-time audio
+    // -----------------------------------------------------------------
     [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
     [[MyAudioManager sharedInstance] initializeAudioSession];
 
     if (GET_PITCH) {
-        // -----------------------------------------------------------------
         // This is the starting point for using Julius/Speech Recognition
         // Use Macro to change between real-time or offline modes
+        // -----------------------------------------------------------------
         [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
         [[MyAudioManager sharedInstance] setDelegateAubio:self];
 #if REAL_TIME
@@ -73,9 +73,9 @@
         [aRecorder record];
 #endif
     } else {
-        // -----------------------------------------------------------------
         // This is the starting point for using Aubio/Pitch & ADSR & Tempo Tracking
         // Use Macro to change between real-time or offline modes
+        // -----------------------------------------------------------------
         [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
         [[MyAudioManager sharedInstance] setDelegateJulius:self];
 #if REAL_TIME
@@ -144,16 +144,23 @@
 
 //juliusManagerDelegate
 - (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+//#ifdef DEBUG
     for (NSString *temp in results) {
         NSLog(@"In results:%@",temp);
     }
     for (NSNumber *aNum in boundsAry) {
         NSLog(@"In boundsAry:%d", [aNum intValue]);
     }
+//#endif
 }
 
 //aubioManagerDelegate
 - (void)aubioCallBackResult:(NSArray *)results{
+//#ifdef DEBUG
+    for (int idx=0; idx<[results count]; idx++) {
+        NSLog(@"In pitchArray[%d]:%f",idx, [results[idx] floatValue]);
+    }
+//#endif
 }
 
 @end

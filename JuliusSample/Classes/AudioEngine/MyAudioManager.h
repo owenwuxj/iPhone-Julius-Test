@@ -18,6 +18,7 @@ typedef enum {
 } AudioLibType;
 
 #define kMaxDuration 5.0 // In sec
+#define kFrameNumberInTheFile 1000
 
 @protocol aubioManagerDelegate, juliusManagerDelegate;
 

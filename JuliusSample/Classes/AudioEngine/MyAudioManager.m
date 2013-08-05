@@ -15,7 +15,6 @@
 #define kMinTimeout 2.0    // In sec
 
 #define kSamplingRate 16000
-#define kFrameNumber  1000
 
 unsigned int pos = 0; /*frames%dspblocksize*/
 aubio_source_t *that_source = NULL;
@@ -144,6 +143,7 @@ static void process_print (void) {
     outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
     
     pitchArray[frames] = pitch_found;//the array holding pitch values
+//    NSLog(@"pitchArray[%d]:%f",frames, pitchArray[frames]);
     
 //    smpl_t onset_found = fvec_read_sample (onset, 0);
 //    if (onset_found) {
@@ -516,10 +516,11 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 //        aubio_pitch_set_silence(pitchObject, -60);
 //        aubio_pitch_set_unit(pitchObject, "freq");
 //    }
+    
     pitch = new_fvec (1);
 
     // ...
-    pitchArray = (float *)malloc(sizeof(float)*kFrameNumber);
+    pitchArray = (float *)malloc(sizeof(float)*kFrameNumberInTheFile);
     
     //    examples_common_process(aubio_process,process_print);
     uint_t read = 0;
@@ -540,18 +541,19 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 //        [self.pitchArray addObject:[NSNumber numberWithFloat:pitchAry[idx]]];
 //    }
     
-#ifdef DEBUG
-    //    DLog(@"pitchArray cnt: %d", [self.pitchArray count]);
-#endif
-    
     //    del_aubio_pitch (pitchObject);
     //    del_fvec (pitch);
     //    del_aubio_onset(onsetObject);
     //    del_fvec(onset);
     
-    NSMutableArray *tempPitch = [NSMutableArray arrayWithCapacity:kFrameNumber];
-    for (int idx=0; idx<kFrameNumber; idx++) {
+#ifdef DEBUG
+    //    DLog(@"pitchArray cnt: %d", [self.pitchArray count]);
+#endif
+
+    NSMutableArray *tempPitch = [NSMutableArray arrayWithCapacity:kFrameNumberInTheFile];
+    for (int idx=0; idx<kFrameNumberInTheFile; idx++) {
         [tempPitch addObject:[NSNumber numberWithFloat:pitchArray[idx]]];
+//        NSLog(@"pitchArray[%d]:%f",idx, pitchArray[idx]);
     }
 
     if (self.delegateAubio) {
