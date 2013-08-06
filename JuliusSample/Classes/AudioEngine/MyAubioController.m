@@ -7,10 +7,11 @@
 //
 
 #import "MyAubioController.h"
+#import "MyAudioManager.h"
 
 #include "utils.h"
 
-//#define kFrameNumberInTheFile 1000
+#define kFrameNumberInTheFile kMaxDuration * 62 // A Rough Calculation
 
 unsigned int pos = 0; /*frames%dspblocksize*/
 aubio_source_t *that_source = NULL;
@@ -27,7 +28,7 @@ typedef struct {
 
 //------------------------------------------------------------------------------------------
 // All the staff I need to store the C array for pitch value and pass it to Objectvive-C
-//float *pitchArray;
+float *pitchArray;
 GrowingFloatArrayPureC pArray;
 
 void initArray(GrowingFloatArrayPureC *a, size_t initialSize) {
@@ -100,9 +101,9 @@ static int aubio_process(smpl_t **input, smpl_t **output, int nframes) {
 static void process_print (void) {
     if (!verbose && usejack) return;
     smpl_t pitch_found = fvec_read_sample(pitch, 0);
-//    outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
+    outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
     
-//    pitchArray[frames] = pitch_found;//the array holding pitch values
+    pitchArray[frames] = pitch_found;//the array holding pitch values
     insertArray(&pArray, pitch_found);  // automatically resizes as necessary
     //    NSLog(@"pitchArray[%d]:%f",frames, pitchArray[frames]);
     
@@ -140,7 +141,7 @@ static void process_print (void) {
     pitch = new_fvec (1);
     
     // ...
-//    pitchArray = (float *)malloc(sizeof(float)*kFrameNumberInTheFile);
+    pitchArray = (float *)malloc(sizeof(float)*kFrameNumberInTheFile);
     initArray(&pArray, 5);  // initially 5 elements
     
     //    examples_common_process(aubio_process,process_print);
@@ -171,19 +172,21 @@ static void process_print (void) {
     //    DLog(@"pitchArray cnt: %d", [self.pitchArray count]);
 #endif
     
-//    NSMutableArray *tempPitch = [NSMutableArray arrayWithCapacity:kFrameNumberInTheFile];
-//    for (int idx=0; idx<kFrameNumberInTheFile; idx++) {
-//        [tempPitch addObject:[NSNumber numberWithFloat:pitchArray[idx]]];
-        //        NSLog(@"pitchArray[%d]:%f",idx, pitchArray[idx]);
-//    }
+    NSMutableArray *tempPitch = [NSMutableArray arrayWithCapacity:kFrameNumberInTheFile];
+    for (int idx=0; idx<kFrameNumberInTheFile; idx++) {
+        [tempPitch addObject:[NSNumber numberWithFloat:pitchArray[idx]]];
+    //        NSLog(@"pitchArray[%d]:%f",idx, pitchArray[idx]);
+    }
     
     NSMutableArray *tempPitch2 = [NSMutableArray array];
     for (int idx = 0; idx<pArray.size; idx++) {
         [tempPitch2 addObject:[NSNumber numberWithFloat:pArray.arrayData[idx]]];
     }
+    freeArray(&pArray);
     
     if (self.controllerDelegateAubio) {
-        [self.controllerDelegateAubio aubioCallBackResult:tempPitch2];
+        [self.controllerDelegateAubio aubioCallBackResult:tempPitch];
+//        [self.controllerDelegateAubio aubioCallBackResult:tempPitch2];// The GrowingFloatArrayPureC doesn't work?!
     }
     
     examples_common_del();

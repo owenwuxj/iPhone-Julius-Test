@@ -153,13 +153,15 @@
 //    notificationLabel.text = @"Time to see the LOG!";
     
     NSMutableString *juliusResults = [[NSMutableString alloc] init];
+    [juliusResults appendFormat:@"\n%d Words: ", [results count]];
     for (NSString *temp in results) {
         NSLog(@"In results:%@",temp);
         [juliusResults appendString:temp];
     }
+    [juliusResults appendString:@"\nWords Durations(in frame):"];
     for (NSNumber *aNum in boundsAry) {
         NSLog(@"In boundsAry:%d", [aNum intValue]);
-        [juliusResults appendFormat:@"/%d",[aNum intValue]];
+        [juliusResults appendFormat:@"<%d>",[aNum intValue]];
     }
     
     jRecorder.meteringEnabled = NO;
@@ -169,7 +171,7 @@
 }
 
 - (void)aubioCallBackResult:(NSArray *)results{
-    notificationLabel.text = @"See the LOG for Pitch & Gain Values!";
+    notificationLabel.text = @"Pitch & Gain Values in the LOG.";
     for (int idx=0; idx<[results count]; idx++) {
         NSLog(@"In pitchArray[%d]:%f",idx, [results[idx] floatValue]);
     }
