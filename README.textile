@@ -1,9 +1,9 @@
-For Demo Quick Implementation in EF!! Pure Audio APIs is under construction...
+For Demo Quick Implementation for Matt. Non real-time Audio functions are done, real-time Audio functions are under construction...
 
+https://github.com/piem/aubio is used as Pitch/Onset/Tempo Tracker Library. Gain/Volumn/Stress Tracking using AVAudioRecorder and Speech Recognition is described as below:
 Starts with https://github.com/FLCLjp/iPhone-julius/, but replaced with English models trained by www.voxforge.com. And a real-time interface is added as well.
 
 Thanks to:
-
 "Julius":http://julius.sourceforge.jp/
 "JuliusLibを使おう - 僕の部屋の真ん中らへん":http://d.hatena.ne.jp/kazekyo/20100922/1285161893
 https://github.com/FLCLjp/iPhone-julius/tree/3ac167dea78bf14654db7222659ae4ae08c135ac

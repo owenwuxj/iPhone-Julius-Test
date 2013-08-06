@@ -158,7 +158,7 @@
         NSLog(@"In results:%@",temp);
         [juliusResults appendString:temp];
     }
-    [juliusResults appendString:@"\nWords Durations(in frame):"];
+    [juliusResults appendString:@"\nThe Durations(in frame):"];
     for (NSNumber *aNum in boundsAry) {
         NSLog(@"In boundsAry:%d", [aNum intValue]);
         [juliusResults appendFormat:@"<%d>",[aNum intValue]];
