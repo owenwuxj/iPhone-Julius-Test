@@ -8,57 +8,46 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "Julius.h"
 
-#include "aubio.h"
+#define kMaxDuration 3.0 // Max recording time in sec
 
-typedef enum {
-    LIBAUBIO,
-    LIBJULIUS
-} AudioLibType;
-
-#define kMaxDuration 5.0 // In sec
-#define kFrameNumberInTheFile 1000
+#import "MyAubioController.h"
+#import "MyJuliusController.h"
 
 @protocol aubioManagerDelegate, juliusManagerDelegate;
 
-@interface MyAudioManager : NSObject <AVAudioRecorderDelegate, AVAudioPlayerDelegate, JuliusDelegate>{
+@interface MyAudioManager : NSObject <AVAudioPlayerDelegate, juliusControllerDelegate, aubioControllerDelegate> {
 }
 
-@property(nonatomic, assign) AudioLibType aubioORjulius;
+@property(nonatomic, assign) float sampleRate;//should be set before initializeAudioSession(), default is 16000.0
 
-@property(nonatomic, assign) BOOL isRealTime;
+@property(nonatomic, weak) id<aubioManagerDelegate> delegateAubio;  // aubioCallBackResult() listener
+@property(nonatomic, weak) id<juliusManagerDelegate> delegateJulius;// juliusCallBackResult() listener
 
-@property(nonatomic, assign) float sampleRate;//should be set before initializeAudioSession()
+@property(nonatomic, assign) BOOL isRealTime;// not working for now...
 
-@property(nonatomic, weak) id<aubioManagerDelegate> delegateAubio;
-@property(nonatomic, weak) id<juliusManagerDelegate> delegateJulius;
-
-+(MyAudioManager *)sharedInstance;
++ (MyAudioManager *)sharedInstance;
 
 #pragma mark Audio Session Init and Setup
--(void)initializeAudioSession;//should be called after sampleRate is set!
+- (void)initializeAudioSession;//should be called after sampleRate is set.
 
 #pragma mark Listen Control for non real-time
--(AVAudioRecorder *)getRecorder;
--(AVAudioPlayer *)getPlayerByPath:(NSURL *)pathURL;//do not use it for now.
+- (AVAudioRecorder *)getRecorderForJulius;// Julius will return values asynchronously by AVAudioRecorderDelegate method after [recorder stop]
+- (AVAudioRecorder *)getRecorderForAubio; // Aubio will return values asynchronously by AVAudioRecorderDelegate method after [recorder stop]
 
-#pragma mark Listener Controls for Real-time
--(void)startListening:(id)aListener;
--(void)stopListening;
+- (AVAudioPlayer *)getPlayerByPath:(NSURL *)pathURL;//do not use it for now.
+
+#pragma mark Listener Controls for real-time - In The Future!
+- (void)startListening:(id)aListener;   // not working for now...
+- (void)stopListening;                  // not working for now...
 
 @end
 
 
 @protocol juliusManagerDelegate
-
 - (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry;
-
 @end
 
-
 @protocol aubioManagerDelegate
-
 - (void)aubioCallBackResult:(NSArray *)results;
-
 @end

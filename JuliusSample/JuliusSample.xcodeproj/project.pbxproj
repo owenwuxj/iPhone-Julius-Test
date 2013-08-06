@@ -74,6 +74,8 @@
 		135CA19517AA702F008F962C /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18A17AA702F008F962C /* test.grammar */; };
 		135CA19617AA702F008F962C /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18B17AA702F008F962C /* test.term */; };
 		135CA19717AA702F008F962C /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18C17AA702F008F962C /* test.voca */; };
+		135CA1B317AF5AE3008F962C /* MyJuliusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135CA1B217AF5AE3008F962C /* MyJuliusController.m */; };
+		135CA1B617AF5AF8008F962C /* MyAubioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135CA1B517AF5AF8008F962C /* MyAubioController.m */; };
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
 		13684FEB12E0AC9900FBF870 /* light.jconf in Resources */ = {isa = PBXBuildFile; fileRef = 13684FEA12E0AC9900FBF870 /* light.jconf */; };
 		13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7B9E9174F347200E832F3 /* Accelerate.framework */; };
@@ -219,6 +221,10 @@
 		135CA18A17AA702F008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
 		135CA18B17AA702F008F962C /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
 		135CA18C17AA702F008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
+		135CA1B117AF5AE3008F962C /* MyJuliusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJuliusController.h; sourceTree = "<group>"; };
+		135CA1B217AF5AE3008F962C /* MyJuliusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJuliusController.m; sourceTree = "<group>"; };
+		135CA1B417AF5AF8008F962C /* MyAubioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAubioController.h; sourceTree = "<group>"; };
+		135CA1B517AF5AF8008F962C /* MyAubioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAubioController.m; sourceTree = "<group>"; };
 		13684FCA12E0AC0D00FBF870 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		13684FEA12E0AC9900FBF870 /* light.jconf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.jconf; sourceTree = "<group>"; };
 		13A7B9E9174F347200E832F3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -297,6 +303,10 @@
 			children = (
 				135CA0CA17AA453E008F962C /* MyAudioManager.h */,
 				135CA0CB17AA453E008F962C /* MyAudioManager.m */,
+				135CA1B117AF5AE3008F962C /* MyJuliusController.h */,
+				135CA1B217AF5AE3008F962C /* MyJuliusController.m */,
+				135CA1B417AF5AF8008F962C /* MyAubioController.h */,
+				135CA1B517AF5AF8008F962C /* MyAubioController.m */,
 			);
 			path = AudioEngine;
 			sourceTree = "<group>";
@@ -587,10 +597,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				13C5374012E1FA940071E4ED /* Julius */,
 				134018E41760A2190047EC60 /* julius.xcodeproj */,
 				13D3FE23174A21FD00A5EF7F /* CAUtility */,
 				13C5376612E1FFE90071E4ED /* MBProgressHUD */,
-				13C5374012E1FA940071E4ED /* Julius */,
 				32CA4F630368D1EE00C91783 /* JuliusSample_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -788,6 +798,8 @@
 				135CA15617AA454F008F962C /* scale.c in Sources */,
 				135CA15717AA454F008F962C /* utils.c in Sources */,
 				135CA15817AA454F008F962C /* vecutils.c in Sources */,
+				135CA1B317AF5AE3008F962C /* MyJuliusController.m in Sources */,
+				135CA1B617AF5AF8008F962C /* MyAubioController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

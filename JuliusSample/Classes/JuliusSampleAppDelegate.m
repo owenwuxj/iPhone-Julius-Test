@@ -58,34 +58,34 @@
     [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
     [[MyAudioManager sharedInstance] initializeAudioSession];
 
-    if (GET_PITCH) {
+//    if (GET_PITCH) {
         // This is the starting point for using Julius/Speech Recognition
         // Use Macro to change between real-time or offline modes
         // -----------------------------------------------------------------
-        [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
+//        [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
         [[MyAudioManager sharedInstance] setDelegateAubio:self];
 #if REAL_TIME
         [[MyAudioManager sharedInstance] setIsRealTime:YES];
         [[MyAudioManager sharedInstance] startListening:self];
 #else
         [[MyAudioManager sharedInstance] setIsRealTime:NO];
-        aRecorder = [[MyAudioManager sharedInstance] getRecorder];
+        aRecorder = [[MyAudioManager sharedInstance] getRecorderForAubio];
         [aRecorder record];
 #endif
-    } else {
+//    } else {
         // This is the starting point for using Aubio/Pitch & ADSR & Tempo Tracking
         // Use Macro to change between real-time or offline modes
         // -----------------------------------------------------------------
-        [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
+//        [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
         [[MyAudioManager sharedInstance] setDelegateJulius:self];
 #if REAL_TIME
-    [[MyAudioManager sharedInstance] isRealTime] = YES;
-    [[MyAudioManager sharedInstance] startListening:self]; if real time YES
+        [[MyAudioManager sharedInstance] isRealTime] = YES;
+        [[MyAudioManager sharedInstance] startListening:self]; if real time YES
 #else
         [[MyAudioManager sharedInstance] setIsRealTime:NO];
-        [[[MyAudioManager sharedInstance] getRecorder] record];
+        [[[MyAudioManager sharedInstance] getRecorderForJulius] record];
 #endif
-    }
+//    }
     
     // Add the view controller's view to the window and display.
     self.window.backgroundColor = [UIColor whiteColor];
