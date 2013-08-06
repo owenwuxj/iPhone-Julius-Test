@@ -14,12 +14,16 @@ static NSString *kPrivateAppDir = @"PrivateDocuments";
 
 @interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate, juliusManagerDelegate, aubioManagerDelegate> {
     UIWindow *window;
+    
     AVAudioRecorder *aRecorder;
+    AVAudioRecorder *jRecorder;
+    
     NSTimer *gainValueTimer;
 }
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) IBOutlet UITextView *resultText;
+@property (nonatomic, strong) IBOutlet UILabel *notificationLabel;
 
 -(NSString *)applicationLibraryPrivateDocument;
 

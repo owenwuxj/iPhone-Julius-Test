@@ -17,7 +17,10 @@
 
 @implementation JuliusSampleAppDelegate
 
-@synthesize window, resultText;
+@synthesize window, resultText, notificationLabel;
+
+#pragma mark -
+#pragma mark Private Methods
 
 // Get the /Library/PrivateDocuments folder, create one if no.
 -(NSString *)applicationLibraryPrivateDocument{
@@ -35,7 +38,7 @@
 
 // If you need the Gain/Volumn/Stress values, make an array to hold the values from this method
 -(void)updateRecorderMeters{
-    if (aRecorder) {
+    if (aRecorder && aRecorder.meteringEnabled) {
         [aRecorder updateMeters];
         NSLog(@"The Gain Value:%f",[aRecorder averagePowerForChannel:0]);
     }
@@ -83,7 +86,8 @@
         [[MyAudioManager sharedInstance] startListening:self]; if real time YES
 #else
         [[MyAudioManager sharedInstance] setIsRealTime:NO];
-        [[[MyAudioManager sharedInstance] getRecorderForJulius] record];
+        jRecorder = [[MyAudioManager sharedInstance] getRecorderForJulius];
+        [jRecorder record];
 #endif
 //    }
     
@@ -142,25 +146,34 @@
      */
 }
 
-//juliusManagerDelegate
+#pragma mark -
+#pragma mark juliusManagerDelegate and aubioManagerDelegate Methods
+
 - (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
-//#ifdef DEBUG
+//    notificationLabel.text = @"Time to see the LOG!";
+    
+    NSMutableString *juliusResults = [[NSMutableString alloc] init];
     for (NSString *temp in results) {
         NSLog(@"In results:%@",temp);
+        [juliusResults appendString:temp];
     }
     for (NSNumber *aNum in boundsAry) {
         NSLog(@"In boundsAry:%d", [aNum intValue]);
+        [juliusResults appendFormat:@"/%d",[aNum intValue]];
     }
-//#endif
+    
+    jRecorder.meteringEnabled = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        resultText.text = [NSString stringWithString:juliusResults];
+    });
 }
 
-//aubioManagerDelegate
 - (void)aubioCallBackResult:(NSArray *)results{
-//#ifdef DEBUG
+    notificationLabel.text = @"See the LOG for Pitch & Gain Values!";
     for (int idx=0; idx<[results count]; idx++) {
         NSLog(@"In pitchArray[%d]:%f",idx, [results[idx] floatValue]);
     }
-//#endif
+    aRecorder.meteringEnabled = NO;
 }
 
 @end

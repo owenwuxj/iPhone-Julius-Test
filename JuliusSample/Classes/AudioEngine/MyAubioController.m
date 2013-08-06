@@ -100,7 +100,7 @@ static int aubio_process(smpl_t **input, smpl_t **output, int nframes) {
 static void process_print (void) {
     if (!verbose && usejack) return;
     smpl_t pitch_found = fvec_read_sample(pitch, 0);
-    outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
+//    outmsg("Time:%f Freq:%f\n",(frames)*overlap_size/(float)samplerate, pitch_found);
     
 //    pitchArray[frames] = pitch_found;//the array holding pitch values
     insertArray(&pArray, pitch_found);  // automatically resizes as necessary

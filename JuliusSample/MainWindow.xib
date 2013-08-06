@@ -47,10 +47,10 @@
 					<object class="IBUILabel" id="486932353">
 						<reference key="NSNextResponder" ref="117978783"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{114, 145}, {92, 21}}</string>
+						<string key="NSFrame">{{30, 152}, {261, 21}}</string>
 						<reference key="NSSuperview" ref="117978783"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="736556534"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -64,6 +64,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">17</double>
@@ -145,6 +146,14 @@
 					</object>
 					<int key="connectionID">19</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">notificationLabel</string>
+						<reference key="source" ref="664661524"/>
+						<reference key="destination" ref="486932353"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -179,8 +188,8 @@
 						<reference key="object" ref="117978783"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="486932353"/>
 							<reference ref="736556534"/>
+							<reference ref="486932353"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -235,7 +244,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -247,11 +256,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>notificationLabel</string>
 							<string>resultText</string>
 							<string>window</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UILabel</string>
 							<string>UITextView</string>
 							<string>UIWindow</string>
 						</object>
@@ -260,11 +271,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>notificationLabel</string>
 							<string>resultText</string>
 							<string>window</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">notificationLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">resultText</string>
 								<string key="candidateClassName">UITextView</string>
