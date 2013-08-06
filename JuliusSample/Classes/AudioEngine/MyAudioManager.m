@@ -26,8 +26,6 @@
 	AudioUnit ioUnit;
 	AudioBufferList* bufferList;
 	AudioStreamBasicDescription streamFormat;
-
-    AVAudioRecorder *recorder;
     AVAudioPlayer *player;
 
 //	Julius *julius;
@@ -513,13 +511,14 @@ OSStatus RenderFFTCallback (void					*inRefCon,
                                    [NSNumber numberWithBool:NO], AVLinearPCMIsFloatKey, nil];
     
     // Init and prepare the recorder
-    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
-    recorder.meteringEnabled = YES;
-    recorder.delegate = juliusController;
+    AVAudioRecorder *jRecorder;
+    jRecorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+    jRecorder.meteringEnabled = YES;
+    jRecorder.delegate = juliusController;
     juliusController.controllerDelegateJulius = self;
     
-    [recorder recordForDuration:kMaxDuration];
-    return recorder;
+    [jRecorder recordForDuration:kMaxDuration];
+    return jRecorder;
 }
 
 -(AVAudioRecorder *)getRecorderForAubio
@@ -542,14 +541,15 @@ OSStatus RenderFFTCallback (void					*inRefCon,
                                    [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
                                    [NSNumber numberWithBool:NO], AVLinearPCMIsFloatKey, nil];
     
+    AVAudioRecorder *aRecorder;
     // Init and prepare the recorder
-    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
-    recorder.meteringEnabled = YES;
-    recorder.delegate = aubioController;
+    aRecorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+    aRecorder.meteringEnabled = YES;
+    aRecorder.delegate = aubioController;
     aubioController.controllerDelegateAubio = self;
     
-    [recorder recordForDuration:kMaxDuration];
-    return recorder;
+    [aRecorder recordForDuration:kMaxDuration];
+    return aRecorder;
 }
 
 @end

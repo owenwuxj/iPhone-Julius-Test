@@ -150,8 +150,6 @@
 #pragma mark juliusManagerDelegate and aubioManagerDelegate Methods
 
 - (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
-//    notificationLabel.text = @"Time to see the LOG!";
-    
     NSMutableString *juliusResults = [[NSMutableString alloc] init];
     [juliusResults appendFormat:@"\n%d Words: ", [results count]];
     for (NSString *temp in results) {
