@@ -1,6 +1,6 @@
-[{"category":"1", "inputString":"LARRY TOOK A PHOTOGRAPH"},
+[{"category":"1", "inputString":"HE TOOK A PICTURE"},
 {"category":"1", "inputString":"I REALLY WANT A PIZZA"},
-{"category":"1", "inputString":"MARIANNA MADE THE MARMALADE"},
+{"category":"1", "inputString":"SHE MADE THE FOOD"},
 {"category":"0", "inputString":"ONE"},
 {"category":"0", "inputString":"TWO"},
 {"category":"0", "inputString":"THREE"},

@@ -63,17 +63,6 @@
 		135CA17E17AA701C008F962C /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17A17AA701C008F962C /* test.dict */; };
 		135CA17F17AA701C008F962C /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17B17AA701C008F962C /* test.grammar */; };
 		135CA18017AA701C008F962C /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 135CA17C17AA701C008F962C /* test.voca */; };
-		135CA18D17AA702F008F962C /* cmu07a.dic in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18217AA702F008F962C /* cmu07a.dic */; };
-		135CA18E17AA702F008F962C /* gson-2.2.4.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA18317AA702F008F962C /* gson-2.2.4.jar */; };
-		135CA18F17AA702F008F962C /* input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18417AA702F008F962C /* input.txt */; };
-		135CA19017AA702F008F962C /* JuliusTool.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 135CA18517AA702F008F962C /* JuliusTool.jar */; };
-		135CA19117AA702F008F962C /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18617AA702F008F962C /* README.rtf */; };
-		135CA19217AA702F008F962C /* run.sh in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18717AA702F008F962C /* run.sh */; };
-		135CA19317AA702F008F962C /* test.dfa in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18817AA702F008F962C /* test.dfa */; };
-		135CA19417AA702F008F962C /* test.dict in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18917AA702F008F962C /* test.dict */; };
-		135CA19517AA702F008F962C /* test.grammar in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18A17AA702F008F962C /* test.grammar */; };
-		135CA19617AA702F008F962C /* test.term in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18B17AA702F008F962C /* test.term */; };
-		135CA19717AA702F008F962C /* test.voca in Resources */ = {isa = PBXBuildFile; fileRef = 135CA18C17AA702F008F962C /* test.voca */; };
 		135CA1B317AF5AE3008F962C /* MyJuliusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135CA1B217AF5AE3008F962C /* MyJuliusController.m */; };
 		135CA1B617AF5AF8008F962C /* MyAubioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135CA1B517AF5AF8008F962C /* MyAubioController.m */; };
 		13684FCB12E0AC0D00FBF870 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13684FCA12E0AC0D00FBF870 /* libz.dylib */; };
@@ -210,17 +199,6 @@
 		135CA17A17AA701C008F962C /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
 		135CA17B17AA701C008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
 		135CA17C17AA701C008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
-		135CA18217AA702F008F962C /* cmu07a.dic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmu07a.dic; sourceTree = "<group>"; };
-		135CA18317AA702F008F962C /* gson-2.2.4.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "gson-2.2.4.jar"; sourceTree = "<group>"; };
-		135CA18417AA702F008F962C /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
-		135CA18517AA702F008F962C /* JuliusTool.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = JuliusTool.jar; sourceTree = "<group>"; };
-		135CA18617AA702F008F962C /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
-		135CA18717AA702F008F962C /* run.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
-		135CA18817AA702F008F962C /* test.dfa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.dfa; sourceTree = "<group>"; };
-		135CA18917AA702F008F962C /* test.dict */ = {isa = PBXFileReference; explicitFileType = text.rtf; path = test.dict; sourceTree = "<group>"; };
-		135CA18A17AA702F008F962C /* test.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.grammar; sourceTree = "<group>"; };
-		135CA18B17AA702F008F962C /* test.term */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.term; sourceTree = "<group>"; };
-		135CA18C17AA702F008F962C /* test.voca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.voca; sourceTree = "<group>"; };
 		135CA1B117AF5AE3008F962C /* MyJuliusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJuliusController.h; sourceTree = "<group>"; };
 		135CA1B217AF5AE3008F962C /* MyJuliusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJuliusController.m; sourceTree = "<group>"; };
 		135CA1B417AF5AF8008F962C /* MyAubioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAubioController.h; sourceTree = "<group>"; };
@@ -271,8 +249,6 @@
 				131BA4A9176184EF0033530B /* libjulius.a in Frameworks */,
 				13C5372212E1F9FB0071E4ED /* AVFoundation.framework in Frameworks */,
 				13C5372912E1FA070071E4ED /* CoreAudio.framework in Frameworks */,
-				135CA18E17AA702F008F962C /* gson-2.2.4.jar in Frameworks */,
-				135CA19017AA702F008F962C /* JuliusTool.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,24 +446,6 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		135CA18117AA702F008F962C /* JuliusTool */ = {
-			isa = PBXGroup;
-			children = (
-				135CA18217AA702F008F962C /* cmu07a.dic */,
-				135CA18317AA702F008F962C /* gson-2.2.4.jar */,
-				135CA18417AA702F008F962C /* input.txt */,
-				135CA18517AA702F008F962C /* JuliusTool.jar */,
-				135CA18617AA702F008F962C /* README.rtf */,
-				135CA18717AA702F008F962C /* run.sh */,
-				135CA18817AA702F008F962C /* test.dfa */,
-				135CA18917AA702F008F962C /* test.dict */,
-				135CA18A17AA702F008F962C /* test.grammar */,
-				135CA18B17AA702F008F962C /* test.term */,
-				135CA18C17AA702F008F962C /* test.voca */,
-			);
-			path = JuliusTool;
-			sourceTree = "<group>";
-		};
 		13684FAD12E0ABD500FBF870 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,7 +574,6 @@
 				8D1107310486CEB800E47090 /* JuliusSample-Info.plist */,
 				4510C2AC1755ED6900C697AE /* test.jconf */,
 				13684FEA12E0AC9900FBF870 /* light.jconf */,
-				135CA18117AA702F008F962C /* JuliusTool */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -730,15 +687,6 @@
 				135CA17E17AA701C008F962C /* test.dict in Resources */,
 				135CA17F17AA701C008F962C /* test.grammar in Resources */,
 				135CA18017AA701C008F962C /* test.voca in Resources */,
-				135CA18D17AA702F008F962C /* cmu07a.dic in Resources */,
-				135CA18F17AA702F008F962C /* input.txt in Resources */,
-				135CA19117AA702F008F962C /* README.rtf in Resources */,
-				135CA19217AA702F008F962C /* run.sh in Resources */,
-				135CA19317AA702F008F962C /* test.dfa in Resources */,
-				135CA19417AA702F008F962C /* test.dict in Resources */,
-				135CA19517AA702F008F962C /* test.grammar in Resources */,
-				135CA19617AA702F008F962C /* test.term in Resources */,
-				135CA19717AA702F008F962C /* test.voca in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
