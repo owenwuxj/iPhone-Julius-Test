@@ -53,9 +53,9 @@
 #include <ctype.h>
 
 #define DEF_SMPPERIOD   625	///< Default sampling period in 100ns (625 = 16kHz)
-#define DEF_FRAMESIZE   400	///< Default Window size in samples, similar to WINDOWSIZE in HTK (unit is different)
+#define DEF_FRAMESIZE   512 // 400 ///< Default Window size in samples, similar to WINDOWSIZE in HTK (unit is different)
 #define DEF_FFTNUM      512	///< Number of FFT steps
-#define DEF_FRAMESHIFT  160	///< Default frame shift length in samples
+#define DEF_FRAMESHIFT  256 //160  ///< Default frame shift length in samples
 #define DEF_PREENPH     0.97	///< Default pre-emphasis coefficient, corresponds to PREEMCOEF in HTK
 #define DEF_MFCCDIM     12	///< Default number of MFCC dimension, corresponds to NUMCEPS in HTK
 #define DEF_CEPLIF      22	///< Default cepstral Liftering coefficient, corresponds to CEPLIFTER in HTK

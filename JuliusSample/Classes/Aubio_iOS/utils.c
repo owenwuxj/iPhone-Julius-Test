@@ -57,7 +57,7 @@ char_t * onset_mode = "default";
 smpl_t threshold = 0.0;         // leave unset, only set as asked 
 smpl_t silence = -90.;
 uint_t buffer_size = 512;       //1024;
-uint_t overlap_size = 256;      //512;
+uint_t overlap_size = 256;      //512; 
 uint_t samplerate = 16000;
 
 aubio_source_t *this_source = NULL;
