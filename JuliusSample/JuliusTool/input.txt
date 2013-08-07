@@ -1,11 +1,1 @@
-[{"category":"1", "inputString":"HE TOOK A PICTURE"},
-{"category":"1", "inputString":"I REALLY WANT A PIZZA"},
-{"category":"1", "inputString":"SHE MADE THE FOOD"},
-{"category":"0", "inputString":"ONE"},
-{"category":"0", "inputString":"TWO"},
-{"category":"0", "inputString":"THREE"},
-{"category":"0", "inputString":"FOUR"},
-{"category":"0", "inputString":"FIVE"}, 
-{"category":"0", "inputString":"SIX"},
-{"category":"0", "inputString":"EIGHT"}, 
-{"category":"0", "inputString":"NINE"}] 
+[{"category":"1", "inputString":"HE TOOK A PICTURE"}] 
