@@ -1,22 +1,22 @@
+////
+////  MyAubioController.h
+////  JuliusSample
+////
+////  Created by OwenWu on 05/08/2013.
+////
+////
 //
-//  MyAubioController.h
-//  JuliusSample
+//#import <Foundation/Foundation.h>
+//#import <AVFoundation/AVFoundation.h>
 //
-//  Created by OwenWu on 05/08/2013.
+//#include "aubio.h"
 //
+//@protocol aubioControllerDelegate;
 //
-
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
-
-#include "aubio.h"
-
-@protocol aubioControllerDelegate;
-
-@interface MyAubioController : NSObject <AVAudioRecorderDelegate>
-@property(nonatomic, weak) id<aubioControllerDelegate> controllerDelegateAubio;
-@end
-
-@protocol aubioControllerDelegate
-- (void)aubioCallBackResult:(NSArray *)results;
-@end
+//@interface MyAubioController : NSObject <AVAudioRecorderDelegate>
+//@property(nonatomic, weak) id<aubioControllerDelegate> controllerDelegateAubio;
+//@end
+//
+//@protocol aubioControllerDelegate
+//- (void)aubioCallBackResult:(NSArray *)results;
+//@end

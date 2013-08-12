@@ -30,7 +30,7 @@
 
 //	Julius *julius;
     
-    MyAubioController *aubioController;
+    //MyAubioController *aubioController;
     MyJuliusController *juliusController;
 }
 
@@ -76,7 +76,7 @@ void ConvertInt16ToFloat(MyAudioManager* THIS, void *buf, float *outputBuf, size
     }
     
 //    sampleRate = [session preferredSampleRate];
-    aubioController = [[MyAubioController alloc] init];
+    //aubioController = [[MyAubioController alloc] init];
     juliusController= [[MyJuliusController alloc] init];
     
     if (isRealTime) {
@@ -517,7 +517,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     jRecorder.delegate = juliusController;
     juliusController.controllerDelegateJulius = self;
     
-    [jRecorder recordForDuration:kMaxDuration];
+    //[jRecorder record];//recordForDuration:kMaxDuration];
     return jRecorder;
 }
 
@@ -545,10 +545,10 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     // Init and prepare the recorder
     aRecorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
     aRecorder.meteringEnabled = YES;
-    aRecorder.delegate = aubioController;
-    aubioController.controllerDelegateAubio = self;
+    //aRecorder.delegate = aubioController;
+    //aubioController.controllerDelegateAubio = self;
     
-    [aRecorder recordForDuration:kMaxDuration];
+    //[aRecorder record];//recordForDuration:kMaxDuration];
     return aRecorder;
 }
 

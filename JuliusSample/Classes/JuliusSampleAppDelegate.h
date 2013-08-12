@@ -12,16 +12,18 @@ static NSString *kPrivateAppDir = @"PrivateDocuments";
 
 #import "MyAudioManager.h"
 
-@interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate, juliusManagerDelegate, aubioManagerDelegate> {
+@class TestViewController;
+
+@interface JuliusSampleAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    
-    AVAudioRecorder *aRecorder;
-    AVAudioRecorder *jRecorder;
     
     NSTimer *gainValueTimer;
 }
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
+
+@property (strong, nonatomic) TestViewController *viewController;
+
 @property (nonatomic, strong) IBOutlet UITextView *resultText;
 @property (nonatomic, strong) IBOutlet UILabel *notificationLabel;
 

@@ -8,6 +8,9 @@
 
 #import "JuliusSampleAppDelegate.h"
 
+#import "TestViewController.h"
+
+
 #define kSamplingRate 16000.0 //Sampling Frequency in Hz
 #define GAIN_VALUE_UPDATE_FREQUENCY 0.05//In Second
 
@@ -38,10 +41,10 @@
 
 // If you need the Gain/Volumn/Stress values, make an array to hold the values from this method
 -(void)updateRecorderMeters{
-    if (aRecorder && aRecorder.meteringEnabled) {
-        [aRecorder updateMeters];
-        NSLog(@"The Gain Value:%f",[aRecorder averagePowerForChannel:0]);
-    }
+//    if (aRecorder && aRecorder.meteringEnabled) {
+//        [aRecorder updateMeters];
+//        NSLog(@"The Gain Value:%f",[aRecorder averagePowerForChannel:0]);
+//    }
 }
 
 #pragma mark -
@@ -56,43 +59,51 @@
     // -----------------------------------------------------------------
     gainValueTimer = [NSTimer scheduledTimerWithTimeInterval:GAIN_VALUE_UPDATE_FREQUENCY target:self selector:@selector(updateRecorderMeters) userInfo:nil repeats:YES];
     
-    // Init and start the common tasks for non real-time audio
-    // -----------------------------------------------------------------
-    [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
-    [[MyAudioManager sharedInstance] initializeAudioSession];
-
-//    if (GET_PITCH) {
-        // This is the starting point for using Julius/Speech Recognition
-        // Use Macro to change between real-time or offline modes
-        // -----------------------------------------------------------------
-//        [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
-        [[MyAudioManager sharedInstance] setDelegateAubio:self];
-#if REAL_TIME
-        [[MyAudioManager sharedInstance] setIsRealTime:YES];
-        [[MyAudioManager sharedInstance] startListening:self];
-#else
-        [[MyAudioManager sharedInstance] setIsRealTime:NO];
-        aRecorder = [[MyAudioManager sharedInstance] getRecorderForAubio];
-        [aRecorder record];
-#endif
-//    } else {
-        // This is the starting point for using Aubio/Pitch & ADSR & Tempo Tracking
-        // Use Macro to change between real-time or offline modes
-        // -----------------------------------------------------------------
-//        [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
-        [[MyAudioManager sharedInstance] setDelegateJulius:self];
-#if REAL_TIME
-        [[MyAudioManager sharedInstance] isRealTime] = YES;
-        [[MyAudioManager sharedInstance] startListening:self]; if real time YES
-#else
-        [[MyAudioManager sharedInstance] setIsRealTime:NO];
-        jRecorder = [[MyAudioManager sharedInstance] getRecorderForJulius];
-        [jRecorder record];
-#endif
-//    }
+//    // Init and start the common tasks for non real-time audio
+//    // -----------------------------------------------------------------
+//    [[MyAudioManager sharedInstance] setSampleRate:kSamplingRate];
+//    [[MyAudioManager sharedInstance] initializeAudioSession];
+//
+////    if (GET_PITCH) {
+//        // This is the starting point for using Julius/Speech Recognition
+//        // Use Macro to change between real-time or offline modes
+//        // -----------------------------------------------------------------
+////        [[MyAudioManager sharedInstance] setAubioORjulius:LIBAUBIO];
+//        [[MyAudioManager sharedInstance] setDelegateAubio:self];
+//#if REAL_TIME
+//        [[MyAudioManager sharedInstance] setIsRealTime:YES];
+//        [[MyAudioManager sharedInstance] startListening:self];
+//#else
+//        [[MyAudioManager sharedInstance] setIsRealTime:NO];
+//        aRecorder = [[MyAudioManager sharedInstance] getRecorderForAubio];
+//        [aRecorder record];
+//#endif
+////    } else {
+//        // This is the starting point for using Aubio/Pitch & ADSR & Tempo Tracking
+//        // Use Macro to change between real-time or offline modes
+//        // -----------------------------------------------------------------
+////        [[MyAudioManager sharedInstance] setAubioORjulius:LIBJULIUS];
+//        [[MyAudioManager sharedInstance] setDelegateJulius:self];
+//#if REAL_TIME
+//        [[MyAudioManager sharedInstance] isRealTime] = YES;
+//        [[MyAudioManager sharedInstance] startListening:self]; if real time YES
+//#else
+//        [[MyAudioManager sharedInstance] setIsRealTime:NO];
+//        jRecorder = [[MyAudioManager sharedInstance] getRecorderForJulius];
+//        [jRecorder record];
+//#endif
+////    }
     
     // Add the view controller's view to the window and display.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Override point for customization after application launch.
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.viewController = [[TestViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+    } else {
+        self.viewController = [[TestViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
+    }
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
     return YES;
@@ -146,34 +157,34 @@
      */
 }
 
-#pragma mark -
-#pragma mark juliusManagerDelegate and aubioManagerDelegate Methods
-
-- (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
-    NSMutableString *juliusResults = [[NSMutableString alloc] init];
-    [juliusResults appendFormat:@"\n%d Words: ", [results count]];
-    for (NSString *temp in results) {
-        NSLog(@"In results:%@",temp);
-        [juliusResults appendString:temp];
-    }
-    [juliusResults appendString:@"\nThe Durations(in frame):"];
-    for (NSNumber *aNum in boundsAry) {
-        NSLog(@"In boundsAry:%d", [aNum intValue]);
-        [juliusResults appendFormat:@"<%d>",[aNum intValue]];
-    }
-    
-    jRecorder.meteringEnabled = NO;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        resultText.text = [NSString stringWithString:juliusResults];
-    });
-}
-
-- (void)aubioCallBackResult:(NSArray *)results{
-    notificationLabel.text = @"Pitch & Gain Values in the LOG.";
-    for (int idx=0; idx<[results count]; idx++) {
-        NSLog(@"In pitchArray[%d]:%f",idx, [results[idx] floatValue]);
-    }
-    aRecorder.meteringEnabled = NO;
-}
+//#pragma mark -
+//#pragma mark juliusManagerDelegate and aubioManagerDelegate Methods
+//
+//- (void)juliusCallBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+//    NSMutableString *juliusResults = [[NSMutableString alloc] init];
+//    [juliusResults appendFormat:@"\n%d Words: ", [results count]];
+//    for (NSString *temp in results) {
+//        NSLog(@"In results:%@",temp);
+//        [juliusResults appendString:temp];
+//    }
+//    [juliusResults appendString:@"\nThe Durations(in frame):"];
+//    for (NSNumber *aNum in boundsAry) {
+//        NSLog(@"In boundsAry:%d", [aNum intValue]);
+//        [juliusResults appendFormat:@"<%d>",[aNum intValue]];
+//    }
+//    
+//    jRecorder.meteringEnabled = NO;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        resultText.text = [NSString stringWithString:juliusResults];
+//    });
+//}
+//
+//- (void)aubioCallBackResult:(NSArray *)results{
+//    notificationLabel.text = @"Pitch & Gain Values in the LOG.";
+//    for (int idx=0; idx<[results count]; idx++) {
+//        NSLog(@"In pitchArray[%d]:%f",idx, [results[idx] floatValue]);
+//    }
+//    aRecorder.meteringEnabled = NO;
+//}
 
 @end

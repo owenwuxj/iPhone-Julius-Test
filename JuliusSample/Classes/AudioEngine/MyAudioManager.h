@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-#define kMaxDuration 3.0 // Max recording time in sec
+#define kMaxDuration 30.0 // Max recording time in sec
 
 #import "MyAubioController.h"
 #import "MyJuliusController.h"
 
 @protocol aubioManagerDelegate, juliusManagerDelegate;
 
-@interface MyAudioManager : NSObject <AVAudioPlayerDelegate, juliusControllerDelegate, aubioControllerDelegate> {
+@interface MyAudioManager : NSObject <AVAudioPlayerDelegate, juliusControllerDelegate> { //, aubioControllerDelegate> {
 }
 
 @property(nonatomic, assign) float sampleRate;//should be set before initializeAudioSession(), default is 16000.0

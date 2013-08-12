@@ -84,6 +84,13 @@
 		4561EA5117719ED200EE391B /* rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 4561EA5017719ED200EE391B /* rotate.png */; };
 		45F2B34C1764155A00500BA4 /* SpeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34A1764155A00500BA4 /* SpeakViewController.xib */; };
 		45F2B350176416D400500BA4 /* speak.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45F2B34F176416D400500BA4 /* speak.jpg */; };
+		F41F5F0717B8835500B931A6 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F5F0617B8835500B931A6 /* TestViewController.m */; };
+		F41F5F0A17B8842D00B931A6 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41F5F0817B8842D00B931A6 /* ViewController_iPad.xib */; };
+		F41F5F0B17B8842D00B931A6 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41F5F0917B8842D00B931A6 /* ViewController_iPhone.xib */; };
+		F41F5F0E17B8B6FE00B931A6 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F5F0D17B8B6FE00B931A6 /* TestView.m */; };
+		F41F5F1117B8B91600B931A6 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F5F1017B8B91600B931A6 /* TestModel.m */; };
+		F41F5F1317B8D8C700B931A6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41F5F1217B8D8C700B931A6 /* CoreMedia.framework */; };
+		F424E87417B34A750006FAA8 /* SuperAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F424E87317B34A750006FAA8 /* SuperAudioManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +238,17 @@
 		45F2B34A1764155A00500BA4 /* SpeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SpeakViewController.xib; path = Classes/SpeakViewController.xib; sourceTree = "<group>"; };
 		45F2B34F176416D400500BA4 /* speak.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speak.jpg; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* JuliusSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JuliusSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		F41F5F0517B8835500B931A6 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		F41F5F0617B8835500B931A6 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		F41F5F0817B8842D00B931A6 /* ViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPad.xib; sourceTree = "<group>"; };
+		F41F5F0917B8842D00B931A6 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
+		F41F5F0C17B8B6FE00B931A6 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		F41F5F0D17B8B6FE00B931A6 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		F41F5F0F17B8B91600B931A6 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		F41F5F1017B8B91600B931A6 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
+		F41F5F1217B8D8C700B931A6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F424E87217B34A750006FAA8 /* SuperAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperAudioManager.h; sourceTree = "<group>"; };
+		F424E87317B34A750006FAA8 /* SuperAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperAudioManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41F5F1317B8D8C700B931A6 /* CoreMedia.framework in Frameworks */,
 				131E74321769C10E00457C90 /* CoreText.framework in Frameworks */,
 				131BA5AA1762DB720033530B /* QuartzCore.framework in Frameworks */,
 				13A7B9EA174F347200E832F3 /* Accelerate.framework in Frameworks */,
@@ -258,6 +277,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F41F5F0317B8833600B931A6 /* Test App */,
 				135CA0CD17AA454F008F962C /* Aubio_iOS */,
 				135CA0C917AA453E008F962C /* AudioEngine */,
 				13684FAE12E0ABDB00FBF870 /* Controller */,
@@ -277,6 +297,8 @@
 		135CA0C917AA453E008F962C /* AudioEngine */ = {
 			isa = PBXGroup;
 			children = (
+				F424E87217B34A750006FAA8 /* SuperAudioManager.h */,
+				F424E87317B34A750006FAA8 /* SuperAudioManager.m */,
 				135CA0CA17AA453E008F962C /* MyAudioManager.h */,
 				135CA0CB17AA453E008F962C /* MyAudioManager.m */,
 				135CA1B117AF5AE3008F962C /* MyJuliusController.h */,
@@ -465,6 +487,8 @@
 		13684FAF12E0ABE800FBF870 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				F41F5F0817B8842D00B931A6 /* ViewController_iPad.xib */,
+				F41F5F0917B8842D00B931A6 /* ViewController_iPhone.xib */,
 				45F2B34A1764155A00500BA4 /* SpeakViewController.xib */,
 				1344A4061769E86400BD73F9 /* MainWindow.xib */,
 				1344A4071769E86400BD73F9 /* JuliusSampleViewController.xib */,
@@ -542,6 +566,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				F41F5F1217B8D8C700B931A6 /* CoreMedia.framework */,
 				135CA15917AA47DC008F962C /* README.textile */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -602,6 +627,19 @@
 				45F2B34F176416D400500BA4 /* speak.jpg */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		F41F5F0317B8833600B931A6 /* Test App */ = {
+			isa = PBXGroup;
+			children = (
+				F41F5F0517B8835500B931A6 /* TestViewController.h */,
+				F41F5F0617B8835500B931A6 /* TestViewController.m */,
+				F41F5F0C17B8B6FE00B931A6 /* TestView.h */,
+				F41F5F0D17B8B6FE00B931A6 /* TestView.m */,
+				F41F5F0F17B8B91600B931A6 /* TestModel.h */,
+				F41F5F1017B8B91600B931A6 /* TestModel.m */,
+			);
+			name = "Test App";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +725,8 @@
 				135CA17E17AA701C008F962C /* test.dict in Resources */,
 				135CA17F17AA701C008F962C /* test.grammar in Resources */,
 				135CA18017AA701C008F962C /* test.voca in Resources */,
+				F41F5F0A17B8842D00B931A6 /* ViewController_iPad.xib in Resources */,
+				F41F5F0B17B8842D00B931A6 /* ViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +788,10 @@
 				135CA15817AA454F008F962C /* vecutils.c in Sources */,
 				135CA1B317AF5AE3008F962C /* MyJuliusController.m in Sources */,
 				135CA1B617AF5AF8008F962C /* MyAubioController.m in Sources */,
+				F424E87417B34A750006FAA8 /* SuperAudioManager.m in Sources */,
+				F41F5F0717B8835500B931A6 /* TestViewController.m in Sources */,
+				F41F5F0E17B8B6FE00B931A6 /* TestView.m in Sources */,
+				F41F5F1117B8B91600B931A6 /* TestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
