@@ -19,8 +19,6 @@
     
     UITextView *resultsText;
     
-    
-    
 }
 
 - (id)initWithFrame:(CGRect)frame

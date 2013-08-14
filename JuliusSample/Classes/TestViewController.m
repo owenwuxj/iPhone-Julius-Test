@@ -98,21 +98,39 @@
         
         [myView configureViewForCalculatingResults];
         
-        //extract the pitch
-        
-        myModel.arrayOfPitchValues = (NSMutableArray*)([[SuperAudioManager sharedInstance] extractPitchFloatArrayFromFile:recorder.url]);
-        
-        //perform the ASR pass
-        
-        //...
-        
-        //update the UI to show the results
-        
-        [myView configureViewForShowingResults: [myModel dumpYourLoadIntoAString]];
-        
+        //threaded processing:
+        [self performSelectorInBackground:@selector(getPitchAndASRFromURL:) withObject:recorder.url];
+        //inline processing:
+        //[self getPitchAndASRFromURL:recorder.url];
         
     }
     
+}
+
+#pragma mark - sound processing methods
+
+- (void)getPitchAndASRFromURL:(NSURL*)pURL {
+    
+//    for (long loop = 0; loop < 1000000; loop++) {
+//        for (long loop2 = 0; loop2 < 1000; loop2++) {
+//            
+//        }
+//    }
+    
+    //extract the pitch
+    
+    myModel.arrayOfPitchValues = (NSMutableArray*)([[SuperAudioManager sharedInstance] extractPitchFloatArrayFromFile:pURL]);
+    
+    //perform the ASR pass
+    
+    //...
+    
+    //update the UI to show the results
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [myView configureViewForShowingResults: [myModel dumpYourLoadIntoAString]];
+    });
+
 }
 
 
