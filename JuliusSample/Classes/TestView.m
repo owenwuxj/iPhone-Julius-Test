@@ -8,6 +8,8 @@
 
 #import "TestView.h"
 
+#define kSTARTRECORDING @"Start Recording"
+
 @implementation TestView {
     
     UIView *recordingContainer;
@@ -35,12 +37,13 @@
         
         startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         startButton.frame = CGRectMake(20, 20, self.frame.size.width-40, 50);
-        [startButton setTitle:@"Start Recording" forState:UIControlStateNormal];
+        [startButton setTitle:kSTARTRECORDING forState:UIControlStateNormal];
         [startButton addTarget:self action:@selector(startPressed) forControlEvents:UIControlEventTouchUpInside];
         
         stopButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         stopButton.frame = CGRectMake(20, 90, self.frame.size.width-40, 50);
         [stopButton setTitle:@"Stop Recording" forState:UIControlStateNormal];
+        [stopButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [stopButton addTarget:self action:@selector(stopPressed) forControlEvents:UIControlEventTouchUpInside];
         
         startButton.userInteractionEnabled = YES;
@@ -92,8 +95,11 @@
     if (self.delegate) {
         [self.delegate userRequestsRecordingStart];
         //stop user from pressing start again, enable stop
+        [startButton setTitle:@"Recording ..." forState:UIControlStateNormal];
+        [startButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         startButton.userInteractionEnabled = NO;
         stopButton.userInteractionEnabled  = YES;
+        [stopButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
 }
 
@@ -120,8 +126,10 @@
     
     //buttons in recording configuration
     startButton.userInteractionEnabled = YES;
+    [startButton setTitle:kSTARTRECORDING forState:UIControlStateNormal];
+    [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     stopButton.userInteractionEnabled  = NO;
-    
+    [stopButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];    
 }
 
 - (void)configureViewForCalculatingResults {
