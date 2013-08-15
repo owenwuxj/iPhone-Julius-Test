@@ -14,7 +14,9 @@
     float sampleRate;
     
     NSMutableDictionary *recordSettings;
-
+    
+	Julius *julius;
+    NSMutableDictionary *wordsAndBounds;
 }
 
 // ########################################################################################################################################
@@ -46,10 +48,6 @@
     if (pAudioRecorder) {
         [pAudioRecorder stop];
     }
-}
-
-- (NSArray*)extractWordsFromFile:(NSURL*)pFilename {
-    return nil;
 }
 
 // ########################################################################################################################################
@@ -373,6 +371,38 @@ static void process_print (void) {
     
 }
 
+#pragma mark -
+#pragma mark Aubio Callback Methods
 
+- (NSArray*)extractWordsFromFile:(NSURL*)pFilename {
+	if (!julius) {
+		julius = [Julius new];
+		julius.delegate = self;
+	}
+    else {// Owen 20130607: Init Julius every time starting recognition
+        julius = nil;
+        julius = [Julius new];
+        julius.delegate = self;
+    }
+    
+    NSLog(@"filePath is %@",[pFilename relativePath]);
+	[julius recognizeRawFileAtPath:[pFilename relativePath]];
+    return nil;
+}
+
+#pragma mark -
+#pragma mark Julius delegate
+
+- (void)callBackResult:(NSArray *)results withBounds:(NSArray *)boundsAry{
+    NSLog(@"Show Results: %@ /n has %d bounds",[results componentsJoinedByString:@""], [boundsAry count]);
+    
+    // Keys and words should have equal length
+    if ([results count] == [boundsAry count]) {
+        wordsAndBounds = [NSMutableDictionary dictionaryWithObjects:boundsAry forKeys:results];
+    }
+
+    // Post a notification to notify the client that the network reachability changed.
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationForJuliusCallback object:nil userInfo:wordsAndBounds];
+}
 
 @end

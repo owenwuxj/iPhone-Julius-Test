@@ -10,8 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 #include "aubio.h"
+#import "Julius.h"
 
-@interface SuperAudioManager : NSObject <AVAudioRecorderDelegate>
+@interface SuperAudioManager : NSObject <AVAudioRecorderDelegate, JuliusDelegate>
 
 @property (nonatomic) AVAudioRecorder *genericAudioRecorder;
 

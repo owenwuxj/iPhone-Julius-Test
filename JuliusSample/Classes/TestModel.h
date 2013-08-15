@@ -12,6 +12,9 @@
 
 @property (nonatomic) NSMutableArray *arrayOfPitchValues;
 
+@property (nonatomic) NSMutableArray *arrayOfGains;//...
+@property (nonatomic) NSMutableDictionary *arrayOfWords;
+
 - (NSString*)dumpYourLoadIntoAString;
 
 @end

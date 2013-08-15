@@ -11,8 +11,12 @@
 #include <CoreMedia/CMBase.h>
 #include <CoreFoundation/CoreFoundation.h>
 
-@interface TestViewController ()
+#define GAIN_VALUE_UPDATE_FREQUENCY 0.05 // In Second. This value should adapt to Pitch and Bounds Arrays.
 
+@interface TestViewController ()
+- (void)juliusCallbackWithDict:(NSMutableDictionary *)wordsAndDurations;
+- (void)getPitchAndASRFromURL:(NSURL*)pURL;
+- (void)updateRecorderMeters;
 @end
 
 @implementation TestViewController {
@@ -20,6 +24,9 @@
     TestView *myView;
     TestModel *myModel;
     
+    // stress/volumn/gain detecting
+    NSTimer *gainValueTimer;
+    NSMutableArray *gainArray;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,6 +51,13 @@
         
         [SuperAudioManager sharedInstance].genericAudioRecorder.delegate = self;
         
+        // This is the starting point for detecting the gain/volumn/"stress"...
+        // init a timer to get the gain in real-time firstly
+        // -----------------------------------------------------------------
+        gainValueTimer = [NSTimer scheduledTimerWithTimeInterval:GAIN_VALUE_UPDATE_FREQUENCY target:self selector:@selector(updateRecorderMeters) userInfo:nil repeats:YES];
+        gainArray = [[NSMutableArray alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(juliusCallbackWithDict:) name:NotificationForJuliusCallback object:nil];
     }
     return self;
 }
@@ -86,6 +100,25 @@
 
 }
 
+#pragma mark - Private methods
+
+- (void)juliusCallbackWithDict:(NSNotification*)nft {
+    NSDictionary *tempDict = nft.userInfo;
+    for (NSString *aWord in [tempDict allKeys]) {
+        NSLog(@"%@",aWord);
+    }
+}
+
+// This method doesn't have to be here in the view Controller, 'coz it's data-related.
+-(void)updateRecorderMeters{
+    AVAudioRecorder *theRecorder = [SuperAudioManager sharedInstance].genericAudioRecorder;
+    if (theRecorder && theRecorder.meteringEnabled) {
+        [theRecorder updateMeters]; /* call to refresh meter values */
+//        NSLog(@"The Gain Value:%f",[[SuperAudioManager sharedInstance].genericAudioRecorder averagePowerForChannel:0]);
+        [gainArray addObject:[NSNumber numberWithFloat:[theRecorder averagePowerForChannel:0]]];
+    }
+}
+
 
 #pragma mark - AVAudioRecorderDelegate methods
 
@@ -123,7 +156,7 @@
     
     //perform the ASR pass
     
-    //...
+    myModel.arrayOfWords = (NSMutableDictionary*)([[SuperAudioManager sharedInstance] extractWordsFromFile:pURL]);
     
     //update the UI to show the results
     

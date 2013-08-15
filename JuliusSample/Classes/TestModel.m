@@ -21,7 +21,11 @@
             returnString = [returnString stringByAppendingString:[NSString stringWithFormat:@"\n\nPitch: %f",[someNumber floatValue]]];
             
         }
-    } else {
+    }
+    else if (self.arrayOfWords) {
+        
+    }
+    else {
         
         returnString = @"No load to dump!";
         
