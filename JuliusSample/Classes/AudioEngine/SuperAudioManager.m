@@ -184,6 +184,14 @@ aubio_source_t *that_source = NULL;
 aubio_pitch_t *pitchObject;
 fvec_t *pitch;
 
+/*
+fvec_t *tempo_out = NULL;
+aubio_tempo_t *bt = NULL;
+
+smpl_t istactus = 0;
+smpl_t isonset = 0;
+*/
+ 
 typedef struct {
     float *arrayData;
     size_t used;
@@ -235,8 +243,17 @@ static int aubio_process(smpl_t **input, smpl_t **output, int nframes) {
         if (pos == overlap_size-1) {
             /* block loop */
             aubio_pitch_do (pitchObject, ibuf, pitch);
-            //            aubio_onset_do(onsetObject, ibuf, onset);
-            
+//            aubio_onset_do(onsetObject, ibuf, onset);
+/*
+            aubio_tempo_do(bt, ibuf, tempo_out);
+            istactus = fvec_read_sample(tempo_out, 0);
+            isonset = fvec_read_sample(tempo_out, 1);
+            if (istactus > 0.) {
+                fvec_copy(woodblock, obuf);
+            } else {
+                fvec_zeros(obuf);
+            }
+*/
             if (fvec_read_sample(pitch, 0)) {
                 for (pos = 0; pos < overlap_size; pos++){
                     // TODO, play sine at this freq
@@ -267,6 +284,13 @@ static void process_print (void) {
     pitchArray[frames] = pitch_found;//the array holding pitch values
     insertArray(&pArray, pitch_found);  // automatically resizes as necessary
     //    NSLog(@"pitchArray[%d]:%f",frames, pitchArray[frames]);
+//    if (sink_uri == NULL) {
+//        if (istactus) {
+//            outmsg("%f\n",((smpl_t)(frames*overlap_size)+(istactus-1.)*overlap_size)/(smpl_t)samplerate);
+//        }
+//        if (isonset && verbose)
+//            outmsg(" \t \t%f\n",(frames)*overlap_size/(float)samplerate);
+//    }
     
     //    smpl_t onset_found = fvec_read_sample (onset, 0);
     //    if (onset_found) {
@@ -306,12 +330,17 @@ static void process_print (void) {
     ibuf = new_fvec (overlap_size);
     obuf = new_fvec (overlap_size);
     
+/*
+    tempo_out = new_fvec(2);
+*/
     pitchObject = new_aubio_pitch ("yin", buffer_size, overlap_size, samplerate);
     //    if (threshold != 0.) {
     //        aubio_pitch_set_silence(pitchObject, -60);
     //        aubio_pitch_set_unit(pitchObject, "freq");
     //    }
-    
+/*
+    bt = new_aubio_tempo(onset_mode, buffer_size, overlap_size, samplerate);
+*/    
     pitch = new_fvec (1);
     
     // ...
@@ -331,6 +360,10 @@ static void process_print (void) {
     del_aubio_pitch (pitchObject);
     del_fvec (pitch);
     
+/*
+    del_aubio_tempo(bt);
+    del_fvec(tempo_out);
+*/
     debug ("Processed %d frames of %d samples.\n", frames, buffer_size);
     
     //    for (int idx = 0; idx < frames; idx++) {
