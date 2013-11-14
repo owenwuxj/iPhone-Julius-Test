@@ -267,8 +267,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
     if (read > inNumberFrames) {
 		memcpy((SInt16 *)dataBuffer + index, THIS->bufferList->mBuffers[0].mData, inNumberFrames*sizeof(SInt16));
 		THIS->index += inNumberFrames;
-	} else {
-		// If we enter this conditional, our buffer will be filled and we should
+	} else {		// If we enter this conditional, our buffer will be filled and we should
 		// perform the FFT.
 		memcpy((SInt16 *)dataBuffer + index, THIS->bufferList->mBuffers[0].mData, read*sizeof(SInt16));
 		
@@ -279,12 +278,12 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 		ConvertInt16ToFloat(THIS, dataBuffer, outputBuffer, bufferCapacity);
         
         // Create a Hanning window
-        float *hann = (float*)malloc(sizeof(float)*bufferCapacity);
-        vDSP_hann_window(hann, bufferCapacity, vDSP_HANN_NORM);
-
+//        float *hann = (float*)malloc(sizeof(float)*bufferCapacity);
+//        vDSP_hann_window(hann, bufferCapacity, vDSP_HANN_NORM);
         
         /******RMS or ZCR or ACF*****/
         //RMS
+/*
         float sum = 0.0;
 //        float sum4i,sum4ACFinal = 0.0;
         
@@ -296,7 +295,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         }
         float rmsOfThisFrame = sqrtf(sum/bufferCapacity);
 //        NSLog(@"rmsOfThisFrame:%f", avgFloat);
-        
+*/
         
 		/*************** FFT ***************/
         // Only a rectangle windowing/framing, no overlapping and pick the highest peak??!
@@ -316,6 +315,8 @@ OSStatus RenderFFTCallback (void					*inRefCon,
 		// a split real vector.
 		vDSP_ztoc(&dspSplitComplex, 1, (COMPLEX *)outputBuffer, 2, nOver2);
         
+        // Min/Max and Peak Picker
+/*
         // find the Max
         float theMax = .0;
         for (int idx = 0; idx < bufferCapacity; idx++) {
@@ -347,9 +348,9 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         }
         THIS->peakNumberAccum += peakNumberPerFrame;
 //        NSLog(@"[%d] InTotal", peakNumberPerFrame, THIS->peakNumberAccum);
+*/
         
-/*
-        // Apply Cutoff
+        // Apply Cutoff then compute Pitch
         int startBin = (int) (MIN_FREQ * n * 2 / THIS->sampleRate) - 1;
         if (startBin < 1)
             startBin = 1;  // we've already looked at bin 0
@@ -378,58 +379,59 @@ OSStatus RenderFFTCallback (void					*inRefCon,
         
         // Check Again: Noise Amplitude
         if (max < 20) bin = 0;
-*/
-
         
 		/*************** ZCR ***************/
-        //        avgFloat = avgFloat/bufferCapacity;
-//        NSMutableArray *sampleArray = [NSMutableArray array];
-//        for (UInt16 idx = 0; idx < bufferCapacity; idx++) {
-//            [sampleArray addObject:[NSNumber numberWithFloat:outputBuffer[idx]]];
-//        }
-//        
-//        // Init the sign
-//        int theSign = 0;
-//        if (sampleArray[0] < 0) {
-//            theSign = -1;
-//        } else {
-//            theSign = 1;
-//        }
-//        
-//        // Step through the frame
-//        NSMutableArray *zc = [[NSMutableArray alloc] initWithCapacity:bufferCapacity];
-//        for (UInt16 idx = 1; idx < bufferCapacity; idx++) {
-//            if (theSign < 0) {
-//                if ([sampleArray[idx] floatValue] >= 0) {
-//                    // zero crossing occured from - to +
-//                    theSign = 1;
-//                    [zc addObject:[NSNumber numberWithInt:idx]];
-//                }
-//            }
-//            else {
-//                if ([sampleArray[idx] floatValue] < 0) {
-//                    //zero crossing occured from + to -
-//                    theSign = -1;
-//                    [zc addObject:[NSNumber numberWithInt:idx]];
-//                }
-//            }
-//        }
-//        
-//        //compute zcr, we need to compute distance between each sample(number) first
-//        float zcr = .0;
-//        NSLog(@"Zero Crossing Count is %d",[zc count]);
-//        for (UInt16 idx = 0; idx < [zc count]; idx++) {
-//            int temp = [zc[idx+1] intValue] - [zc[idx] intValue];
-//            zcr = zcr + (float)temp;
-//            NSLog(@"ZCR @%d is %f", idx, zcr);
-//        }
-//        NSLog(@"ZCR2 is %f",zcr);
-//        zcr = zcr/(float)[zc count];
+/*
+        avgFloat = avgFloat/bufferCapacity;
+        NSMutableArray *sampleArray = [NSMutableArray array];
+        for (UInt16 idx = 0; idx < bufferCapacity; idx++) {
+            [sampleArray addObject:[NSNumber numberWithFloat:outputBuffer[idx]]];
+        }
+        
+        // Init the sign
+        int theSign = 0;
+        if (sampleArray[0] < 0) {
+            theSign = -1;
+        } else {
+            theSign = 1;
+        }
+        
+        // Step through the frame
+        NSMutableArray *zc = [[NSMutableArray alloc] initWithCapacity:bufferCapacity];
+        for (UInt16 idx = 1; idx < bufferCapacity; idx++) {
+            if (theSign < 0) {
+                if ([sampleArray[idx] floatValue] >= 0) {
+                    // zero crossing occured from - to +
+                    theSign = 1;
+                    [zc addObject:[NSNumber numberWithInt:idx]];
+                }
+            }
+            else {
+                if ([sampleArray[idx] floatValue] < 0) {
+                    //zero crossing occured from + to -
+                    theSign = -1;
+                    [zc addObject:[NSNumber numberWithInt:idx]];
+                }
+            }
+        }
+        
+        //compute zcr, we need to compute distance between each sample(number) first
+        float zcr = .0;
+        NSLog(@"Zero Crossing Count is %d",[zc count]);
+        for (UInt16 idx = 0; idx < [zc count]; idx++) {
+            int temp = [zc[idx+1] intValue] - [zc[idx] intValue];
+            zcr = zcr + (float)temp;
+            NSLog(@"ZCR @%d is %f", idx, zcr);
+        }
+        NSLog(@"ZCR2 is %f",zcr);
+        zcr = zcr/(float)[zc count];
+*/
 
 		memset(outputBuffer, 0, n*sizeof(SInt16));
-
+		printf("Dominant frequency: %f   bin: %d \n", bin*(THIS->sampleRate/bufferCapacity), bin);
 //        [THIS->julius recognizeRawFileAtPath:(NSString *)dataBuffer];
 //        NSLog(@"123::%d/%d/%d", peakNumberPerFrame, THIS->peakNumberAccum, THIS->frameCounter);
+/*
         if ((peakNumberPerFrame == 0 && THIS->peakNumberAccum > 0)|| (THIS->peakNumberAccum > 0 && THIS->frameCounter >= kFrameLength)) {
             if (THIS->juliusListener && [THIS->juliusListener respondsToSelector:@selector(frequencyChangedWithRMS:withACF:andZCR:withFreq:)]) {
 //                [THIS->juliusListener frequencyChangedWithRMS:rmsOfThisFrame withACF:nil andZCR:nil withFreq:(float)THIS->peakNumberAccum];
@@ -437,6 +439,7 @@ OSStatus RenderFFTCallback (void					*inRefCon,
             THIS->peakNumberAccum = 0;
             THIS->frameCounter = 0;
         }
+*/
     }
 
     return noErr;

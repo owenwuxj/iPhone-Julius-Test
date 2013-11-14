@@ -22,5 +22,5 @@
 - (void)configureViewReadyToRecord;
 - (void)configureViewForCalculatingResults;
 - (void)configureViewForShowingResults:(NSString*)pResultsString;
-
+- (void)testMyMethod;
 @end

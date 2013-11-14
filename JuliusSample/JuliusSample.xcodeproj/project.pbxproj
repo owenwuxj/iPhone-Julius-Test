@@ -571,7 +571,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				F41F5F1217B8D8C700B931A6 /* CoreMedia.framework */,
 				135CA15917AA47DC008F962C /* README.textile */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -611,6 +610,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F41F5F1217B8D8C700B931A6 /* CoreMedia.framework */,
 				131E74311769C10E00457C90 /* CoreText.framework */,
 				131BA5A91762DB720033530B /* QuartzCore.framework */,
 				13A7B9E9174F347200E832F3 /* Accelerate.framework */,
@@ -815,7 +815,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JuliusSample_Prefix.pch;
 				INFOPLIST_FILE = "JuliusSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/JuliusSample-dkfxlwvaxsdltharyfnpfcqsertb/Build/Products/Debug-iphoneos\"",
@@ -833,7 +833,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JuliusSample_Prefix.pch;
 				INFOPLIST_FILE = "JuliusSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/JuliusSample-dkfxlwvaxsdltharyfnpfcqsertb/Build/Products/Debug-iphoneos\"",

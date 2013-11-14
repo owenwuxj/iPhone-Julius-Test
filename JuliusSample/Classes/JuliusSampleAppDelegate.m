@@ -7,7 +7,7 @@
 //
 
 #import "JuliusSampleAppDelegate.h"
-
+#import "RIOInterface.h"
 #import "TestViewController.h"
 
 
@@ -58,6 +58,11 @@
     // init a timer to get the gain in real-time firstly
     // -----------------------------------------------------------------
     gainValueTimer = [NSTimer scheduledTimerWithTimeInterval:GAIN_VALUE_UPDATE_FREQUENCY target:self selector:@selector(updateRecorderMeters) userInfo:nil repeats:YES];
+    
+    RIOInterface *rioRef = [RIOInterface sharedInstance];
+    [rioRef setSampleRate:44100];
+    [rioRef initializeAudioSession];
+    [rioRef startListening:self];
     
 //    // Init and start the common tasks for non real-time audio
 //    // -----------------------------------------------------------------

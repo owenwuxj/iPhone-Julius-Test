@@ -40,7 +40,9 @@
 
 - (void)micRecordingStart:(AVAudioRecorder*)pAudioRecorder {
     if (pAudioRecorder) {
-        [pAudioRecorder record];
+        if ([pAudioRecorder recordForDuration:3.0]) {
+            NSLog(@"recordForDuration works!");
+        }
     }
 }
 

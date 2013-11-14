@@ -22,6 +22,9 @@
     UITextView *resultsText;
     
 }
+- (void)testMyMethod
+{
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
